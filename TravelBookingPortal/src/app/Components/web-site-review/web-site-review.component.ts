@@ -7,24 +7,25 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrl: './web-site-review.component.css'
 })
 export class WebSiteReviewComponent {
-  @ViewChild('testimonialScrollContainer') testimonialScrollContainer!: ElementRef;
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngAfterViewInit() {
+    if (!this.scrollContainer) {
+      console.error('Scroll container not found');
+    }
+  }
 
   scrollLeft() {
-    this.testimonialScrollContainer.nativeElement.scrollBy({
-      left: -300,
-      behavior: 'smooth'
-    });
+    if (this.scrollContainer) {
+      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card').offsetWidth;
+      this.scrollContainer.nativeElement.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
   }
 
   scrollRight() {
-    this.testimonialScrollContainer.nativeElement.scrollBy({
-      left: 300,
-      behavior: 'smooth'
-    });
+    if (this.scrollContainer) {
+      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card').offsetWidth;
+      this.scrollContainer.nativeElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
   }
-
 }
