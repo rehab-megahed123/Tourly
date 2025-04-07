@@ -8,10 +8,11 @@ import { GalleryComponent } from "../../Components/gallery/gallery.component";
 import { GoTopComponent } from "../../Components/go-top/go-top.component";
 import { ContactComponent } from "../../Components/contact/contact.component";
 import { FooterComponent } from "../../Components/footer/footer.component";
+import { WebSiteReviewComponent } from "../../Components/web-site-review/web-site-review.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent, HeroComponent, ToursearchComponent, PopularDestinationsComponent, PackagesComponent, GalleryComponent, GoTopComponent, ContactComponent, FooterComponent],
+  imports: [HeaderComponent, HeroComponent, ToursearchComponent, PopularDestinationsComponent, PackagesComponent, GalleryComponent, GoTopComponent, ContactComponent, FooterComponent, WebSiteReviewComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

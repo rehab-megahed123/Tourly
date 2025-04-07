@@ -1,0 +1,68 @@
+.testimonial-scroll-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scroll-behavior: smooth;
+  }
+  
+  .testimonial-card {
+    flex: 0 0 300px;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-height: 350px;
+  }
+  
+  .testimonial-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .testimonial-card blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 0 0 10px;
+  }
+  
+  .author-name {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  /* Styling for scroll arrows */
+  .scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .scroll-arrow.left {
+    left: 10px;
+  }
+  
+  .scroll-arrow.right {
+    right: 10px;
+  }
+  
+  .scroll-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
