@@ -1,0 +1,67 @@
+<header class="header" data-header [class.active]="isSticky">
+  <div class="overlay" data-overlay [class.active]="isNavActive" (click)="toggleNav()"></div>
+
+  <div class="header-top">
+    <div class="container">
+      <a href="tel:+01123456790" class="helpline-box">
+        <div class="icon-box">
+          <i class="fa fa-phone"></i>
+        </div>
+        <div class="wrapper">
+          <p class="helpline-title">For Further Inquires :</p>
+          <p class="helpline-number">+01 (123) 4567 90</p>
+        </div>
+      </a>
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" alt="Tourly logo">
+      </a>
+
+      <div class="header-btn-group">
+        <button class="search-btn" aria-label="Search">
+          <i class="fa fa-search"></i>
+        </button>
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn (click)="toggleNav()">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-bottom">
+    <div class="container">
+      <ul class="social-list">
+        <li><a href="#" class="social-link"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#" class="social-link"><i class="fa fa-youtube"></i></a></li>
+      </ul>
+
+      <nav class="navbar" data-navbar [class.active]="isNavActive">
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo-blue.svg" alt="Tourly logo">
+          </a>
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn (click)="toggleNav()">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li><a routerLink="/" class="navbar-link" (click)="toggleNav()" routerLinkActive="active">Home</a></li>
+          <li><a class="navbar-link" (click)="scrollTo('destination'); toggleNav()">
+            <i class="fas fa-map-marker-alt"></i> Popular Destinations
+          </a></li>
+          <li><a class="navbar-link" (click)="scrollTo('package'); toggleNav()">Packages</a></li>
+          <li><a class="navbar-link" (click)="scrollTo('gallery'); toggleNav()">Gallery</a></li>
+          <li><a class="navbar-link" (click)="scrollTo('contact'); toggleNav()">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="btn btn-primary">Book Now</button>
+    </div>
+  </div>
+</header>
+
+<button class="go-top-btn" data-go-top [class.active]="isSticky" (click)="scrollToTop()" aria-label="Go to Top">
+  <i class="fa fa-arrow-up"></i>
+</button>
