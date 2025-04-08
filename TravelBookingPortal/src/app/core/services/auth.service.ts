@@ -10,7 +10,7 @@ import { ILogin } from '../Interface/ilogin';
 export class AuthService {
   constructor(private _httpClient: HttpClient) {}
 
-  register(registerData: IRegister): Observable<any> {
+  register(registerData: FormData): Observable<any> {
     return this._httpClient.post(
       `${environment.baseUrl}/Auth/register`,
       registerData
