@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 import {
   AbstractControl,
@@ -15,7 +16,13 @@ import { ILogin } from '../../core/Interface/ilogin';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    RouterLink,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxSpinnerModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -24,8 +31,11 @@ export class LoginComponent {
   password!: FormControl;
   loginForm!: FormGroup;
 
-  constructor(private _authService: AuthService) {}
-
+  constructor(
+    private _authService: AuthService,
+    private spinner: NgxSpinnerService,
+    private _router: Router
+  ) {}
   ngOnInit(): void {
     this.initFormControls();
     this.initFormGroup();
@@ -59,12 +69,24 @@ export class LoginComponent {
   }
 
   siginIn(data: ILogin): void {
+    this.spinner.show();
     this._authService.login(data).subscribe({
       next: (response) => {
-        console.log(response);
+        if (response.success) {
+          this.spinner.hide();
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.id);
+          this._router.navigate(['Home']);
+        }
       },
       error: (err) => {
+        this.spinner.hide();
         console.error(err);
+        if (err.error) {
+          alert(err.error.message);
+        } else {
+          alert('An error occurred. Please try again.');
+        }
       },
     });
   }
