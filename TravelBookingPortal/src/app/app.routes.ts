@@ -7,14 +7,16 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { ApplicationConfig } from '@angular/core';
 import { HomeComponent } from './Pages/home/home.component';
 import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planner/trip-planner.component';
+import { UserProfileComponent } from './Pages/user-profile/user-profile.component';
 
 
 export const routes: Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'} ,
     {path:'Home',component:HomeComponent} ,
     {path:'Trip',component:TripPlannerComponent} ,
+    {path:'profile',loadComponent:()=>import('./Pages/user-profile/user-profile.component').then(u=>u.UserProfileComponent)},
 
- 
+
   ];
   export const appConfig: ApplicationConfig = {
     providers: [
