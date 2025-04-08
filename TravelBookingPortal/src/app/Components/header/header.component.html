@@ -47,7 +47,7 @@
         </div>
 
         <ul class="navbar-list">
-          <li><a routerLink="/" class="navbar-link" (click)="toggleNav()" routerLinkActive="active">Home</a></li>
+          <li><a [routerLink]="['/Home']" class="navbar-link" (click)="toggleNav()" routerLinkActive="active">Home</a></li>
           <li><a class="navbar-link" (click)="scrollTo('destination'); toggleNav()">
             <i class="fas fa-map-marker-alt"></i> Popular Destinations
           </a></li>

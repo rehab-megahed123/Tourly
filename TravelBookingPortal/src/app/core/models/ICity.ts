@@ -1,6 +1,6 @@
 export interface ICity {
     
     name:string;
-    imgUrl:string;
+    imageUrl:string;
    
 }
