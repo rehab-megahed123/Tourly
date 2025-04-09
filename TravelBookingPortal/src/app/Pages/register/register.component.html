@@ -1,0 +1,98 @@
+<div
+  class="wrapper"
+  style="background-image: url('./assets/images/popular-1.jpg')"
+>
+  <div class="inner">
+    <form enctype="multipart/form-data">
+      <h3>Register Form</h3>
+
+      <!-- Name -->
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="First Name"
+          class="form-control"
+          formControlName="firstName"
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          class="form-control"
+          formControlName="lastName"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-wrapper">
+        <input
+          type="text"
+          placeholder="Email Address"
+          class="form-control"
+          formControlName="email"
+        />
+        <i class="fas fa-envelope"></i>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-wrapper">
+        <input
+          type="text"
+          placeholder="Phone Number"
+          class="form-control"
+          formControlName="phone"
+        />
+        <i class="fas fa-phone"></i>
+      </div>
+
+      <!-- Password -->
+      <div class="form-wrapper">
+        <input
+          type="password"
+          placeholder="Password"
+          class="form-control"
+          formControlName="password"
+        />
+        <i class="fas fa-lock"></i>
+      </div>
+
+      <!-- City, State, Street -->
+      <div class="form-group triple-input">
+        <input
+          type="text"
+          placeholder="City"
+          class="form-control"
+          formControlName="city"
+        />
+        <input
+          type="text"
+          placeholder="State"
+          class="form-control"
+          formControlName="state"
+        />
+        <input
+          type="text"
+          placeholder="Street"
+          class="form-control"
+          formControlName="street"
+        />
+      </div>
+
+      <!-- upload Image  -->
+      <div class="form-wrapper file-upload-wrapper">
+        <input type="file" id="image" class="form-control file-input" />
+      </div>
+
+      <!-- Login Link -->
+      <div class="form-group centered-text">
+        <span>Already have an account?</span>
+        <a routerLink="/Login" class="register-link">Login</a>
+      </div>
+
+      <!-- Button -->
+      <button class="btn btn-primary">
+        Register
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </form>
+  </div>
+</div>
