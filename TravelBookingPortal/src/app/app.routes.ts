@@ -15,6 +15,7 @@ import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planne
 import { UserProfileComponent } from './Pages/user-profile/user-profile.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
+import { EditProfileComponent } from './Pages/edit-profile/edit-profile.component';
 
 export const routes: Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'} ,
@@ -23,6 +24,7 @@ export const routes: Routes = [
     {path:'profile',loadComponent:()=>import('./Pages/user-profile/user-profile.component').then(u=>u.UserProfileComponent)},
     { path: 'Login', component: LoginComponent },
     { path: 'Register', component: RegisterComponent },
+    {path:'editprofile',loadComponent:()=>import('./Pages/edit-profile/edit-profile.component').then(u=>u.EditProfileComponent)},
 
 
   ];

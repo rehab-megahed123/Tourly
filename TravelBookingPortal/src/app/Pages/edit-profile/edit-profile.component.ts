@@ -1,22 +1,19 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { HeaderComponent } from "../../Components/header/header.component";
-import { FooterComponent } from "../../Components/footer/footer.component";
-import { HeroComponent } from "../../Components/hero/hero.component";
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../core/services/profile.service';
 import { IProfile } from '../../core/Interface/Iprofile';
-import { DatePipe } from '@angular/common';
-import { NavBarComponent } from '../../Components/Shared/navbar/nav-bar.component';
+import { NavBarComponent } from "../../Components/Shared/navbar/nav-bar.component";
+import { FooterComponent } from "../../Components/footer/footer.component";
 
 @Component({
-  selector: 'app-user-profile',
-  imports: [FooterComponent, DatePipe, NavBarComponent],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css',
+  selector: 'app-edit-profile',
+  imports: [NavBarComponent, FooterComponent],
+  templateUrl: './edit-profile.component.html',
+  styleUrl: './edit-profile.component.css'
 })
-export class UserProfileComponent implements OnInit{
+export class EditProfileComponent {
 
-constructor(private router:Router,private profileservice:ProfileService) { }
+  constructor(private router:Router,private profileservice:ProfileService) { }
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {
@@ -40,8 +37,15 @@ this.router.navigate(['/Home']);
       }
     });
 }
+  UpdateProfile(profile: IProfile) {
 
-GoToEditForm(){
-  this.router.navigate(['/EditProfile']);
-}
+    this.profileservice.UpdateProfile(profile).subscribe({
+      next: (response) => {
+        console.log('Profile updated successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error updating profile:', err);
+      }
+    });
+  }
 }
