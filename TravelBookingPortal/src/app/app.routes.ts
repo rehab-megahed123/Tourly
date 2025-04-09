@@ -14,6 +14,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planner/trip-planner.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
+import { UserProfileComponent } from './Pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'Trip', component: TripPlannerComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'Register', component: RegisterComponent },
+  {path:'profile',loadComponent:()=>import('./Pages/user-profile/user-profile.component').then(u=>u.UserProfileComponent)},
 ];
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,3 +34,6 @@ export const appConfig: ApplicationConfig = {
     ),
   ],
 };
+
+
+

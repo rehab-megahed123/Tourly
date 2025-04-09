@@ -24,8 +24,17 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
-            "scripts": []
+
+            "styles": [
+
+
+              "src/styles.css"
+
+
+            ],
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
