@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IProfile } from '../../../core/Interface/Iprofile';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,9 +14,13 @@ export class NavBarComponent implements OnInit {
   isNavActive = false;
   isSticky = false;
   IsLoggedIn=false;
+  root:string="";
   @Input() profileImage:string|undefined;
 
-constructor(private router:Router){}
+constructor(private router:Router){
+this.root=`${environment.baseUrl}`;
+
+}
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {

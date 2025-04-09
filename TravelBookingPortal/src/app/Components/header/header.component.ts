@@ -1,19 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { Component, Renderer2, OnInit, ViewChild, ElementRef, HostListener, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink,CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isNavActive = false;
   isSticky = false;
-  IsLoggedIn=false;
+  IsLoggedIn!:boolean;
+  root:string="";
   @Input() profileImage:string|undefined;
-constructor(private router:Router){}
+constructor(private router:Router){
+this.root=`${environment.baseUrl}`;
 
+}
+ngOnInit(): void {
+  const userId = localStorage.getItem('userId');
+  if (userId) {
+    this.IsLoggedIn=true;
+
+  }
+  else{
+    this.IsLoggedIn=false;
+  }
+}
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     this.isSticky = window.pageYOffset >= 200;

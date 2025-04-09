@@ -10,7 +10,7 @@
       <div class="user-card">
         <div class="user-profile">
           <div class="profile-content">
-            <img [src]="profile?.imageUrl" class="profile-img" alt="User-Profile-Image">
+            <img [src]="`${root}${profile?.imageUrl}`" class="profile-img" alt="User-Profile-Image">
             <h6 class="profile-name"></h6>
             <p class="profile-title"></p>
             <i class="mdi mdi-square-edit-outline feather icon-edit" (click)="GoToEditForm()"></i>

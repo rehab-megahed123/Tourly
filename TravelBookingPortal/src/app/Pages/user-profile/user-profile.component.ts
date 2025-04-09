@@ -7,6 +7,7 @@ import { ProfileService } from '../../core/services/profile.service';
 import { IProfile } from '../../core/Interface/Iprofile';
 import { DatePipe } from '@angular/common';
 import { NavBarComponent } from '../../Components/Shared/navbar/nav-bar.component';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,10 +16,12 @@ import { NavBarComponent } from '../../Components/Shared/navbar/nav-bar.componen
   styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent implements OnInit{
-
-constructor(private router:Router,private profileservice:ProfileService) { }
+ root:string=""
+constructor(private router:Router,private profileservice:ProfileService) {
+this.root=`${environment.baseUrl}`;
+}
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
+    const userId ="a8d6064b-a3f7-48d7-8b5b-a9796276e898"
     if (userId) {
       this.GetProfileByUserId(userId);
     } else {

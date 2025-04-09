@@ -100,7 +100,7 @@
         </ul>
       </nav>
       @if(IsLoggedIn){
-        <img [src]="profileImage" alt="Profile Photo" class="testimonial-img" style="cursor: pointer;" (click)="GotoProfile()">
+        <img [src]="`${root}${profileImage}`" alt="Profile Photo" class="testimonial-img" style="cursor: pointer;" (click)="GotoProfile()">
         }
         @if(!IsLoggedIn){
           <button class="btn btn-primary" routerLink="/Login">Login</button>

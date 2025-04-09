@@ -15,7 +15,7 @@ export class EditProfileComponent {
 
   constructor(private router:Router,private profileservice:ProfileService) { }
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
+    const userId = "a8d6064b-a3f7-48d7-8b5b-a9796276e898"
     if (userId) {
       this.GetProfileByUserId(userId);
     } else {
