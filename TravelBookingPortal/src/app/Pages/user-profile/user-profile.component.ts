@@ -26,7 +26,7 @@ this.root=`${environment.baseUrl}`;
 }
 
   ngOnInit(): void {
-    const userId ="a8d6064b-a3f7-48d7-8b5b-a9796276e898"
+    const userId =localStorage.getItem('userId')
     if (userId) {
       this.GetProfileByUserId(userId);
     } else {

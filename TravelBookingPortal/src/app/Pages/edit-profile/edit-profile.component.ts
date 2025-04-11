@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-edit-profile',
-  imports: [CommonModule, NavBarComponent, ReactiveFormsModule, FooterComponent, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.css'
 })
@@ -48,7 +48,8 @@ export class EditProfileComponent {
       image: new FormControl(null)
     });
 
-    const userId = "a8d6064b-a3f7-48d7-8b5b-a9796276e898";
+    const userId =localStorage.getItem('userId')
+
     if (userId) this.GetProfileByUserId(userId);
   }
 
@@ -96,7 +97,7 @@ export class EditProfileComponent {
     if (this.UpdateForm.valid) {
       const formData = new FormData();
       const formValue = this.UpdateForm.value;
-      const userId = "a8d6064b-a3f7-48d7-8b5b-a9796276e898";
+      const userId =localStorage.getItem('userId')??"";
 
       formData.append('FirstName', formValue.firstName);
       formData.append('LastName', formValue.lastName);
@@ -140,7 +141,7 @@ this.backtoProfile();
 
   backtoProfile() {
 setTimeout(()=>{
-   window.location.replace('/profile')
+  window.location.replace('/profile')
 }
 ,100)
 

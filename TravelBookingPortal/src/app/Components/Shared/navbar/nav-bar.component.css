@@ -14,26 +14,24 @@
   background-color:hsl(214, 56%, 58%) !important;
 pointer-events: visiblePainted;
   transition: 0.15s ease-in;
-  z-index: 3;;
+  z-index: 3;
   color: #ffffff;
 }
 .navbar{
 pointer-events: visiblePainted;
   z-index:3;
   background-color:hsl(214, 56%, 58%) !important;
-
 top: 0;
   color: #ffffff;
 }
 
-/* .header {
-  position: absolute;
-  margin-top: 10px;
-  left: 0;
-  width: 100%;
-  padding-top: 61px;
-  z-index: 4;
-  background-color:hsl(214, 56%, 58%) !important;
-  color: #ffffff;
-} */
 
+
+
+/* Target smaller screens and active navbar */
+@media (max-width: 990px) {
+  .navbar.active {
+    background-color: hsl(0, 0%, 100%) !important;
+    color: hsl(0, 0%, 0%);
+  }
+}
