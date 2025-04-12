@@ -10,6 +10,7 @@ import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planne
 
 import { AllDestinationsPageComponent } from './Pages/all-destinations-page/all-destinations-page.component';
 import { SearchResultComponent } from './Pages/search-result/search-result.component';
+import { PaymentComponent } from './Components/payment/payment.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path:'Trip',component:TripPlannerComponent} ,
     {path:'AllDestinations',component:AllDestinationsPageComponent} ,
     {path:'SearchResult',component:SearchResultComponent} ,
+    {path:'Payment',component:PaymentComponent} ,
 
  
   ];

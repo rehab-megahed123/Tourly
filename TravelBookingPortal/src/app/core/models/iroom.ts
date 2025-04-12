@@ -1,4 +1,5 @@
 export interface IRoom {
+    roomId:number,
     hotelName: string,
     roomNumber: string,
     roomType: string,

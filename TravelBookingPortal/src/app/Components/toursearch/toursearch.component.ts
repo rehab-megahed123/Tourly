@@ -37,22 +37,20 @@ export class ToursearchComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    // this.route.queryParams.subscribe(params => {
-    //   this.formData.city = params['city'];
-      
-      
-    // });
     this._cityService.getAllCities().subscribe({
-      next:(arr)=>{
-        this.cities=arr
+      next: (arr) => {
+        this.cities = arr;
+  
        
-      
-        console.log(this.cities)
-       
-       
+        this.route.queryParams.subscribe(params => {
+          const cityParam = params['city'];
+          if (cityParam) {
+            this.formData.city = cityParam;
+          }
+        });
       },
-      error:()=>{}
-    })
+      error: () => {}
+    });
   }
   onSubmit() {
     console.log(this.formData);

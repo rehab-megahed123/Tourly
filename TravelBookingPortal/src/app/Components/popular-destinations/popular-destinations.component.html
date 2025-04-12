@@ -16,11 +16,13 @@
        
 
         <p class="card-subtitle">
-          <a [routerLink]="['/SearchResult']">{{ city.name }}</a>
+          <a [routerLink]="['/SearchResult']" [queryParams]="{ city: city.name }">{{ city.name }}</a>
+
         </p>
 
         <h3 class="h3 card-title">
-          <a [routerLink]="['/SearchResult']">{{ city.name }}</a>
+          <a [routerLink]="['/SearchResult']" [queryParams]="{ city: city.name }">{{ city.name }}</a>
+
         </h3>
 
         <p class="card-text">

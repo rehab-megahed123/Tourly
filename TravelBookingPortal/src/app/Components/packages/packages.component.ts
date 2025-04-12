@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoomService } from '../../core/services/room.service';
+import { IBookingRoom } from '../../core/models/ibooking-room';
+import { BookingService } from '../../core/services/booking.service';
+
 
 @Component({
   selector: 'app-packages',
@@ -9,19 +12,33 @@ import { RoomService } from '../../core/services/room.service';
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })
-export class PackagesComponent implements OnInit {
+export class PackagesComponent implements OnInit   {
+  bookingResult={
+    "url":"",
+    "bookingId":0,
+  }
+  
+  bookingRoom: IBookingRoom = {
+    userId: '',
+    roomId: 0,
+    checkIn: new Date(),
+    checkOut: new Date(),
+    totalPrice: 0
+  };
   results: any;
   formData: any;
-  constructor(private router: Router,private _roomService:RoomService) {
+ 
+  constructor(private router: Router,private _roomService:RoomService,private _bookingService:BookingService) {
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras?.state as {
       formData: any,
-      results: any
+      // results: any
     };
 
     if (state) {
      
-      this.results = state.results;
+      // this.results = state.results;
+     
       this.formData = state.formData;
       
       console.log('Results:', this.results);
@@ -29,18 +46,49 @@ export class PackagesComponent implements OnInit {
     
 
   }
+  ngOnInit(): void {
+    this._roomService.getAvailableRooms(this.formData.city,this.formData.roomType,this.formData.checkIn,this.formData.checkOut).subscribe({
+      next:(arr)=>{
+        console.log(arr)
+        this.results=arr
+        
+      }
+      ,error:()=>{}
+    })
+  }
   
-    ngOnInit(): void {
-      this._roomService.getAvailableRooms(this.formData.city,this.formData.roomType,this.formData.checkIn,this.formData.checkOut).subscribe({
-        next:(arr)=>{
-          console.log(arr)
-          this.results=arr
+    
+  
+      
+    
+    
+    bookRoom(RoomId:number,price:number) {
+      this.bookingRoom.userId = "c042113c-eca0-43ba-a7bb-3a7434f006ac";
+      this.bookingRoom.roomId = RoomId;
+      this.bookingRoom.checkIn = this.formData.checkIn;
+      this.bookingRoom.checkOut = this.formData.checkOut;
+      this.bookingRoom.totalPrice = price;
+      
+      console.log(this.bookingRoom);
+      this._bookingService.bookRoom(this.bookingRoom).subscribe({
+        next: (response) => {
+          this.bookingResult=response
+          console.log('Booking successful:', response);
+          
+          this.router.navigate(['/Payment'], {
+            state: { paymentResponse: response} 
+          });
+
+          
+        },
+        error: (error) => {
+          console.error('Booking failed:', error);
           
         }
-        ,error:()=>{}
-      })
+      });
     }
-    }
+      }
+    
   
 
 

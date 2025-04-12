@@ -1,4 +1,5 @@
 <section class="package" id="package">
+
   <div class="container">
     <p class="section-subtitle">Search Results</p>
     <h2 class="h2 section-title">Available Packages</h2>
@@ -50,8 +51,9 @@
               ${{ room.pricePerNight }}
               <span>/ per night</span>
             </p>
+            
 
-            <button class="btn btn-secondary">Book Now</button>
+            <button class="btn btn-secondary" (click)="bookRoom(room.roomId,room.pricePerNight)">Book Now</button>
           </div>
         </div>
       </li>
