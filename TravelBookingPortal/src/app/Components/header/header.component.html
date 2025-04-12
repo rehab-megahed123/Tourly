@@ -1,4 +1,9 @@
-<header class="header" data-header [class.active]="isSticky" style="border-style: none;">
+<header
+  class="header"
+  data-header
+  [class.active]="isSticky"
+  style="border-style: none"
+>
   <div
     class="overlay"
     data-overlay
@@ -8,11 +13,11 @@
 
   <div class="header-top">
     <div class="container">
-      <a href="tel:+01123456790" >
+      <a href="tel:+01123456790">
         <div>
           <!-- <i class="fa fa-phone"></i> -->
         </div>
-        <div >
+        <div>
           <!-- <p class="helpline-title">For Further Inquires :</p>
           <p class="helpline-number">+01 (123) 4567 90</p> -->
         </div>
@@ -98,36 +103,40 @@
               >Contact</a
             >
           </li>
-<li class="navbar-list">
-  @if(IsLoggedIn){
+          <li class="navbar-list">
+            @if(IsLoggedIn){
 
-    <ul class="navbar-list">
-      <li class="dropdown">
-        <div class="dropdown-toggle" (click)="toggleDropdown()">
-          <a class="navbar-link">
-            <img [src]="`${root}${profile?.imageUrl}`" class="avatar-img" alt="User Avatar" />
-          </a>
-          <span class="navbar-link" > {{ profile?.userName }}</span>
-          <span  class="arrow" [ngClass]="{'up': isDropdownOpen}"></span>
-        </div>
-        <div class="dropdown-menu" [ngClass]="{'show': isDropdownOpen}">
-          <a href="#" class="dropdown-item" routerLink="/profile">Profile</a>
-          <a href="#" class="dropdown-item" routerLink="/logout">Logout</a>
-        </div>
-      </li>
-    </ul>
-   <!-- <a class="navbar-link" ><img [src]="`${root}${profileImage}`" alt="Profile Photo" class="" style="cursor: pointer;"></a> -->
-    }
-    @if(!IsLoggedIn){
-      <button class="btn btn-primary" routerLink="/Login">Login</button>
+            <ul class="navbar-list">
+              <li class="dropdown">
+                <div class="dropdown-toggle" (click)="toggleDropdown()">
+                  <a class="navbar-link">
+                    <img
+                      [src]="`${root}${profile?.imageUrl}`"
+                      class="avatar-img"
+                      alt="User Avatar"
+                    />
+                  </a>
+                  <span class="navbar-link"> {{ profile?.userName }}</span>
+                  <span class="arrow" [ngClass]="{ up: isDropdownOpen }"></span>
+                </div>
+                <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
+                  <a href="#" class="dropdown-item" routerLink="/profile"
+                    >Profile</a
+                  >
+                  <button class="dropdown-item" (click)="logout()">
+                    Logout
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <!-- <a class="navbar-link" ><img [src]="`${root}${profileImage}`" alt="Profile Photo" class="" style="cursor: pointer;"></a> -->
+            } @if(!IsLoggedIn){
+            <button class="btn btn-primary" routerLink="/Login">Login</button>
 
-    }
-
-</li>
+            }
+          </li>
         </ul>
-
       </nav>
-
     </div>
   </div>
 </header>
@@ -138,5 +147,4 @@
   [class.active]="isSticky"
   (click)="scrollToTop()"
   aria-label="Go to Top"
->
-</button>
+></button>

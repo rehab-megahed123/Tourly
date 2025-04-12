@@ -76,7 +76,13 @@ export class LoginComponent {
           this.spinner.hide();
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
-          this._router.navigate(['Home']);
+
+          const role = this._authService.getRole();
+          if (role === 'Admin') {
+            this._router.navigate(['Admin']);
+          } else {
+            this._router.navigate(['Main']);
+          }
         }
       },
       error: (err) => {
