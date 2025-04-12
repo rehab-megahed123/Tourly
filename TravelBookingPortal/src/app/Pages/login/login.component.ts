@@ -81,7 +81,7 @@ export class LoginComponent {
           if (role === 'Admin') {
             this._router.navigate(['Admin']);
           } else {
-            this._router.navigate(['Main']);
+            this._router.navigate(['Home']);
           }
         }
       },
