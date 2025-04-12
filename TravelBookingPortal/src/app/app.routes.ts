@@ -16,6 +16,7 @@ import { UserProfileComponent } from './Pages/user-profile/user-profile.componen
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { EditProfileComponent } from './Pages/edit-profile/edit-profile.component';
+import { AboutUsComponent } from './Pages/About Us/about-us.component';
 
 export const routes: Routes = [
   {path:'',redirectTo:'Home',pathMatch:'full'} ,
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'Login', component: LoginComponent },
     { path: 'Register', component: RegisterComponent },
     {path:'editprofile',loadComponent:()=>import('./Pages/edit-profile/edit-profile.component').then(u=>u.EditProfileComponent)},
+    {path:'aboutus',loadComponent:()=>import('./Pages/About Us/about-us.component').then(u=>u.AboutUsComponent)}
 
 
   ];

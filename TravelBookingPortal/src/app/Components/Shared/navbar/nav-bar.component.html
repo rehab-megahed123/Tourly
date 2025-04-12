@@ -82,24 +82,40 @@
               >Review</a
             >
           </li>
+           <li><a class="navbar-link" (click)="toggleNav()">Trip plan</a></li>
+
           <li>
-            <a class="navbar-link" (click)="scrollTo('gallery'); toggleNav()"
-              >Gallery</a
+            <a class="navbar-link" routerLink="/aboutus" (click)="scrollTo('gallery'); toggleNav()"
+              >About Us</a
             >
           </li>
-          <li><a class="navbar-link" (click)="toggleNav()">Trip plan</a></li>
           <li>
             <a class="navbar-link" (click)="scrollTo('contact'); toggleNav()"
               >Contact</a
             >
-          </li>
-            <li class="navbar-link" style="margin-left: 30px;">
+          </li >
+          <li class="navbar-list" >
             @if(IsLoggedIn){
-                <img [src]="`${root}${profileImage}`" alt="Profile Photo" class="testimonial-img" style="cursor: pointer;" (click)="GotoProfile()">
+
+              <ul >
+                <li class="dropdown">
+                  <div class="dropdown-toggle" (click)="toggleDropdown(); toggleNav()">
+                    <a class="navbar-link">
+                      <img [src]="`${root}${profile?.imageUrl}`" class="avatar-img" alt="User Avatar" />
+                    </a>
+                    <span  class="navbar-link"> {{ profile?.userName }}</span>
+                    <span class="arrow" [ngClass]="{'up': isDropdownOpen}"></span>
+                  </div>
+                  <div  class="dropdown-menu" [ngClass]="{'show': isDropdownOpen}">
+                    <a href="#" class="dropdown-item" routerLink="/profile">Profile</a>
+                    <a href="#" class="dropdown-item" routerLink="/logout">Logout</a>
+                  </div>
+                </li>
+              </ul>
               }
               @if(!IsLoggedIn){
-              <button class="btn btn-primary" routerLink="/Login">Login</button>
-                      }
+                <button class="btn btn-primary" routerLink="/Login">Login</button>
+              }
           </li>
         </ul>
       </nav>
@@ -107,11 +123,4 @@
   </div>
 </header>
 
-<button
-  class="go-top-btn"
-  data-go-top
-  [class.active]="isSticky"
-  (click)="scrollToTop()"
-  aria-label="Go to Top"
->
-</button>
+

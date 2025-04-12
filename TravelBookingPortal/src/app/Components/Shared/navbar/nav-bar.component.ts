@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   isSticky = false;
   IsLoggedIn=false;
   root:string="";
-  @Input() profileImage:string|undefined;
+  @Input() profile:IProfile|undefined;
 
 constructor(private router:Router){
 this.root=`${environment.baseUrl}`;
@@ -39,6 +39,7 @@ this.root=`${environment.baseUrl}`;
 
   toggleNav() {
     this.isNavActive = !this.isNavActive;
+
   }
 
   scrollTo(sectionId: string) {
@@ -51,8 +52,20 @@ this.root=`${environment.baseUrl}`;
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  GotoProfile(){
-this.router.navigate(['/profile']);
+  isDropdownOpen = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
+
+  @HostListener('document:click', ['$event'])
+  closeDropdown(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+
 }
 
