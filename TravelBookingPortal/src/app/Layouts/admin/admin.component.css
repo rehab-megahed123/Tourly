@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navbar-menu a {
+  color: #374151;
+  text-decoration: none;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.navbar-menu a:hover {
+  color: #2563eb;
+}
+
+.navbar-menu i {
+  color: #6b7280;
+  font-size: 1.4rem;
+}
+
+.avatar-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.avatar-menu img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #6b7280;
+  padding: 1px;
+  margin-right: 0.5rem;
+}
+
+.avatar-menu svg {
+  width: 16px;
+  height: 16px;
+  margin-left: 0.5rem;
+  fill: #6b7280;
+  transition: all 0.3s ease;
+}
+
+.avatar-submenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  width: 200px;
+  visibility: hidden;
+  transition: all 0.1s ease-in-out;
+}
+
+.avatar-menu:hover svg {
+  transform: translateX(35px) rotate(180deg);
+  opacity: 0;
+}
+
+.avatar-menu:hover .avatar-submenu {
+  visibility: visible;
+}
+
+.avatar-submenu a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #374151;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.avatar-submenu a:hover {
+  background-color: #f9fafb;
+}
+
+.avatar-submenu hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 0.5rem 0.75rem;
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: #374151;
+}
+
+/* Main Layout */
+.main {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 25%;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+}
+
+.sidebar-section {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  margin: 0.5rem;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: #111827;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-menu a.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1rem;
+  margin: 0.75rem 0;
+  color: #374151;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s forwards;
+}
+
+.sidebar-menu a.menu-item:nth-child(1) { animation-delay: 0.1s; }
+.sidebar-menu a.menu-item:nth-child(2) { animation-delay: 0.2s; }
+.sidebar-menu a.menu-item:nth-child(3) { animation-delay: 0.3s; }
+.sidebar-menu a.menu-item:nth-child(4) { animation-delay: 0.4s; }
+
+.sidebar-menu a.menu-item:hover {
+  background-color: #f9fafb;
+  transform: scale(1.05);
+}
+
+.sidebar-menu i {
+  color: #6b7280;
+  font-size: 1.3rem;
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .navbar-menu, .avatar-menu {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+  }
+
+  .sidebar-header,
+  .navbar-menu a,
+  .avatar-menu,
+  .avatar-submenu a {
+    font-size: 1rem;
+  }
+
+  .sidebar-menu a.menu-item {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-menu i {
+    font-size: 1.2rem;
+  }
+
+  .sidebar-menu i {
+    font-size: 1.1rem;
+  }
+
+  .avatar-menu img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .avatar-menu svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (min-width: 641px) {
+  .navbar-menu, .avatar-menu {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
