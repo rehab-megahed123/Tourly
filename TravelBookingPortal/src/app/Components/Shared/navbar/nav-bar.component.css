@@ -28,12 +28,26 @@ top: 0;
 
 
 
-/* Target smaller screens and active navbar */
+.header.active .navlink {
+  color: var(--onyx);
+}
 @media (max-width: 990px) {
   .navbar.active {
     background-color: hsl(0, 0%, 100%) !important;
     color: hsl(0, 0%, 0%);
+
+
   }
+  .arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    color: black !important;
+  }
+
+  .navbarlist li {
+    width: 100% !important;
+  }
+
 }
 .dropdown {
   position: relative;
@@ -55,13 +69,9 @@ top: 0;
 }
 
 .arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #ffffff;
+  margin-left: 8px;
   transition: transform 0.3s ease;
+color: white;
 }
 
 .arrow.up {

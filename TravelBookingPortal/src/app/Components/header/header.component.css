@@ -26,18 +26,16 @@
 }
 
 .arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #ffffff;
+  margin-left: 8px;
   transition: transform 0.3s ease;
+color: white;
 }
 
 .arrow.up {
   transform: rotate(180deg);
 }
+
+
 
 .dropdown-menu {
   position: absolute;
@@ -71,4 +69,19 @@
   background-color: #f1f1f1;
   border-radius: 10px;
 
+}
+
+
+.header.active .navlink {
+    color: var(--onyx);
+}
+@media (max-width: 990px) {
+  .navbarlist li {
+    width: 100% !important;
+  }
+  .arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    color: black
+  }
 }

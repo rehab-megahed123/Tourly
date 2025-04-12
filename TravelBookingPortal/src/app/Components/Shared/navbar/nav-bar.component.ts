@@ -3,6 +3,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IProfile } from '../../../core/Interface/Iprofile';
 import { environment } from '../../../../environments/environment.development';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +18,7 @@ export class NavBarComponent implements OnInit {
   root:string="";
   @Input() profile:IProfile|undefined;
 
-constructor(private router:Router){
+constructor(private router:Router,private _authServices:AuthService){
 this.root=`${environment.baseUrl}`;
 
 }
@@ -35,6 +36,22 @@ this.root=`${environment.baseUrl}`;
   onWindowScroll() {
     this.isSticky = window.pageYOffset >= 200;
 
+  }
+  logout() {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this._authServices.logout(userId).subscribe({
+        next: (response) => {
+          console.log(response);
+          localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          this.router.navigate(['/Login']);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
+    }
   }
 
   toggleNav() {

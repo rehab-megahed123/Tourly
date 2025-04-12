@@ -82,7 +82,7 @@
               >Review</a
             >
           </li>
-           <li><a class="navbar-link" (click)="toggleNav()">Trip plan</a></li>
+          <li><a class="navbar-link" (click)="toggleNav()">Trip plan</a></li>
 
           <li>
             <a class="navbar-link" routerLink="/aboutus" (click)="scrollTo('gallery'); toggleNav()"
@@ -94,28 +94,37 @@
               >Contact</a
             >
           </li >
-          <li class="navbar-list" >
+          <li class="navbar-list navbarlist" style=" margin-left: 20px;border: none !important;">
             @if(IsLoggedIn){
 
-              <ul >
-                <li class="dropdown">
-                  <div class="dropdown-toggle" (click)="toggleDropdown(); toggleNav()">
-                    <a class="navbar-link">
-                      <img [src]="`${root}${profile?.imageUrl}`" class="avatar-img" alt="User Avatar" />
-                    </a>
-                    <span  class="navbar-link"> {{ profile?.userName }}</span>
-                    <span class="arrow" [ngClass]="{'up': isDropdownOpen}"></span>
-                  </div>
-                  <div  class="dropdown-menu" [ngClass]="{'show': isDropdownOpen}">
-                    <a href="#" class="dropdown-item" routerLink="/profile">Profile</a>
-                    <a href="#" class="dropdown-item" routerLink="/logout">Logout</a>
-                  </div>
-                </li>
-              </ul>
-              }
-              @if(!IsLoggedIn){
-                <button class="btn btn-primary" routerLink="/Login">Login</button>
-              }
+            <ul class="navbar-list"style="border: none !important;" >
+              <li class="dropdown">
+                <div class="dropdown-toggle" (click)="toggleDropdown()">
+                  <a class="navbar-link"  >
+                    <img
+                      [src]="`${root}${profile?.imageUrl}`"
+                      class="avatar-img"
+                      alt="User Avatar"
+                    />
+                  </a>
+                  <span class="navbar-link" > {{ profile?.userName }}</span>
+                  <i class="fas fa-chevron-down arrow navlink " [ngClass]="{ up: isDropdownOpen }"></i>
+                </div>
+                <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
+                  <a href="#" class="dropdown-item" routerLink="/profile"
+                    >Profile</a
+                  >
+                  <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <!-- <a class="navbar-link" ><img [src]="`${root}${profileImage}`" alt="Profile Photo" class="" style="cursor: pointer;"></a> -->
+            } @if(!IsLoggedIn){
+            <button class="btn btn-primary" routerLink="/Login">Login</button>
+
+            }
           </li>
         </ul>
       </nav>
