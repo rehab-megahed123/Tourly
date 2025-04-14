@@ -29,6 +29,7 @@ import { IRegister } from '../../core/Interface/iregister';
 export class RegisterComponent {
   firstName!: FormControl;
   lastName!: FormControl;
+  userName!: FormControl;
   phoneNumber!: FormControl;
   city!: FormControl;
   state!: FormControl;
@@ -50,6 +51,7 @@ export class RegisterComponent {
   }
   initFormControls(): void {
     this.email = new FormControl('', [Validators.required, Validators.email]);
+    this.userName = new FormControl('', [Validators.required]);
     this.password = new FormControl('', [
       Validators.required,
       Validators.minLength(8), // Minimum length of 8 characters
@@ -74,6 +76,7 @@ export class RegisterComponent {
       email: this.email,
       password: this.password,
       firstName: this.firstName,
+      userName: this.userName,
       lastName: this.lastName,
       phoneNumber: this.phoneNumber,
       city: this.city,
@@ -96,6 +99,7 @@ export class RegisterComponent {
       const formValue = this.registerForm.value;
       formData.append('email', formValue.email);
       formData.append('password', formValue.password);
+      formData.append('userName', formValue.userName);
       formData.append('firstName', formValue.firstName);
       formData.append('lastName', formValue.lastName);
       formData.append('phoneNumber', formValue.phoneNumber);
@@ -128,7 +132,7 @@ export class RegisterComponent {
           this.spinner.hide();
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
-          this._router.navigate(['/Home']);
+          this._router.navigate(['Home']);
         }
       },
       error: (error) => {

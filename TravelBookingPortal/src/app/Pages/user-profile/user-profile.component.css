@@ -1,234 +1,184 @@
-/* Component CSS */
 body {
+  background: linear-gradient(to right, #3931af, #00c6ff);
+  font-family: "Poppins", sans-serif;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #cbcbe5;
 }
 
-/* Card Section */
-.card-section {
-  padding-top: 150px;
-  padding-bottom: 50px;
-}
-
-.page-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.card-container {
+.emp-profile {
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  background: #fff;
   max-width: 1000px;
-  width: 100%;
-  padding: 0 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.user-card {
+.profile-header {
   display: flex;
-  background-color: #fff;
-  border-radius: 15px; /* زيادة الـ border-radius من 8px لـ 15px */
-  box-shadow: 0 4px 30px 0 rgba(69, 90, 100, 0.15); /* زيادة الظل ليكون أوضح */
-  overflow: hidden;
-  min-height: 500px;
-}
-
-/* User Profile (Left Side) */
-.user-profile {
-  flex: 1;
-  background: linear-gradient(to right,  hsl(214, 56%, 58%));
-  padding: 30px;
-  text-align: center;
-  color: #fff;
-  border-radius: 15px 0 0 15px; /* تطبيق الـ border-radius على الجانب الأيسر */
-}
-
-.profile-content {
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .profile-img {
-  width: 250px; /* زيادة حجم الصورة من 120px لـ 150px */
-  height: 300px;
-  border-radius: 10px; /* زيادة الـ border-radius بتاع الصورة لـ 10px */
-  margin-bottom: 30px;
-}
-
-.profile-name {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.profile-title {
-  font-size: 16px;
-  margin: 8px 0 15px;
-}
-
-.feather.icon-edit {
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* User Info (Right Side) */
-.user-info {
-  flex: 2;
-  padding: 30px;
-}
-
-.info-title {
-  color: hsl(208, 97%, 12%);
-  font-size: 18px;
-  font-weight: 600;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 8px;
-  margin-bottom: 25px;
-}
-
-.projects-title {
-  margin-top: 50px;
-}
-
-.info-details {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-}
-
-.info-item {
+  text-align: center;
   flex: 1;
-  margin-right: 25px;
+  min-width: 150px;
 }
 
-.info-item:last-child {
-  margin-right: 0;
+.profile-img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0062cc;
 }
 
-.info-label {
-
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 12px;
+.profile-info {
+  flex: 2;
+  min-width: 200px;
 }
 
-.info-value {
+.name-button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between name and button */
+  flex-wrap: wrap; /* Allows wrapping if needed */
+}
 
-  font-size: 16px;
-  color:hsl(225, 8%, 42%);;
+.profile-info h5 {
+  font-size: 1.8rem;
+  color: #333;
   margin: 0;
 }
 
-/* Social Links */
-.social-links {
+.btn.btn-primary {
+  background: var(--bright-navy-blue);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem; /* Smaller padding */
+margin-left: 40px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+
+  font-size: 14px; /* Smaller font size */
+  transition: background 0.3s;
+}
+
+.btn.btn-primary:hover {
+  background:var(--yale-blue)
+}
+
+.nav-tabs {
+  display: flex;
   list-style: none;
   padding: 0;
-  margin: 50px 0 15px;
+  margin: 0 0 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-item {
+  margin-right: 1rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  color: #495057;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav-link.active {
+  color: hsl(214, 57%, 51%);
+  border-bottom: 3px solid hsl(214, 57%, 51%);
+}
+
+.tab-content .tab-pane {
+  display: none;
+}
+
+.tab-content .tab-pane.active {
+  display: block;
+}
+
+.profile-details {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.social-links li {
-  display: inline-block;
+.detail-pair {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.social-links li a {
-  font-size: 24px;
-  color: #333;
-  transition: color 0.3s ease-in-out;
+.detail-row {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.social-links li a:hover {
-  color: #ee5a6f;
+.detail-row label {
+  font-weight: 600;
+  color: hsl(0, 0%, 25%);
 }
 
-/* Navbar Styling */
-app-nav-bar {
-  display: block;
-  position: relative;
-  z-index: 1;
+.detail-row p {
+  margin: 0;
+  color: hsl(214, 72%, 33%);
+  font-weight: 500;
 }
 
-/* Ensure the header inside app-nav-bar doesn't overlap */
-.header {
-  position: relative !important;
-  background-color: #1a2526;
-  color: #ffffff;
-  width: 100%;
-}
-
-.header.active {
-  position: relative !important;
-}
-
-.header-top,
-.header-bottom {
-  position: relative !important;
-  background-color: #1a2526;
-}
-
-/* Footer Styling */
-app-footer {
-  display: block;
-  position: relative;
-  width: 100%;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .card-container {
-padding-top: 70px;
-    max-width: 90%;
+  .emp-profile {
+    padding: 1rem;
+    margin: 1rem;
   }
 
-  .user-card {
+  .profile-header {
     flex-direction: column;
-    min-height: 600px;
+    align-items: center;
+    text-align: center;
   }
 
-  .user-profile {
-    border-radius: 15px 15px 0 0; /* تطبيق الـ border-radius على الجزء العلوي في الشاشات الصغيرة */
-    padding: 20px;
-  }
-
-  .user-info {
-    padding: 20px;
-  }
-
-  .profile-img {
-    width: 120px; /* تقليل حجم الصورة على الشاشات الصغيرة */
+  .profile-img img {
+    width: 120px;
     height: 120px;
-    border-radius: 8px;
   }
 
-  .profile-name {
-    font-size: 18px;
+  .name-button-container {
+    flex-direction: column; /* Stack name and button on small screens */
+    gap: 0.5rem;
   }
 
-  .profile-title {
-    font-size: 14px;
-  }
-
-  .info-title {
-    font-size: 16px;
-  }
-
-  .info-label,
-  .info-value {
-    font-size: 14px;
-  }
-
-  .info-details {
+  .detail-pair {
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
   }
 
-  .info-item {
-    margin-right: 0;
+  .detail-row {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-info h5 {
+    font-size: 1.5rem;
   }
 
-  .social-links li a {
-    font-size: 20px;
+  .nav-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
   }
 }

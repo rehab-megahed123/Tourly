@@ -3,6 +3,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IProfile } from '../../../core/Interface/Iprofile';
 import { environment } from '../../../../environments/environment.development';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,9 +16,9 @@ export class NavBarComponent implements OnInit {
   isSticky = false;
   IsLoggedIn=false;
   root:string="";
-  @Input() profileImage:string|undefined;
+  @Input() profile:IProfile|undefined;
 
-constructor(private router:Router){
+constructor(private router:Router,private _authServices:AuthService){
 this.root=`${environment.baseUrl}`;
 
 }
@@ -36,9 +37,26 @@ this.root=`${environment.baseUrl}`;
     this.isSticky = window.pageYOffset >= 200;
 
   }
+  logout() {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this._authServices.logout(userId).subscribe({
+        next: (response) => {
+          console.log(response);
+          localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+          this.router.navigate(['/Login']);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
+    }
+  }
 
   toggleNav() {
     this.isNavActive = !this.isNavActive;
+
   }
 
   scrollTo(sectionId: string) {
@@ -51,8 +69,20 @@ this.root=`${environment.baseUrl}`;
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  GotoProfile(){
-this.router.navigate(['/profile']);
+  isDropdownOpen = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
+
+  @HostListener('document:click', ['$event'])
+  closeDropdown(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown')) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+
 }
 

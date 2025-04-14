@@ -12,6 +12,6 @@ export class ProfileService {
     return this._httpClientService.get<IProfile>(`${environment.baseUrl}/user/${userid}`);
   }
   constructor(private _httpClientService:HttpClient) { }
-UpdateProfile(profile:IProfile):Observable<IProfile>{ {
-  return this._httpClientService.put<IProfile>(`${environment.baseUrl}/user`,profile);
-}}}
+  UpdateProfile(userId: string, formdata: FormData): Observable<IProfile> {
+    return this._httpClientService.put<IProfile>(`${environment.baseUrl}/user/${userId}`, formdata);
+  }}

@@ -10,12 +10,11 @@ import { GoTopComponent } from './Components/go-top/go-top.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ToursearchComponent } from './Components/toursearch/toursearch.component';
+import { AdminComponent } from './Layouts/admin/admin.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-  ],
+  imports: [RouterOutlet, AdminComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
