@@ -1,4 +1,3 @@
-
 .contactcard {
   width: 100%; /* تغيير العرض إلى 100% للتكيف مع الشاشة */
   max-width: 500px; /* الحد الأقصى للعرض */
@@ -74,7 +73,7 @@
   }
 }
 
-@media (max-width: 480px) { /* شاشات صغيرة (موبايل) */
+@media (max-width: 480px ) { /* شاشات صغيرة (موبايل) */
   .contact-us {
     flex-direction: column; /* جعل الايقونة والنص عموديين */
     align-items: flex-start;

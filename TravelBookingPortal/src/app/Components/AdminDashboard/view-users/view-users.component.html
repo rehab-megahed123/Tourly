@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item"><a id="name" class="filter__link" href="#">UserName</a></div>
+      <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Email</a></div>
+      <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Joined At</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Image</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Make An Admin</a></div>
+    </div>
+
+    <div class="table-content">
+      @for ( user of users; track user.userName) {
+        <div class="table-row">
+          <div class="table-data">{{ user.userName }}</div>
+          <div class="table-data">{{ user.email }}</div>
+          <div class="table-data">{{ user.createdAt | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data" >
+            <img [src]="`${root}${user.imageUrl}` || './assets/images/person_1.jpg'" />
+          </div>
+          <div class="table-data"(click)="assignAdmin(user.Id)"><i class="fas fa-check" style="cursor: pointer;" ></i></div>
+
+        </div>
+      }
+    </div>
+  </div>
+</div>
