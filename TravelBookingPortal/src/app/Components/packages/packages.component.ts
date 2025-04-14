@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RoomService } from '../../core/services/room.service';
 import { IBookingRoom } from '../../core/models/ibooking-room';
 import { BookingService } from '../../core/services/booking.service';
+import { SignalRService } from '../../core/services/signal-r.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class PackagesComponent implements OnInit   {
   results: any;
   formData: any;
  
-  constructor(private router: Router,private _roomService:RoomService,private _bookingService:BookingService) {
+  constructor(private router: Router,private _roomService:RoomService,private _bookingService:BookingService, private signalRService: SignalRService) {
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras?.state as {
       formData: any,
@@ -55,6 +56,18 @@ export class PackagesComponent implements OnInit   {
       }
       ,error:()=>{}
     })
+    this.signalRService.startConnection();
+
+   
+    this.signalRService.onBookingStatusUpdate((roomId: number, status: string) => {
+      console.log(`Room ${roomId} status updated to ${status}`);
+
+      const room = this.results?.find((r: any) => r.roomId === roomId);
+      if (room) {
+        room.bookingStatus = status;
+        room.isBookable = (status === 'Available');
+      }
+    });
   }
   
     
@@ -63,7 +76,7 @@ export class PackagesComponent implements OnInit   {
     
     
     bookRoom(RoomId:number,price:number) {
-      this.bookingRoom.userId = "c042113c-eca0-43ba-a7bb-3a7434f006ac";
+      this.bookingRoom.userId = "90451a23-7929-4f2a-ac8e-aceeb7baef3e";
       this.bookingRoom.roomId = RoomId;
       this.bookingRoom.checkIn = this.formData.checkIn;
       this.bookingRoom.checkOut = this.formData.checkOut;

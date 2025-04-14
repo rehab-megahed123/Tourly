@@ -4,4 +4,5 @@ export interface IRoom {
     roomNumber: string,
     roomType: string,
     pricePerNight: number,
+    bookingStatus:string
 }
