@@ -1,0 +1,102 @@
+<div>
+  <app-nav-bar [profile]="profile"></app-nav-bar>
+</div>
+
+<div class="emp-profile" style="margin-top: 300px">
+  <div class="profile-header">
+    <div class="profile-img">
+      <img
+        [src]="`${root}${profile?.imageUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog'"
+        alt="Profile Image"
+      />
+    </div>
+    <div class="profile-info">
+      <div class="name-button-container">
+        <h5>{{ profile?.firstName }} {{ profile?.lastName }}</h5>
+        <button class="btn btn-primary" (click)="openEditProfile()">
+          Edit Profile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ul class="nav-tabs">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [ngClass]="{ active: activeTab === 'home' }"
+        (click)="setActiveTab('home')"
+        >About</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [ngClass]="{ active: activeTab === 'profilee' }"
+        (click)="setActiveTab('profilee')"
+        >Edit Profile</a
+      >
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane" [ngClass]="{ active: activeTab === 'home' }">
+      <div class="profile-details">
+        <!-- Pair 1: User Name and First Name -->
+        <div class="detail-pair">
+          <div class="detail-row">
+            <label>First Name</label>
+            <p>{{ profile?.firstName }}</p>
+          </div>
+          <div class="detail-row">
+            <label>Last Name</label>
+            <p>{{ profile?.lastName }}</p>
+          </div>
+        </div>
+        <!-- Pair 2: Last Name and Email -->
+        <div class="detail-pair">
+          <div class="detail-row">
+            <label>User Name</label>
+            <p>{{ profile?.userName }}</p>
+          </div>
+          <div class="detail-row">
+            <label>Email</label>
+            <p>{{ profile?.email }}</p>
+          </div>
+        </div>
+        <!-- Pair 3: Phone and Address -->
+        <div class="detail-pair">
+          <div class="detail-row">
+            <label>Phone</label>
+            <p>{{ profile?.phoneNumber }}</p>
+          </div>
+          <div class="detail-row">
+            <label>Address</label>
+            <p>
+              {{ profile?.state }}, {{ profile?.city }}, {{ profile?.street }}
+            </p>
+          </div>
+        </div>
+        <!-- Pair 4: Joined At and Date of Birth -->
+        <div class="detail-pair">
+          <div class="detail-row">
+            <label>Joined At</label>
+            <p>{{ profile?.createdAt | date : "dd MMMM yyyy" }}</p>
+          </div>
+          <div class="detail-row">
+            <label>Date Of Birth</label>
+            <p>{{ profile?.dateOfBirth | date : "dd MMMM yyyy" }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-edit-profile
+      class="tab-pane"
+      [ngClass]="{ active: activeTab === 'profilee' }"
+    ></app-edit-profile>
+  </div>
+</div>
+
+<div>
+  <app-footer></app-footer>
+</div>

@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HeaderComponent } from "../../Components/header/header.component";
-import { HeroComponent } from "../../Components/hero/hero.component";
-import { ToursearchComponent } from "../../Components/toursearch/toursearch.component";
-import { PackagesComponent } from "../../Components/packages/packages.component";
-import { FooterComponent } from "../../Components/footer/footer.component";
-import { NavBarComponent } from "../../Components/Shared/navBar/nav-bar/nav-bar.component";
+import { HeaderComponent } from '../../Components/header/header.component';
+import { HeroComponent } from '../../Components/hero/hero.component';
+import { ToursearchComponent } from '../../Components/toursearch/toursearch.component';
+import { PackagesComponent } from '../../Components/packages/packages.component';
+import { FooterComponent } from '../../Components/footer/footer.component';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css'],
-  imports: [HeaderComponent, HeroComponent, ToursearchComponent, PackagesComponent, FooterComponent, NavBarComponent]
+  imports: [
+    HeaderComponent,
+    HeroComponent,
+    ToursearchComponent,
+    PackagesComponent,
+    FooterComponent,
+  ],
 })
 export class SearchResultComponent implements OnInit {
   results: any;
@@ -20,7 +25,6 @@ export class SearchResultComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-   
     const navigation = this.route.snapshot?.root?.firstChild?.data['state'];
     if (navigation) {
       this.formData = navigation.formData;
