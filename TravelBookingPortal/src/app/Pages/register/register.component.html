@@ -6,29 +6,46 @@
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
       <h3>Register Form</h3>
 
-      <!-- Name -->
-      <div class="form-group">
-        <input
-          type="text"
-          placeholder="First Name"
-          class="form-control"
-          formControlName="firstName"
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          class="form-control"
-          formControlName="lastName"
-        />
-      </div>
-      <div class="name-errors">
-        @if (firstName.touched && firstName.dirty &&
-        firstName.getError('required')) {
-        <div class="error-message">First Name is required</div>
-        } @if (lastName.touched && lastName.dirty &&
-        lastName.getError('required')) {
-        <div class="error-message">Last Name is required</div>
-        }
+      <!-- Name UserName-->
+      <div class="form-group triple-input">
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="First Name"
+            class="form-control"
+            formControlName="firstName"
+          />
+          @if (firstName.touched && firstName.dirty &&
+          firstName.getError('required')) {
+          <div class="error-message">First Name is required</div>
+          }
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="Last Name"
+            class="form-control"
+            formControlName="lastName"
+          />
+          @if (lastName.touched && lastName.dirty &&
+          lastName.getError('required')) {
+          <div class="error-message">Last Name is required</div>
+          }
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="UserName"
+            class="form-control"
+            formControlName="userName"
+          />
+          @if (userName.touched && userName.dirty &&
+          userName.getError('required')) {
+          <div class="error-message">Username is required</div>
+          }
+        </div>
       </div>
 
       <!-- Email -->
@@ -99,27 +116,50 @@
           formControlName="birthDate"
         />
       </div>
+      @if (birthDate.touched&& birthDate.dirty) { @if
+      (birthDate.getError('required')) {
+      <div class="error-message">Date of Birth is required</div>
+      }}
+
       <!-- City, State, Street -->
       <div class="form-group triple-input">
-        <input
-          type="text"
-          placeholder="City"
-          class="form-control"
-          formControlName="city"
-        />
-        <input
-          type="text"
-          placeholder="State"
-          class="form-control"
-          formControlName="state"
-        />
-        <input
-          type="text"
-          placeholder="Street"
-          class="form-control"
-          formControlName="street"
-        />
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="City"
+            class="form-control"
+            formControlName="city"
+          />
+          @if (city.touched && city.dirty && city.getError('required')) {
+          <div class="error-message">City is required</div>
+          }
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="State"
+            class="form-control"
+            formControlName="state"
+          />
+          @if (state.touched && state.dirty && state.getError('required')) {
+          <div class="error-message">State is required</div>
+          }
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="Street"
+            class="form-control"
+            formControlName="street"
+          />
+          @if (street.touched && street.dirty && street.getError('required')) {
+          <div class="error-message">Street is required</div>
+          }
+        </div>
       </div>
+
       <!-- upload Image  -->
       <input
         type="file"
