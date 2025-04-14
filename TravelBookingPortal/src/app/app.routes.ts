@@ -7,6 +7,9 @@ import {
 import { ApplicationConfig } from '@angular/core';
 import { HomeComponent } from './Pages/home/home.component';
 import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planner/trip-planner.component';
+import { ItineraryComponent } from './Pages/itinerary/itinerary.component';
+
+
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { adminGuard } from './core/Guards/admin.guard';
@@ -33,7 +36,7 @@ children:[
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomeComponent },
-      { path: 'Trip', component: TripPlannerComponent },
+{path:'Itinerary',component:ItineraryComponent},
       {
         path: 'profile',
         loadComponent: () =>

@@ -1,1 +1,53 @@
-<p>trip-planner works!</p>
+<div class="trip-container">
+  <div class="trip-header">
+    <h1 class="h2 section-title">Itinerary List</h1>
+    <button (click)="toggleForm()" class="btn btn-primary">+ Add</button>
+  </div>
+
+  <div *ngIf="showForm" class="trip-form">
+    <h2 class="h3 card-title">Add New Trip</h2>
+    <input type="text" placeholder="Title" [(ngModel)]="newTrip.title" required />
+    <input type="date" [(ngModel)]="newTrip.startDate" required />
+    <input type="date" [(ngModel)]="newTrip.endDate" required />
+    <textarea placeholder="Notes" [(ngModel)]="newTrip.notes"></textarea>
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="addTrip()">Add</button>
+      <button class="cancel-btn" (click)="toggleForm()">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="tripList.length === 0" class="empty-state">No trips added yet.</div>
+
+  <table *ngIf="tripList.length > 0" class="trip-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Notes</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trip of tripList">
+        <td [class.done]="trip.done">{{ trip.title }}</td>
+        <td>{{ trip.startDate | date }}</td>
+        <td>{{ trip.endDate | date }}</td>
+        <td>{{ trip.notes }}</td>
+        <td>
+          <button class="done-btn" (click)="markAsDone(trip)" title="Mark as Done">
+            <i class="fa-solid fa-circle-check" [ngClass]="{'checked': trip.done}"></i>
+          </button>
+
+          <button class="delete-btn" (click)="deleteTrip(trip)" title="Delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <app-footer></app-footer>
+</div>

@@ -67,6 +67,7 @@
         </div>
 
         <ul class="navbar-list">
+
           <li>
             <a
               routerLink="/"
@@ -91,8 +92,10 @@
               >Review</a
             >
           </li>
-          <li><a class="navbar-link" (click)="toggleNav()">Trip plan</a></li>
-          <li>
+          <li class="nav-item">
+            <a class="navbar-link" routerLink="/Itinerary">Trip Plan</a>
+          </li>
+        <li>
             <a class="navbar-link" routerLink="/aboutus" (click)="toggleNav()"
               >About Us</a
             >
@@ -151,6 +154,7 @@
   </div>
 </header>
 
+
 <button
   class="go-top-btn"
   data-go-top
@@ -158,3 +162,4 @@
   (click)="scrollToTop()"
   aria-label="Go to Top"
 ></button>
+
