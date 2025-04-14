@@ -15,7 +15,16 @@ export const routes: Routes = [
     path: 'Admin',
     loadComponent: () =>
       import('./Layouts/admin/admin.component').then((m) => m.AdminComponent),
-    canActivate: [adminGuard],
+children:[
+      {path:'viewrooms',loadComponent:()=>import('./Components/AdminDashboard/view-rooms/view-rooms.component').then((v)=>v.ViewRoomsComponent)},
+      {path:'addroom',loadComponent:()=>import('./Components/AdminDashboard/add-room/add-room.component').then((r)=>r.AddRoomComponent)},
+      {path:'viewcities',loadComponent:()=>import('./Components/AdminDashboard/view-cities/view-cities.component').then((r)=>r.ViewCitiesComponent)},
+      {path:'addcity',loadComponent:()=>import('./Components/AdminDashboard/add-city/add-city.component').then((r)=>r.AddCityComponent)},
+      {path:'viewhotels',loadComponent:()=>import('./Components/AdminDashboard/view-hotels/view-hotels.component').then((r)=>r.ViewHotelsComponent)},
+      {path:'addhotel',loadComponent:()=>import('./Components/AdminDashboard/add-hotel/add-hotel.component').then((r)=>r.AddHotelComponent)},
+      {path:'viewusers',loadComponent:()=>import('./Components/AdminDashboard/view-users/view-users.component').then((r)=>r.ViewUsersComponent)},
+      {path:'viewbookings',loadComponent:()=>import('./Components/AdminDashboard/view-bookings/view-bookings.component').then((r)=>r.ViewBookingsComponent)},
+          ],    canActivate: [adminGuard]
   },
   {
     path: '',

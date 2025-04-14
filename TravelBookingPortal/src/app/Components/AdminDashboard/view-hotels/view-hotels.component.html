@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item"><a id="name" class="filter__link" href="#">Hotel Name</a></div>
+      <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">city Name</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Description</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Image</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Manage</a></div>
+    </div>
+
+    <div class="table-content">
+      @for ( hotel of hotels; track $index) {
+        <div class="table-row">
+          <div class="table-data">{{ hotel.name }}</div>
+          <div class="table-data">{{ hotel.cityName }}</div>
+          <div class="table-data">{{ hotel.description }}</div>
+
+          <div class="table-data" >
+            <img [src]="`${root}${hotel.imageUrl}` || './assets/images/person_1.jpg'" />
+          </div>
+          <div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" style="cursor: pointer; margin-left:20px;"></i></div>
+
+        </div>
+      }
+    </div>
+  </div>
+</div>
