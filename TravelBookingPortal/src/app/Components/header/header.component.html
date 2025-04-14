@@ -53,7 +53,9 @@
           </a></li>
           <li><a class="navbar-link" (click)="scrollTo('websitereview'); toggleNav()">Review</a></li>
           <li><a class="navbar-link" (click)="scrollTo('gallery'); toggleNav()">Gallery</a></li>
-          <li><a class="navbar-link" (click)=" toggleNav()">Trip plan</a></li>
+          <li class="nav-item">
+            <a class="navbar-link" routerLink="/Itinerary">Trip Plan</a>
+          </li>
           <li><a class="navbar-link" (click)="scrollTo('contact'); toggleNav()">Contact</a></li>
         </ul>
       </nav>
