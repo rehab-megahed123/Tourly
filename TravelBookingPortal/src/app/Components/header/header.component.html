@@ -1,8 +1,9 @@
+
 <header
   class="header"
   data-header
   [class.active]="isSticky"
-  style="border-style: none"
+  style="border-style: none;"
 >
   <div
     class="overlay"
@@ -80,18 +81,12 @@
           <li>
             <a
               class="navbar-link"
-              (click)="scrollTo('destination'); toggleNav()"
+              routerLink="/AllDestinations"
             >
-              <i class="fas fa-map-marker-alt"></i> Popular Destinations
+              <i class="fas fa-map-marker-alt"></i>  Destinations
             </a>
           </li>
-          <li>
-            <a
-              class="navbar-link"
-              (click)="scrollTo('websitereview'); toggleNav()"
-              >Review</a
-            >
-          </li>
+          
           <li class="nav-item">
             <a class="navbar-link" routerLink="/Itinerary">Trip Plan</a>
           </li>

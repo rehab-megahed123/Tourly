@@ -76,7 +76,7 @@ export class PackagesComponent implements OnInit   {
     
     
     bookRoom(RoomId:number,price:number) {
-      this.bookingRoom.userId = "90451a23-7929-4f2a-ac8e-aceeb7baef3e";
+      this.bookingRoom.userId = localStorage.getItem('userId') ?? '';
       this.bookingRoom.roomId = RoomId;
       this.bookingRoom.checkIn = this.formData.checkIn;
       this.bookingRoom.checkOut = this.formData.checkOut;
