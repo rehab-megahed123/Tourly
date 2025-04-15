@@ -1,5 +1,5 @@
 export interface ICityAdmin {
-cityId?:number;
+cityId:number;
 name:string;
 imageUrl:string;
 }

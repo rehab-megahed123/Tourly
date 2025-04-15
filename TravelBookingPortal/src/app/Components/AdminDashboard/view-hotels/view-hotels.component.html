@@ -18,7 +18,7 @@
           <div class="table-data" >
             <img [src]="`${root}${hotel.imageUrl}` || './assets/images/person_1.jpg'" />
           </div>
-          <div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" style="cursor: pointer; margin-left:20px;"></i></div>
+          <div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" (click)="DeleteHotel(hotel.hotelId)" style="cursor: pointer; margin-left:20px;"></i></div>
 
         </div>
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICityAdmin } from '../../../core/Interface/AdminDashBoard/ICityAdmin';
 import { environment } from '../../../../environments/environment.development';
 import {  ViewCityService } from '../../../core/services/AdminDashBoard/viewcity.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-cities',
@@ -12,7 +13,7 @@ import {  ViewCityService } from '../../../core/services/AdminDashBoard/viewcity
 export class ViewCitiesComponent implements OnInit {
 cities!:ICityAdmin[]
   root:string=""
-  constructor(private _cityservice:ViewCityService) {
+  constructor(private router:Router,private _cityservice:ViewCityService) {
     this.root=`${environment.baseUrl}`;
 
   }
@@ -29,4 +30,12 @@ console.log(this.cities);
     console.log(error);
   })
 }
-}
+ DeleteCity(cityId:number){
+  console.log(cityId);
+  this._cityservice.DeleteCity(cityId).subscribe( (response)=>{
+    console.log(response);
+this.GetAllCities();
+  },(error)=>{
+    console.log(error);
+  })
+}}

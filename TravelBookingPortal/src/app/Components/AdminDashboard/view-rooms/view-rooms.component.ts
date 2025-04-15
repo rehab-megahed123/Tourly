@@ -28,4 +28,13 @@ console.log(this.rooms);
       console.log(error);
     })
   }
+  DeleteRoom(roomId:number){
+    console.log(roomId);
+    this._roomservice.DeleteRoom(roomId).subscribe( (response)=>{
+      console.log(response);
+  this.GetAllRooms();
+    },(error)=>{
+      console.log(error);
+    })
+  }
 }

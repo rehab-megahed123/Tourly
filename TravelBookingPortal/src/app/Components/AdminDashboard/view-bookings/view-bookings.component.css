@@ -4,6 +4,11 @@
   margin: 0 auto;
   padding: 10px;
 }
+.cancelbtn:hover  {
+  background-color: #f44336 !important;
+  color: white;
+
+}
 img{
   width: 40px;
   height: 40px;

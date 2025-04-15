@@ -143,7 +143,7 @@ this.backtoProfile();
 setTimeout(()=>{
   window.location.replace('/profile')
 }
-,100)
+,1000)
 
 
   }

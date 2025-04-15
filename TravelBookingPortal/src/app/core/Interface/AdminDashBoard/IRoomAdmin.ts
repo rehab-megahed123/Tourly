@@ -1,5 +1,5 @@
 export interface IRoomAdmin {
-RoomId?:number;
+  roomId:number;
 HotelId:number;
 hotelName?:string;
 roomType:string;

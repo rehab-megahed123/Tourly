@@ -1,5 +1,5 @@
 export interface IHotelAdmin {
-  hotelId?:number;
+  hotelId:number;
   name:string;
 description:string;
 cityName?:string;

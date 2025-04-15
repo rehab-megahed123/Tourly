@@ -20,9 +20,24 @@
           <div class="table-data">{{ booking.checkInDate | date : "dd MMMM yyyy"}}</div>
           <div class="table-data">{{ booking.checkOutDate | date : "dd MMMM yyyy" }}</div>
 
-          <div class="table-data"><div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" style="cursor: pointer; margin-left:20px;"></i></div>
-        </div>
+          <div class="table-data"><i
+            class="fas fa-edit"
+            style="cursor: pointer;"
+            [ngStyle]="{ 'margin-right': booking.bookingStatus.toUpperCase() === 'PENDING' ? '10px' : '0' }">
+          </i>
 
+            @if(booking.bookingStatus.toUpperCase()==='PENDING'){
+              <button class="btn cancelbtn btn-primary " style="width: 50px; height: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 10px;
+              background-color: #dd828d;
+              color: white;
+              border: none;
+              " (click)="DeleteBooking(booking.bookingId)" >Cancel</button>
+                }
+              </div>
         </div>
       }
     </div>

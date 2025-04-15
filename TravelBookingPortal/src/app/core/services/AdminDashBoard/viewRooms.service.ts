@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { IRoomAdmin } from '../../Interface/AdminDashBoard/IRoomAdmin';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
+import { IRoom } from '../../models/iroom';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,9 @@ return this._httpClientService.get<IRoomAdmin[]>(`${environment.baseUrl}/Admin/G
 }
 AddNewRoom(roomdata:FormData):Observable<IRoomAdmin>{
   return this._httpClientService.post<IRoomAdmin>(`${environment.baseUrl}/Admin/CreateRoom`, roomdata);
+}
+DeleteRoom(roomId:number):Observable<IRoomAdmin>{
+
+  return this._httpClientService.delete<IRoomAdmin>(`${environment.baseUrl}/Admin/DeleteRoom`,{params:{roomId:roomId}}) // Adjust the endpoint as needed
 }
 }

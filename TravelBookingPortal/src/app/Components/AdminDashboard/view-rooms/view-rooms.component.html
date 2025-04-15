@@ -21,7 +21,7 @@
           <div class="table-data" >
             <img [src]="`${room.imageUrl}` || './assets/images/person_1.jpg'" />
           </div>
-          <div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" style="cursor: pointer; margin-left:20px;"></i></div>
+          <div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" (click)="DeleteRoom(room.roomId)" style="cursor: pointer; margin-left:20px;"></i></div>
 
         </div>
       }

@@ -17,14 +17,23 @@ root:string=""
 
   }
   ngOnInit(): void {
-    this.GetAllCities();
+    this.GetAllHotels();
   }
 
-GetAllCities(){
+GetAllHotels(){
   this._hotelservice.GetAllHotels().subscribe((response)=>{
     this.hotels = response;
 
 console.log(this.hotels);
+  },(error)=>{
+    console.log(error);
+  })
+}
+DeleteHotel(hotelId:number){
+  console.log(hotelId);
+  this._hotelservice.DeleteHotel(hotelId).subscribe( (response)=>{
+    console.log(response);
+this.GetAllHotels();
   },(error)=>{
     console.log(error);
   })

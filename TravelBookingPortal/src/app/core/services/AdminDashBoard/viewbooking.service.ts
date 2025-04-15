@@ -14,6 +14,11 @@ export class ViewBookingService {
     }
   GetAllBookings():Observable<IBookingAdmin[]>{
   return this._httpClientService.get<IBookingAdmin[]>(`${environment.baseUrl}/Admin/GetAllBookings`); // Adjust the endpoint as needed
-  }}
+  }
+DeleteBooking(BookingId:number):Observable<IBookingAdmin>{
+
+  return this._httpClientService.delete<IBookingAdmin>(`${environment.baseUrl}/Admin/DeleteBooking`,{params:{BookingId:BookingId}}) // Adjust the endpoint as needed
+}
+}
 
 

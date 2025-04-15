@@ -19,4 +19,7 @@ return this._httpClientService.get<ICityAdmin[]>(`${environment.baseUrl}/Admin/G
 AddNewCity(cityData:FormData):Observable<ICityAdmin>{
   return this._httpClientService.post<ICityAdmin>(`${environment.baseUrl}/Admin/CreateCity`, cityData);
 }
-}
+DeleteCity(cityId:number):Observable<ICityAdmin>{
+
+  return this._httpClientService.delete<ICityAdmin>(`${environment.baseUrl}/Admin/DeleteCity`,{params:{cityId:cityId}}) // Adjust the endpoint as needed
+}}
