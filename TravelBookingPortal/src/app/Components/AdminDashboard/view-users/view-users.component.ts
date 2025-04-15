@@ -29,8 +29,10 @@ GetAllusers(){
     console.log(error);
   })
 }
-assignAdmin(id:string){
-var  User=this.users.find((p)=>p.Id==id)
-this._userService.AssignAdmin(User?.Id ?? '')
-}
-}
+assignAdmin(user:IUser){
+this._userService.AssignAdmin(user).subscribe((response)=>{
+  console.log(response);
+  this.GetAllusers();
+},(error)=>{
+  console.log(error);
+})}}

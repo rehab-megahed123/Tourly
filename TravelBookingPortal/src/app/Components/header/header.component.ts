@@ -12,6 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
 import { IProfile } from '../../core/Interface/Iprofile';
 import { AuthService } from '../../core/services/auth.service';
+import { ProfileService } from '../../core/services/profile.service';
 
 @Component({
   selector: 'app-header',
@@ -24,14 +25,16 @@ export class HeaderComponent implements OnInit {
   isSticky = false;
   IsLoggedIn!: boolean;
   root: string = '';
-  @Input() profile: IProfile | undefined;
-  constructor(private router: Router, private _authServices: AuthService) {
+   profile: IProfile | undefined;
+  constructor(private router: Router, private _authServices: AuthService,private profileservice: ProfileService) {
     this.root = `${environment.baseUrl}`;
   }
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {
       this.IsLoggedIn = true;
+      this.GetProfileByUserId(userId);
+
     } else {
       this.IsLoggedIn = false;
     }
@@ -85,4 +88,15 @@ export class HeaderComponent implements OnInit {
       this.isDropdownOpen = false;
     }
   }
+    GetProfileByUserId(userid: string) {
+      this.profileservice.GetProfileByUserId(userid).subscribe({
+        next: (response) => {
+          this.profile = response;
+          console.log('Profile loaded:', response);
+        },
+        error: (err) => {
+          console.error('Error fetching profile:', err);
+        },
+      });
+    }
 }

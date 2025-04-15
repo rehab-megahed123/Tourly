@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { IProfile } from '../../../core/Interface/Iprofile';
 import { environment } from '../../../../environments/environment.development';
 import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from '../../../core/services/profile.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,9 +17,9 @@ export class NavBarComponent implements OnInit {
   isSticky = false;
   IsLoggedIn=false;
   root:string="";
-  @Input() profile:IProfile|undefined;
+ profile:IProfile|undefined;
 
-constructor(private router:Router,private _authServices:AuthService){
+constructor(private router:Router,private _authServices:AuthService,private profileservice: ProfileService){
 this.root=`${environment.baseUrl}`;
 
 }
@@ -26,7 +27,7 @@ this.root=`${environment.baseUrl}`;
     const userId = localStorage.getItem('userId');
     if (userId) {
       this.IsLoggedIn=true;
-
+this.GetProfileByUserId(userId);
     }
     else{
       this.IsLoggedIn=false;
@@ -83,6 +84,17 @@ this.root=`${environment.baseUrl}`;
     }
   }
 
+  GetProfileByUserId(userid: string) {
+    this.profileservice.GetProfileByUserId(userid).subscribe({
+      next: (response) => {
+        this.profile = response;
+        console.log('Profile loaded:', response);
+      },
+      error: (err) => {
+        console.error('Error fetching profile:', err);
+      },
+    });
+  }
 
 }
 

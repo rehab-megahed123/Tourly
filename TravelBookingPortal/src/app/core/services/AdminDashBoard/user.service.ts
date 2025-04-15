@@ -15,7 +15,7 @@ export class UserService {
 GetAllUsers():Observable<IUser[]>{
 return this._httpClientService.get<IUser[]>(`${environment.baseUrl}/Admin/GetAllUsers`); // Adjust the endpoint as needed
 }
-AssignAdmin(id:string):Observable<IUser>{
-return this._httpClientService.put<IUser>(`${environment.baseUrl}/assignAdmin`,id);
+AssignAdmin(user:IUser):Observable<IUser>{
+return this._httpClientService.post<IUser>(`${environment.baseUrl}/Admin/ChangeUserRole`,user);
 
 }}

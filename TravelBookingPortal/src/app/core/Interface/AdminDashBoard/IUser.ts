@@ -1,5 +1,5 @@
 export interface IUser {
-Id:string;
+  userId:string;
   imageUrl: string;
   // firstName: string;
   // lastName: string;

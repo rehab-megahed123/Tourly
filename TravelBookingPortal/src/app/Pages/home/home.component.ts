@@ -29,26 +29,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
-  ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.GetProfileByUserId(userId);
-    } else {
-      console.error('User ID not found in local storage.');
-    }
-  }
-  profile: IProfile | undefined;
-  constructor(private profileservice: ProfileService) {}
-  GetProfileByUserId(userid: string) {
-    this.profileservice.GetProfileByUserId(userid).subscribe({
-      next: (response) => {
-        this.profile = response;
-        console.log('Profile loaded:', response);
-      },
-      error: (err) => {
-        console.error('Error fetching profile:', err);
-      },
-    });
-  }
+export class HomeComponent   {
+
+
 }
