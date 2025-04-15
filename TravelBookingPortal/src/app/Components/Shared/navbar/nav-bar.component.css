@@ -14,7 +14,7 @@
   background-color:hsl(214, 56%, 58%) !important;
 pointer-events: visiblePainted;
   transition: 0.15s ease-in;
-  z-index: 3;
+  z-index: 1;
   color: #ffffff;
 }
 .navbar{
