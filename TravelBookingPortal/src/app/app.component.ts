@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./Components/header/header.component";
-import { HeroComponent } from "./Components/hero/hero.component";
-import { PopularDestinationsComponent } from "./Components/popular-destinations/popular-destinations.component";
-import { PackagesComponent } from "./Components/packages/packages.component";
-import { GalleryComponent } from "./Components/gallery/gallery.component";
+import { HeaderComponent } from './Components/header/header.component';
+import { HeroComponent } from './Components/hero/hero.component';
+import { PopularDestinationsComponent } from './Components/popular-destinations/popular-destinations.component';
+import { PackagesComponent } from './Components/packages/packages.component';
+import { GalleryComponent } from './Components/gallery/gallery.component';
 
 import { GoTopComponent } from './Components/go-top/go-top.component';
 import { ContactComponent } from './Components/contact/contact.component';

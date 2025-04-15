@@ -5,6 +5,7 @@ import { HeroComponent } from '../../Components/hero/hero.component';
 import { ToursearchComponent } from '../../Components/toursearch/toursearch.component';
 import { PackagesComponent } from '../../Components/packages/packages.component';
 import { FooterComponent } from '../../Components/footer/footer.component';
+import { NavBarComponent } from '../../Components/Shared/navbar/nav-bar.component';
 
 @Component({
   selector: 'app-search-result',
@@ -16,6 +17,7 @@ import { FooterComponent } from '../../Components/footer/footer.component';
     ToursearchComponent,
     PackagesComponent,
     FooterComponent,
+    NavBarComponent,
   ],
 })
 export class SearchResultComponent implements OnInit {
