@@ -9,6 +9,10 @@ import { HomeComponent } from './Pages/home/home.component';
 import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planner/trip-planner.component';
 import { ItineraryComponent } from './Pages/itinerary/itinerary.component';
 
+import { AllDestinationsPageComponent } from './Pages/all-destinations-page/all-destinations-page.component';
+import { SearchResultComponent } from './Pages/search-result/search-result.component';
+import { PaymentComponent } from './Components/payment/payment.component';
+
 
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
@@ -36,7 +40,10 @@ children:[
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomeComponent },
-{path:'Itinerary',component:ItineraryComponent},
+      {path:'AllDestinations',component:AllDestinationsPageComponent} ,
+      {path:'SearchResult',component:SearchResultComponent} ,
+      {path:'Payment',component:PaymentComponent} ,
+      {path:'Itinerary',component:ItineraryComponent},
       {
         path: 'profile',
         loadComponent: () =>
