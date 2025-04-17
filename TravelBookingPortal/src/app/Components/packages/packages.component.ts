@@ -61,6 +61,16 @@ export class PackagesComponent implements OnInit   {
    
     this.signalRService.onBookingStatusUpdate((roomId: number, status: string) => {
       console.log(`Room ${roomId} status updated to ${status}`);
+      if(status==="Confirmed"){
+        this._roomService.getAvailableRooms(this.formData.city,this.formData.roomType,this.formData.checkIn,this.formData.checkOut).subscribe({
+          next:(arr)=>{
+            console.log(arr)
+            this.results=arr
+            
+          }
+          ,error:()=>{}
+        })
+      }
 
       const room = this.results?.find((r: any) => r.roomId === roomId);
       if (room) {
@@ -76,6 +86,13 @@ export class PackagesComponent implements OnInit   {
     
     
     bookRoom(RoomId:number,price:number) {
+      const token = localStorage.getItem('token');
+
+    if (!token) {
+      
+      this.router.navigate(['Login']);
+      return;
+    }
       this.bookingRoom.userId = localStorage.getItem('userId') ?? '';
       this.bookingRoom.roomId = RoomId;
       this.bookingRoom.checkIn = this.formData.checkIn;

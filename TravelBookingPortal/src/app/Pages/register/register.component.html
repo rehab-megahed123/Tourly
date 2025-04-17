@@ -4,7 +4,7 @@
 >
   <div class="inner">
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
-      <h3>Register Form</h3>
+      <h3>Register</h3>
 
       <!-- Name UserName-->
       <div class="form-group triple-input">
@@ -79,7 +79,7 @@
       <div class="error-message">Phone Number is required</div>
       } @if (phoneNumber.getError('pattern')) {
       <div class="error-message">
-        Phone Number must be 10 digits long and start with 0
+        Phone Number must be 11 digits long and start with 0
       </div>
       } }
 

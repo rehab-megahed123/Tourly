@@ -23,6 +23,13 @@ export class AuthService {
     );
   }
 
+  isAuthorized(): boolean {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    return true;
+  }
   getRole(): string | null {
     const token = localStorage.getItem('token');
     if (!token) {

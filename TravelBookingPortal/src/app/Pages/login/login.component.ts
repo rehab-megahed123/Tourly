@@ -69,11 +69,11 @@ export class LoginComponent {
   }
 
   siginIn(data: ILogin): void {
-    this.spinner.show();
+    // this.spinner.show();
     this._authService.login(data).subscribe({
       next: (response) => {
         if (response.success) {
-          this.spinner.hide();
+          // this.spinner.hide();
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
 
