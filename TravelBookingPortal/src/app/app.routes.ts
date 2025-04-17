@@ -6,32 +6,82 @@ import {
 } from '@angular/router';
 import { ApplicationConfig } from '@angular/core';
 import { HomeComponent } from './Pages/home/home.component';
-import { TripPlannerComponent } from './Components/trip/trip-planner/trip-planner/trip-planner.component';
 import { ItineraryComponent } from './Pages/itinerary/itinerary.component';
 
 import { AllDestinationsPageComponent } from './Pages/all-destinations-page/all-destinations-page.component';
 import { SearchResultComponent } from './Pages/search-result/search-result.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 
-
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { adminGuard } from './core/Guards/admin.guard';
+import { AuthService } from './core/services/auth.service';
+import { authGuard } from './core/Guards/auth.guard';
+import { nonAdminGuard } from './core/Guards/non-admin.guard';
 export const routes: Routes = [
   {
     path: 'Admin',
     loadComponent: () =>
       import('./Layouts/admin/admin.component').then((m) => m.AdminComponent),
-children:[
-      {path:'viewrooms',loadComponent:()=>import('./Components/AdminDashboard/view-rooms/view-rooms.component').then((v)=>v.ViewRoomsComponent)},
-      {path:'addroom',loadComponent:()=>import('./Components/AdminDashboard/add-room/add-room.component').then((r)=>r.AddRoomComponent)},
-      {path:'viewcities',loadComponent:()=>import('./Components/AdminDashboard/view-cities/view-cities.component').then((r)=>r.ViewCitiesComponent)},
-      {path:'addcity',loadComponent:()=>import('./Components/AdminDashboard/add-city/add-city.component').then((r)=>r.AddCityComponent)},
-      {path:'viewhotels',loadComponent:()=>import('./Components/AdminDashboard/view-hotels/view-hotels.component').then((r)=>r.ViewHotelsComponent)},
-      {path:'addhotel',loadComponent:()=>import('./Components/AdminDashboard/add-hotel/add-hotel.component').then((r)=>r.AddHotelComponent)},
-      {path:'viewusers',loadComponent:()=>import('./Components/AdminDashboard/view-users/view-users.component').then((r)=>r.ViewUsersComponent)},
-      {path:'viewbookings',loadComponent:()=>import('./Components/AdminDashboard/view-bookings/view-bookings.component').then((r)=>r.ViewBookingsComponent)},
-          ],    canActivate: [adminGuard]
+    children: [
+      {
+        path: 'viewrooms',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/view-rooms/view-rooms.component'
+          ).then((v) => v.ViewRoomsComponent),
+      },
+      {
+        path: 'addroom',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/add-room/add-room.component'
+          ).then((r) => r.AddRoomComponent),
+      },
+      {
+        path: 'viewcities',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/view-cities/view-cities.component'
+          ).then((r) => r.ViewCitiesComponent),
+      },
+      {
+        path: 'addcity',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/add-city/add-city.component'
+          ).then((r) => r.AddCityComponent),
+      },
+      {
+        path: 'viewhotels',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/view-hotels/view-hotels.component'
+          ).then((r) => r.ViewHotelsComponent),
+      },
+      {
+        path: 'addhotel',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/add-hotel/add-hotel.component'
+          ).then((r) => r.AddHotelComponent),
+      },
+      {
+        path: 'viewusers',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/view-users/view-users.component'
+          ).then((r) => r.ViewUsersComponent),
+      },
+      {
+        path: 'viewbookings',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/view-bookings/view-bookings.component'
+          ).then((r) => r.ViewBookingsComponent),
+      },
+    ],
+    canActivate: [adminGuard],
   },
   {
     path: '',
@@ -40,10 +90,14 @@ children:[
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomeComponent },
-      {path:'AllDestinations',component:AllDestinationsPageComponent} ,
-      {path:'SearchResult',component:SearchResultComponent} ,
-      {path:'Payment',component:PaymentComponent} ,
-      {path:'Itinerary',component:ItineraryComponent},
+      { path: 'AllDestinations', component: AllDestinationsPageComponent },
+      { path: 'SearchResult', component: SearchResultComponent },
+      { path: 'Payment', component: PaymentComponent },
+      {
+        path: 'Itinerary',
+        component: ItineraryComponent,
+        canActivate: [authGuard],
+      },
       {
         path: 'profile',
         loadComponent: () =>
@@ -68,6 +122,7 @@ children:[
           ),
       },
     ],
+    canActivate: [nonAdminGuard],
   },
 ];
 export const appConfig: ApplicationConfig = {
