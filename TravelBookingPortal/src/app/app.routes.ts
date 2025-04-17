@@ -49,17 +49,14 @@ children:[
         loadComponent: () =>
           import('./Pages/user-profile/user-profile.component').then(
             (u) => u.UserProfileComponent
-          ),
+          ),children:[
+{path:'editprofile',loadComponent:()=>import('./Components/edit-profile/edit-profile.component').then((u)=>u.EditProfileComponent)},
+{path:'userbooking',loadComponent:()=>import('./Components/UserBooking/user-booking.component').then((u)=>u.UserBookingComponent)},
+{path:'userinfo',loadComponent:()=>import('./Components/user-info/user-info.component').then((u)=>u.UserInfoComponent)},
+          ]
       },
       { path: 'Login', component: LoginComponent },
       { path: 'Register', component: RegisterComponent },
-      {
-        path: 'editprofile',
-        loadComponent: () =>
-          import('./Pages/edit-profile/edit-profile.component').then(
-            (u) => u.EditProfileComponent
-          ),
-      },
       {
         path: 'aboutus',
         loadComponent: () =>
