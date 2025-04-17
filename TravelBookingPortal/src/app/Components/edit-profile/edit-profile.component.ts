@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../core/services/profile.service';
 import { IProfile } from '../../core/Interface/Iprofile';
-import { NavBarComponent } from "../../Components/Shared/navbar/nav-bar.component";
-import { FooterComponent } from "../../Components/footer/footer.component";
+import { NavBarComponent } from "../Shared/navbar/nav-bar.component";
+import { FooterComponent } from "../footer/footer.component";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment.development';
@@ -40,7 +40,7 @@ export class EditProfileComponent {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       userName: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^0\d{9}$/)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^0\d{10}$/)]),
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
       street: new FormControl('', Validators.required),
