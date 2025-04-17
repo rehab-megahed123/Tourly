@@ -19,6 +19,7 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { adminGuard } from './core/Guards/admin.guard';
 import { PaymentSuccessComponent } from './Components/payment-success/payment-success.component';
 import { PaymentFailureComponent } from './Components/payment-failure/payment-failure.component';
+import { ContuctUsComponent } from './Pages/contuct-us/contuct-us.component';
 export const routes: Routes = [
   {
     path: 'Admin',
@@ -71,6 +72,7 @@ children:[
       },
       { path: 'payment-success', component: PaymentSuccessComponent },
       { path: 'payment-failure', component: PaymentFailureComponent },
+      { path: 'ContuctUs', component: ContuctUsComponent },
     ],
   },
 ];
