@@ -11,10 +11,12 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ToursearchComponent } from './Components/toursearch/toursearch.component';
 import { AdminComponent } from './Layouts/admin/admin.component';
+import { NgxSpinnerComponent } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AdminComponent],
+  imports: [RouterOutlet, AdminComponent,NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

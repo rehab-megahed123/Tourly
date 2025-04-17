@@ -52,6 +52,7 @@
               ${{ room.pricePerNight }}
               <span>/ per night</span>
             </p>
+           
             
             @if(room.bookingStatus == "Available") {
               <button class="btn btn-secondary" (click)="bookRoom(room.roomId, room.pricePerNight)">Book Now</button>
