@@ -25,7 +25,7 @@ export class PackagesComponent implements OnInit   {
     checkIn: new Date(),
     checkOut: new Date(),
     totalPrice: 0
-  };
+  };//
   results: any;
   formData: any;
  
@@ -61,6 +61,16 @@ export class PackagesComponent implements OnInit   {
    
     this.signalRService.onBookingStatusUpdate((roomId: number, status: string) => {
       console.log(`Room ${roomId} status updated to ${status}`);
+      if(status==="Confirmed"){
+        this._roomService.getAvailableRooms(this.formData.city,this.formData.roomType,this.formData.checkIn,this.formData.checkOut).subscribe({
+          next:(arr)=>{
+            console.log(arr)
+            this.results=arr
+            
+          }
+          ,error:()=>{}
+        })
+      }
 
       const room = this.results?.find((r: any) => r.roomId === roomId);
       if (room) {
@@ -76,11 +86,22 @@ export class PackagesComponent implements OnInit   {
     
     
     bookRoom(RoomId:number,price:number) {
+      const token = localStorage.getItem('token');
+
+    if (!token) {
+      
+      this.router.navigate(['Login']);
+      return;
+    }
+    const checkInDate = new Date(this.formData.checkIn);
+  const checkOutDate = new Date(this.formData.checkOut);
       this.bookingRoom.userId = localStorage.getItem('userId') ?? '';
       this.bookingRoom.roomId = RoomId;
       this.bookingRoom.checkIn = this.formData.checkIn;
       this.bookingRoom.checkOut = this.formData.checkOut;
-      this.bookingRoom.totalPrice = price;
+      const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
+      const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+      this.bookingRoom.totalPrice = numberOfNights * price;
       
       console.log(this.bookingRoom);
       this._bookingService.bookRoom(this.bookingRoom).subscribe({

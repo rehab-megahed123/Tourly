@@ -74,7 +74,12 @@
             },
             "development": {
               "buildTarget": "TravelBookingPortal:build:development"
-            }
+            },
+            "options": {
+                "allowedHosts": [
+                  "https://efdd-197-63-37-114.ngrok-free.app"
+                ]
+              }
           },
           "defaultConfiguration": "development"
         },

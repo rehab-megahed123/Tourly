@@ -4,6 +4,7 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { authenticationInterceptor } from './core/Interceptors/authentication.interceptor';
+import { loadingSpinnerInterceptorInterceptor } from './core/Interceptors/loading-spinner-interceptor.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withFetch(),withInterceptors([authenticationInterceptor])),
     provideAnimations(),
+    provideHttpClient(withInterceptors([loadingSpinnerInterceptorInterceptor]))
   ],
 };
