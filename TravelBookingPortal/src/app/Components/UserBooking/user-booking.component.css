@@ -81,16 +81,37 @@
 margin-left: 5px;
   cursor: pointer;
   font-size: 12px;
-  width: 80px;
+  width: 40px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
 }
+.bookbtn{
+ 
+    background-color: hsl(214, 57%, 51%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+  margin-left: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 40px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+
+}
 
 .cancelbtn:hover {
   background-color: #f44336 !important;
+}
+.bookbtn:hover {
+  background-color: hsl(214, 72%, 33%);
 }
 
 /* تحويل الجدول لكاردات على الشاشات الصغيرة */
@@ -194,7 +215,13 @@ margin-left: 5px;
   .cancelbtn {
     font-size: 11px;
     padding: 6px 12px;
-    width: 70px;
+    width: 35px;
+    height: 28px;
+  }
+  .bookbutton{
+    font-size: 11px;
+    padding: 6px 12px;
+    width: 35px;
     height: 28px;
   }
 }
@@ -216,5 +243,11 @@ margin-left: 5px;
     padding: 5px 10px;
     width: 60px;
     height: 26px;
+  }
+  .bookbutton{
+    font-size: 11px;
+    padding: 6px 12px;
+    width: 70px;
+    height: 28px;
   }
 }

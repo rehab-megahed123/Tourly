@@ -25,7 +25,7 @@ export class PackagesComponent implements OnInit   {
     checkIn: new Date(),
     checkOut: new Date(),
     totalPrice: 0
-  };
+  };//
   results: any;
   formData: any;
  
@@ -93,11 +93,15 @@ export class PackagesComponent implements OnInit   {
       this.router.navigate(['Login']);
       return;
     }
+    const checkInDate = new Date(this.formData.checkIn);
+  const checkOutDate = new Date(this.formData.checkOut);
       this.bookingRoom.userId = localStorage.getItem('userId') ?? '';
       this.bookingRoom.roomId = RoomId;
       this.bookingRoom.checkIn = this.formData.checkIn;
       this.bookingRoom.checkOut = this.formData.checkOut;
-      this.bookingRoom.totalPrice = price;
+      const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
+      const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+      this.bookingRoom.totalPrice = numberOfNights * price;
       
       console.log(this.bookingRoom);
       this._bookingService.bookRoom(this.bookingRoom).subscribe({

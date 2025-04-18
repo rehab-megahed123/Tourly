@@ -125,7 +125,7 @@ export const routes: Routes = [
       { path: 'payment-failure', component: PaymentFailureComponent },
       { path: 'ContuctUs', component: ContuctUsComponent },
     ],
-    canActivate: [nonAdminGuard],
+    
   },
 ];
 export const appConfig: ApplicationConfig = {

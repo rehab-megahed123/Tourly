@@ -25,7 +25,8 @@
           <div class="table-data">{{ booking.createdAt | date : "dd MMMM yyyy" }}</div>
           <div class="table-data">
             @if (booking.bookingStatus.toUpperCase() === 'PENDING') {
-              <button class="cancelbtn" (click)="DeleteBooking(booking.bookingId)">Cancel</button>
+              <button class="cancelbtn" (click)="DeleteBooking(booking.bookingId)">X</button>
+              <button class="bookbtn" (click)="bookRoom(booking.roomId, booking.totalPrice,booking.checkInDate,booking.checkOutDate)">Book</button>
             }@else{ No Action}
 
           </div>
