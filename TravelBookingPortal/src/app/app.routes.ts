@@ -18,6 +18,8 @@ import { adminGuard } from './core/Guards/admin.guard';
 import { AuthService } from './core/services/auth.service';
 import { authGuard } from './core/Guards/auth.guard';
 import { nonAdminGuard } from './core/Guards/non-admin.guard';
+import { HotelReviewsComponent } from './Components/hotel-reviews/hotel-reviews.component';
+import { ReviewPageComponent } from './Pages/review-page/review-page.component';
 export const routes: Routes = [
   {
     path: 'Admin',
@@ -121,8 +123,10 @@ export const routes: Routes = [
             (u) => u.AboutUsComponent
           ),
       },
+      { path: 'HotelReviews',
+         component: ReviewPageComponent },
     ],
-    canActivate: [nonAdminGuard],
+    // canActivate: [nonAdminGuard],
   },
 ];
 export const appConfig: ApplicationConfig = {
