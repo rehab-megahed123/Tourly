@@ -100,6 +100,7 @@ export const routes: Routes = [
         component: ItineraryComponent,
         canActivate: [authGuard],
       },
+      
       {
         path: 'profile',
         loadComponent: () =>
