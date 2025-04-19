@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RoomService } from '../../core/services/room.service';
 import { IBookingRoom } from '../../core/models/ibooking-room';
 import { BookingService } from '../../core/services/booking.service';
@@ -9,7 +9,7 @@ import { SignalRService } from '../../core/services/signal-r.service';
 
 @Component({
   selector: 'app-packages',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })
@@ -120,6 +120,9 @@ export class PackagesComponent implements OnInit   {
           
         }
       });
+    }
+    goToReviews(hotelName: string) {
+      this.router.navigate(['/HotelReviews'], { queryParams: { hotelName: hotelName } });
     }
       }
     
