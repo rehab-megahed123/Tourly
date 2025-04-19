@@ -1,6 +1,6 @@
 export interface IcreateReview {
     userId: string;
-    hotelId: number;
+    hotelName: string;
     rating: number;
     comment: string;
 }
