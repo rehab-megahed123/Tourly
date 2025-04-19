@@ -22,4 +22,8 @@ AddNewCity(cityData:FormData):Observable<ICityAdmin>{
 DeleteCity(cityId:number):Observable<ICityAdmin>{
 
   return this._httpClientService.delete<ICityAdmin>(`${environment.baseUrl}/Admin/DeleteCity`,{params:{cityId:cityId}}) // Adjust the endpoint as needed
+}
+UpdateCity(cityData:FormData):Observable<ICityAdmin>{
+  return this._httpClientService.put<ICityAdmin>(`${environment.baseUrl}/Admin/UpdateCity`, cityData);
+
 }}

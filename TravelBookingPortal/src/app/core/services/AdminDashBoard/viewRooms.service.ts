@@ -22,4 +22,8 @@ DeleteRoom(roomId:number):Observable<IRoomAdmin>{
 
   return this._httpClientService.delete<IRoomAdmin>(`${environment.baseUrl}/Admin/DeleteRoom`,{params:{roomId:roomId}}) // Adjust the endpoint as needed
 }
+UpdateRoom(roomData:FormData):Observable<IRoomAdmin>{
+  return this._httpClientService.put<IRoomAdmin>(`${environment.baseUrl}/Admin/UpdateRoom`, roomData);
+
+}
 }

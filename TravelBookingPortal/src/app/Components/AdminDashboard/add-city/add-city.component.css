@@ -13,6 +13,7 @@ body {
   height: auto;
 }
 
+
 input,
 button,
 select {
@@ -26,17 +27,19 @@ select {
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
-  align-items: center;
+  align-items:flex-start;
 }
-
 .inner {
   padding: 20px;
   background: #fff;
   max-width: 850px;
-  margin: auto;
+  margin: 50px auto 0;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.6s ease-out;
 }
+
+
 
 .inner form {
   width: 100%;
@@ -47,7 +50,7 @@ select {
   position: relative;
   display: flex;
   flex-direction: column;
-  
+
   margin-bottom: 20px;
 }
 
@@ -198,3 +201,15 @@ button:hover {
     margin-top: 60px;
   }
 }
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

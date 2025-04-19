@@ -16,47 +16,51 @@ export class AddCityComponent {
    imagePreview: string | null = null;
    hasNewImage: boolean = false;
    root: string =`${ environment.baseUrl}`;
- 
+
    constructor(
      private fb: FormBuilder,
      private router: Router,
      private cityService: ViewCityService
    ) {
      this.CreateForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['',[ Validators.required,Validators.pattern('^[a-zA-Z]{2,15}$')]],
+      imageUrl: ['', [Validators.required, Validators.pattern(/\.(jpg|jpeg|png)$/i)]],
      });
    }
- 
- 
- 
- 
+
+
+
+
    selectedFile!: File;
- 
+
    onImageSelected(event: Event): void {
-     const input = event.target as HTMLInputElement;
-     if (input.files && input.files.length > 0) {
-       const file = input.files[0];
-       this.selectedFile = file;
-   
-       const reader = new FileReader();
-       reader.onload = () => {
-         this.imagePreview = reader.result as string;
-       };
-       reader.readAsDataURL(file);
-     } else {
-       this.selectedFile = null as any;
-       this.imagePreview = null;
-     }
-   }
- 
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.selectedFile = file;
+
+      this.CreateForm.get('imageUrl')?.setValue(file.name);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.selectedFile = null as any;
+      this.imagePreview = null;
+      this.CreateForm.get('imageUrl')?.setValue('');
+    }
+  }
+
    submit(): void {
      if (this.CreateForm.valid && this.selectedFile) {
        const formValue = this.CreateForm.value;
        const formData = new FormData();
-   
+
        formData.append('name', formValue.name);
-       formData.append('imageUrl', this.selectedFile); 
-   
+       formData.append('imageUrl', this.selectedFile);
+
        this.cityService.AddNewCity(formData).subscribe({
          next: (response) => {
            console.log('City created:', response);
@@ -71,5 +75,5 @@ export class AddCityComponent {
        console.log('Form is invalid or image not selected.');
      }
    }
-   
+
 }

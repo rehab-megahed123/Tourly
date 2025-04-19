@@ -23,4 +23,8 @@ DeleteHotel(HotelId:number):Observable<IHotelAdmin>{
 
   return this._httpClientService.delete<IHotelAdmin>(`${environment.baseUrl}/Admin/DeleteHotel`,{params:{HotelId:HotelId}}) // Adjust the endpoint as needed
 }
+UpdateHotel(hotelData:FormData):Observable<IHotelAdmin>{
+  return this._httpClientService.put<IHotelAdmin>(`${environment.baseUrl}/Admin/UpdateHotel`, hotelData);
+
+}
 }

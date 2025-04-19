@@ -7,7 +7,7 @@ import { ProfileService } from '../../core/services/profile.service';
 
 @Component({
   selector: 'app-user-booking',
-  imports: [DatePipe,CurrencyPipe,CommonModule],
+  imports: [DatePipe,CommonModule],
   templateUrl: './user-booking.component.html',
   styleUrl: './user-booking.component.css'
 })

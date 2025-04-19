@@ -47,6 +47,18 @@ export const routes: Routes = [
           import(
             './Components/AdminDashboard/view-cities/view-cities.component'
           ).then((r) => r.ViewCitiesComponent),
+      },  {
+        path: 'editroom',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/edit-room/edit-room.component'
+          ).then((r) => r.EditRoomComponent),
+      },  {
+        path: 'edithotel',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/edit-hotel/edit-hotel.component'
+          ).then((r) => r.EditHotelComponent),
       },
       {
         path: 'addcity',

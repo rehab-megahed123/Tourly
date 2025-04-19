@@ -37,4 +37,7 @@ console.log(this.rooms);
       console.log(error);
     })
   }
+GoToEditForm(room:IRoomAdmin){
+  this.router.navigate(['/Admin/editroom'], { state: { room: room } });
+}
 }
