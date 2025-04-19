@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
@@ -34,11 +34,22 @@ export class LoginComponent {
   constructor(
     private _authService: AuthService,
     private spinner: NgxSpinnerService,
-    private _router: Router
+    private _router: Router,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.initFormControls();
     this.initFormGroup();
+    this.route.queryParams.subscribe((params) => {
+      const token = params['token'];
+      const userId = params['userId'];
+
+      if (token && userId) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId);
+        this._router.navigate(['/Home']);
+      }
+    });
   }
   initFormControls(): void {
     this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -95,5 +106,8 @@ export class LoginComponent {
         }
       },
     });
+  }
+  loginWithProvider(provider: 'Google' | 'GitHub'): void {
+    this._authService.externalLogin(provider);
   }
 }

@@ -67,4 +67,10 @@ export class AuthService {
     }
     return null;
   }
+
+  externalLogin(provider: 'Google' | 'GitHub'): void {
+    const returnUrl = `${window.location.origin}/auth-callback`;
+    const externalLoginUrl = `${environment.baseUrl}/Auth/externallogin?provider=${provider}&returnUrl=${returnUrl}`;
+    window.location.href = externalLoginUrl;
+  }
 }
