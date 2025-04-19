@@ -123,6 +123,14 @@ export const routes: Routes = [
                 (u) => u.UserBookingComponent
               ),
           },
+
+          {
+            path: 'userreview',
+            loadComponent: () =>
+              import('./Components/user-review/user-review.component').then(
+                (u) => u.UserReviewComponent
+              ),
+          },
           {
             path: 'userinfo',
             loadComponent: () =>
@@ -132,7 +140,7 @@ export const routes: Routes = [
           },
         ],
       },
-      { path: 'userreview', component: UserReviewComponent },
+      // { path: 'userreview', component: UserReviewComponent },
       { path: 'Login', component: LoginComponent },
       { path: 'Register', component: RegisterComponent },
       {

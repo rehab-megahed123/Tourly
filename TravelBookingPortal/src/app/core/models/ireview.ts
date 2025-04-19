@@ -3,6 +3,7 @@ export interface Ireview {
         hotelId: number,
         rating: number,
         comment: string,
+        hotelName: string,
         createdAt:string
         userName: string,
         userImage: string,
