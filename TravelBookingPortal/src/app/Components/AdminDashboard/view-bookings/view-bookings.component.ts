@@ -6,7 +6,7 @@ import { DatePipe, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-view-bookings',
-  imports: [DatePipe,NgStyle],
+  imports: [DatePipe],
   templateUrl: './view-bookings.component.html',
   styleUrl: './view-bookings.component.css'
 })

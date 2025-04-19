@@ -12,8 +12,7 @@ import { NavBarComponent } from '../../Components/Shared/navbar/nav-bar.componen
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css'],
   imports: [
-    HeaderComponent,
-    HeroComponent,
+
     ToursearchComponent,
     PackagesComponent,
     FooterComponent,

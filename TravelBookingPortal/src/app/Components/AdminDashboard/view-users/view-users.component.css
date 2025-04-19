@@ -36,7 +36,7 @@ img {
   width: 100%;
   padding: 12px 0;
   background: #FFFFFF;
-  animation: slideInFromRight 800ms ease-out forwards; /* تطبيق التأثير على الصفوف */
+  animation: slideInFromRight 800ms ease-out forwards;
 }
 
 .table-row:last-child {
@@ -94,21 +94,7 @@ img {
   white-space: normal;
   word-break: break-word;
 }
-/* تعريف Keyframes لتأثير Slide In من اليمين إلى الشمال */
-@keyframes slideInFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateX(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+
 
 /* Responsive adjustments for table */
 @media (max-width: 768px) {
@@ -161,5 +147,19 @@ img {
   .header__item:not(:nth-child(1)),
   .table-data:not(:nth-child(1)) {
     flex: 0.8 1 20%;
+  }
+}
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

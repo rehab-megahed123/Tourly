@@ -126,15 +126,15 @@ html, body {
 .form-container {
   flex: 1;
   border-radius:15px;
- 
- 
+
+
 }
 
 .form-wrapper.animate-slide-left {
   animation: slideInLeft 1s ease-out forwards;
-  
- 
-  
+
+
+
 }
 
 .contact-form {
@@ -142,7 +142,7 @@ html, body {
   flex-direction: column;
   gap: 20px;
   max-width: 100%;
-  
+
 }
 
 .form-group {
@@ -319,7 +319,7 @@ border-radius:15px;
   .contact-form {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    
+
   }
 
   .form-group:nth-child(3) { /* Message field spans both columns */
@@ -337,7 +337,7 @@ border-radius:15px;
 
   .form-container {
     width: 100%;
-    padding: 0 15px; 
+    padding: 0 15px;
   }
 
   .contact-form {
