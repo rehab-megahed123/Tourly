@@ -3,6 +3,8 @@ import { HeaderComponent } from "../../Components/header/header.component";
 import { FooterComponent } from "../../Components/footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ContactUsService } from '../../core/services/contact-us.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-contuct-us',
@@ -12,9 +14,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class ContuctUsComponent implements OnInit, AfterViewInit {
   contactForm: FormGroup;
+  isSubmitting: boolean = false;
+  successMessage: string = '';
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
-    // Initialize reactive form
+  constructor(private fb: FormBuilder, private contactService: ContactUsService) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -25,41 +29,48 @@ export class ContuctUsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // Handle scroll animations
     this.animateOnScroll('.form-wrapper', 'animate-scale-fade');
     this.animateOnScroll('.form-group', 'animate-bounce');
     this.animateOnScroll('.text-container', 'animate-slide-right');
     this.animateOnScroll('.contact-info li', 'animate-pulse');
   }
 
-  // Form submission
   onSubmit(): void {
-    if (this.contactForm.valid) {
-      console.log('Form submitted:', this.contactForm.value);
-      // TODO: Call a service to send form data to backend
-      // e.g., this.contactService.submitForm(this.contactForm.value).subscribe();
-      this.contactForm.reset();
-    }
+    if (this.contactForm.invalid || this.isSubmitting) return;
+
+    this.isSubmitting = true;
+    this.successMessage = '';
+    this.errorMessage = '';
+
+    this.contactService.sendMessage(this.contactForm.value).subscribe({
+      
+      next: () => {
+        this.successMessage = 'Your message has been sent successfully!';
+        this.contactForm.reset();
+        this.isSubmitting = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error:', error);
+        this.errorMessage = 'Something went wrong. Please try again later.';
+        this.isSubmitting = false;
+      }
+    });
   }
 
-  // Scroll animation logic
   private animateOnScroll(selector: string, animationClass: string): void {
-    // Skip animations if reduced motion is preferred
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const elements = document.querySelectorAll(selector);
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add(animationClass);
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
 
-    elements.forEach(element => observer.observe(element));
+    elements.forEach(el => observer.observe(el));
   }
 
 }

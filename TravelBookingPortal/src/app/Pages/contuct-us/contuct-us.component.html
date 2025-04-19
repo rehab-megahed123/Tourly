@@ -1,4 +1,3 @@
-<!-- Header Component (Assumed to exist) -->
 <app-header></app-header>
 
 <!-- Hero Section -->
@@ -16,11 +15,19 @@
 <!-- Contact Form Section -->
 <section class="about-section">
   <div class="about-content container">
+
     <!-- Form Section -->
-    <div class="form-container" style="padding:0px !important ;">
+    <div class="form-container" style="padding:0px !important;">
       <div class="form-wrapper">
         <p class="h2 section-title text-animated">Get in Touch</p>
         <p class="text-blk subHeadingText text-animated">We’re just a message away!</p>
+
+        <!-- رسالة نجاح -->
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+        
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" id="contact-form">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -29,6 +36,7 @@
               Name is required.
             </div>
           </div>
+
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" formControlName="email" placeholder="Your Email" required>
@@ -36,14 +44,18 @@
               Please enter a valid email.
             </div>
           </div>
+
           <div class="form-group">
             <label for="message">Your Message</label>
             <textarea id="message" formControlName="message" placeholder="Tell us about your inquiry" required></textarea>
             <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error">
-              Message is required.
+              Message cannot be empty .
             </div>
           </div>
-          <button type="submit" class="submit-btn" [disabled]="contactForm.invalid">Send Message</button>
+
+          <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+          </button>
         </form>
       </div>
     </div>
@@ -52,7 +64,7 @@
     <div class="text-container">
       <h2 class="section-title h2 text-animated">Reach Us Anytime</h2>
       <p class="section-text text-animated">
-        Have questions or need assistance? Our team is ready to help you with your travel plans. Contact us via email, phone, or visit our office.
+        Have questions or need assistance? Our team is ready to help you with your travel plans.
       </p>
       <ul class="contact-info">
         <li>
@@ -78,5 +90,4 @@
   </div>
 </section>
 
-<!-- Footer Component (Assumed to exist) -->
 <app-footer></app-footer>
