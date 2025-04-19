@@ -39,8 +39,11 @@ this.GetAllHotels();
     console.log(error);
   })
 }
-GoToEditForm(hotel:IHotelAdmin){
-  this.router.navigate(['/Admin/edithotel'], { state: { hotel } });
+GoToEditForm(hotel: IHotelAdmin) {
+  const hotelData = encodeURIComponent(JSON.stringify(hotel)); // ترميز البيانات
+  this.router.navigate(['/Admin/edithotel'], {
+    queryParams: { hotel: hotelData }
+  });
 }
   }
 

@@ -156,7 +156,7 @@ export const routes: Routes = [
       { path: 'payment-failure', component: PaymentFailureComponent },
       { path: 'ContuctUs', component: ContuctUsComponent },
     ],
-    // canActivate: [nonAdminGuard],
+    canActivate: [nonAdminGuard],
   },
 ];
 

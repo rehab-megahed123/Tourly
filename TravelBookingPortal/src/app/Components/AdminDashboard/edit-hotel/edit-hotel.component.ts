@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IHotelAdmin } from '../../../core/Interface/AdminDashBoard/IHotelAdmin';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { ViewHotelService } from '../../../core/services/AdminDashBoard/viewhotel.service';
 import { CommonModule } from '@angular/common';
@@ -16,15 +16,13 @@ import { ICityAdmin } from '../../../core/Interface/AdminDashBoard/ICityAdmin';
 export class EditHotelComponent {
   UpdateForm!: FormGroup;
   imagePreview: string | null = null;
-  hotel: IHotelAdmin;
+  hotel!: IHotelAdmin;
   root: string = '';
   hasNewImage: boolean = false;
   selectedFile: File | null = null;
   imageError: string | null = null;
-  constructor(private router: Router, private _hotelservice: ViewHotelService) {
-    const nav = this.router.getCurrentNavigation();
-    this.hotel = nav?.extras.state?.['hotel'];
-    console.log(this.hotel);
+  constructor(private router: Router,private route:ActivatedRoute, private _hotelservice: ViewHotelService) {
+
     this.root = `${environment.baseUrl}`;
   }
 
@@ -33,7 +31,16 @@ export class EditHotelComponent {
   get imageUrl() { return this.UpdateForm.get('imageUrl'); }
 
   ngOnInit(): void {
-
+    this.route.queryParams.subscribe(params => {
+      const hotelData = params['hotel'];
+      if (hotelData) {
+        try {
+          this.hotel = JSON.parse(decodeURIComponent(hotelData));
+        } catch (error) {
+          console.error('Error parsing hotel data:', error);
+        }
+      }
+    });
     this.UpdateForm = new FormGroup({
       name: new FormControl('',[ Validators.required,Validators.pattern('^[a-zA-Z]{2,15}$')]),
       description: new FormControl('', [Validators.required,Validators.pattern('^[A-Za-z]{2,20}$')]),

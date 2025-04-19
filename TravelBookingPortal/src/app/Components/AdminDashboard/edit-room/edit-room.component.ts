@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IRoomAdmin } from '../../../core/Interface/AdminDashBoard/IRoomAdmin';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ViewRoomsService } from '../../../core/services/AdminDashBoard/viewRooms.service';
 import { environment } from '../../../../environments/environment.development';
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,7 @@ export class EditRoomComponent {
   hasNewImage: boolean = false;
   selectedFile: File | null = null;
   imageError: string | null = null;
-  constructor(private router: Router, private _roomservice: ViewRoomsService) {
+  constructor(private router: Router,private route:ActivatedRoute, private _roomservice: ViewRoomsService) {
     const nav = this.router.getCurrentNavigation();
     this.room = nav?.extras.state?.['room'];
     console.log(this.room);
@@ -32,7 +32,16 @@ export class EditRoomComponent {
   get imageUrl() { return this.UpdateForm.get('imageUrl'); }
 
   ngOnInit(): void {
-
+    this.route.queryParams.subscribe(params => {
+      const roomData = params['room'];
+      if (roomData) {
+        try {
+          this.room = JSON.parse(decodeURIComponent(roomData));
+        } catch (error) {
+          console.error('Error parsing hotel data:', error);
+        }
+      }
+    });
     this.UpdateForm = new FormGroup({
       pricePerNight: new FormControl('', [Validators.required,Validators.pattern('^[1-9][0-9]*$')]),
       roomType: new FormControl('', Validators.required),
