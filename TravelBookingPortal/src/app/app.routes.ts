@@ -19,6 +19,7 @@ import { ContuctUsComponent } from './Pages/contuct-us/contuct-us.component';
 import { authGuard } from './core/Guards/auth.guard';
 import { nonAdminGuard } from './core/Guards/non-admin.guard';
 import { ReviewPageComponent } from './Pages/review-page/review-page.component';
+import { UserReviewComponent } from './Components/user-review/user-review.component';
 
 export const routes: Routes = [
   {
@@ -131,6 +132,7 @@ export const routes: Routes = [
           },
         ],
       },
+      { path: 'userreview', component: UserReviewComponent },
       { path: 'Login', component: LoginComponent },
       { path: 'Register', component: RegisterComponent },
       {

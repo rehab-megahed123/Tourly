@@ -7,4 +7,3 @@ export interface Ireview {
         userName: string,
         userImage: string,
 }
-// export interface IcreateReview {
