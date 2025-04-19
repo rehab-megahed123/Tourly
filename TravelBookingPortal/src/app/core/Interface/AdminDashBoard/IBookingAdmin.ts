@@ -12,6 +12,7 @@ bookingStatus:string;
 createdAt:Date;
 cityName:string;
 userId:string;
+pricePerNight:number;
 
 // hotelId:number;
 // paymentId:number;

@@ -3,7 +3,7 @@
 <!-- Hero Section -->
 <section class="hero" id="hero">
   <div class="hero-overlay"></div>
-  <div class="container">
+  <div class="container hero-content">
     <img src="https://wp1.themevibrant.com/newwp/royalking/wp-content/uploads/2023/10/page-title.jpg" alt="Contact Us Background" class="hero-background animate-zoom">
     <h2 class="h1 hero-title animate-fade">Contact Us</h2>
     <p class="hero-text animate-fade">
@@ -14,26 +14,48 @@
 
 <!-- Contact Form Section -->
 <section class="about-section">
-  <div class="about-content">
+  <div class="about-content container">
+
     <!-- Form Section -->
-    <div class="form-container">
+    <div class="form-container" style="padding:0px !important;">
       <div class="form-wrapper">
         <p class="h2 section-title text-animated">Get in Touch</p>
         <p class="text-blk subHeadingText text-animated">We’re just a message away!</p>
-        <form class="contact-form" id="contact-form">
+
+        <!-- رسالة نجاح -->
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+        
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" id="contact-form">
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="text" id="name" formControlName="name" placeholder="Your Name" required>
+            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="error">
+              Name is required.
+            </div>
           </div>
+
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <input type="email" id="email" formControlName="email" placeholder="Your Email" required>
+            <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error">
+              Please enter a valid email.
+            </div>
           </div>
+
           <div class="form-group">
             <label for="message">Your Message</label>
-            <textarea id="message" name="message" placeholder="Tell us about your inquiry" required></textarea>
+            <textarea id="message" formControlName="message" placeholder="Tell us about your inquiry" required></textarea>
+            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error">
+              Message cannot be empty .
+            </div>
           </div>
-          <button type="submit" class="submit-btn">Send Message</button>
+
+          <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+          </button>
         </form>
       </div>
     </div>
@@ -42,24 +64,24 @@
     <div class="text-container">
       <h2 class="section-title h2 text-animated">Reach Us Anytime</h2>
       <p class="section-text text-animated">
-        Have questions or need assistance? Our team is ready to help you with your travel plans. Contact us via email, phone, or visit our office.
+        Have questions or need assistance? Our team is ready to help you with your travel plans.
       </p>
       <ul class="contact-info">
         <li>
           <span class="icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="email icon">
+            <img src="assets/icons/email-icon.png" alt="email icon">
           </span>
           <strong>Email:</strong> <a href="mailto:support@tourly.com">supporttourly.com</a>
         </li>
         <li>
           <span class="icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="phone icon">
+            <img src="assets/icons/phone-icon.png" alt="phone icon">
           </span>
           <strong>Phone:</strong> +123-456-7890
         </li>
         <li>
           <span class="icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="location icon">
+            <img src="assets/icons/location-icon.png" alt="location icon">
           </span>
           <strong>Address:</strong> 123 Travel Lane, Adventure City, World
         </li>
@@ -68,35 +90,4 @@
   </div>
 </section>
 
-<!-- Footer -->
 <app-footer></app-footer>
-
-<!-- JavaScript for Scroll Animations -->
-<script>
-  // Function to handle scroll animations
-  const animateOnScroll = (selector, animationClass) => {
-    const elements = document.querySelectorAll(selector);
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add(animationClass);
-          observer.unobserve(entry.target); // Stop observing after animation triggers
-        }
-      });
-    }, {
-      threshold: 0.2 // Trigger when 20% of the element is visible
-    });
-
-    elements.forEach(element => observer.observe(element));
-  };
-
-  // Apply animations to Form Section
-  animateOnScroll('.form-wrapper', 'animate-scale-fade');
-  animateOnScroll('.form-group', 'animate-bounce');
-
-  // Apply animations to Text Section
-  animateOnScroll('.text-container', 'animate-slide-right');
-  animateOnScroll('.text-container .section-title', 'animate-rotate');
-  animateOnScroll('.text-container .section-text', 'animate-rotate');
-  animateOnScroll('.contact-info li', 'animate-pulse');
-</script>
