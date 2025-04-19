@@ -154,7 +154,7 @@ export const routes: Routes = [
       { path: 'HotelReviews', component: ReviewPageComponent },
       { path: 'payment-success', component: PaymentSuccessComponent },
       { path: 'payment-failure', component: PaymentFailureComponent },
-      { path: 'ContuctUs', component: ContuctUsComponent },
+      { path: 'ContactUs', component: ContuctUsComponent },
     ],
     canActivate: [nonAdminGuard],
   },

@@ -75,7 +75,7 @@
               <i class="fas fa-map-marker-alt"></i> Destinations
             </a>
           </li>
-          
+
           <li><a class="navbar-link" routerLink="/Itinerary">Trip plan</a></li>
 
           <li>
@@ -84,7 +84,7 @@
             >
           </li>
           <li>
-            <a class="navbar-link"  routerLink="/ContuctUs" (click)="scrollTo('contact'); toggleNav()"
+            <a class="navbar-link"  routerLink="/ContactUs" (click)="scrollTo('contact'); toggleNav()"
               >Contact</a
             >
           </li >
@@ -105,7 +105,7 @@
                   <i class="fas fa-chevron-down arrow navlink " [ngClass]="{ up: isDropdownOpen }"></i>
                 </div>
                 <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
-                  <a href="#" class="dropdown-item" routerLink="/profile"
+                  <a href="#" class="dropdown-item" routerLink="/profile/userinfo"
                     >Profile</a
                   >
                   <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">

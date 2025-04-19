@@ -2,6 +2,7 @@ body {
   background: linear-gradient(to right, #3931af, #00c6ff);
   font-family: "Poppins", sans-serif;
   margin: 0;
+
 }
 
 .emp-profile {
@@ -11,6 +12,8 @@ body {
   background: #fff;
   max-width: 1000px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
 }
 
 .profile-header {
@@ -43,8 +46,8 @@ body {
 .name-button-container {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Space between name and button */
-  flex-wrap: wrap; /* Allows wrapping if needed */
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .profile-info h5 {
@@ -57,13 +60,13 @@ body {
   background: var(--bright-navy-blue);
   color: #fff;
   border: none;
-  padding: 0.4rem 1rem; /* Smaller padding */
+  padding: 0.4rem 1rem;
 margin-left: 40px;
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: 600;
 
-  font-size: 14px; /* Smaller font size */
+  font-size: 14px;
   transition: background 0.3s;
 }
 
@@ -123,6 +126,8 @@ margin-left: 40px;
   justify-content: space-between;
   padding: 0.5rem 0;
   border-bottom: 1px solid #f0f0f0;
+  animation: slideInFromRight 500ms ease-out forwards;
+
 }
 
 .detail-row label {
@@ -182,5 +187,19 @@ margin-left: 40px;
     margin: 0.5rem 0;
   }
  }
+ @keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 

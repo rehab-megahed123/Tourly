@@ -13,11 +13,9 @@
           <img [src]="`${root}${profile?.imageUrl}`" alt="User Avatar" />
           {{profile?.userName}}
             <!-- <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> -->
-          
+
         </div>
         <div class="submenu">
-          <a href="/profile">Account Settings</a>
-          <hr>
           <a  (click)="logout()" style="cursor: pointer;" >Logout</a>
         </div>
       </div>

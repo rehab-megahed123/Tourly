@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './trip-planner.component.html',
   styleUrls: ['./trip-planner.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, FormsModule],
 })
 export class TripPlannerComponent implements OnInit {
   showForm = false;

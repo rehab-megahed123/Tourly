@@ -5,7 +5,7 @@ import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-payment-success',
-  imports: [NavBarComponent, FooterComponent,RouterLink],
+  imports: [RouterLink],
   templateUrl: './payment-success.component.html',
   styleUrl: './payment-success.component.css'
 })

@@ -7,7 +7,6 @@ import { NavBarComponent } from '../../Components/Shared/navbar/nav-bar.componen
 @Component({
   selector: 'app-all-destinations-page',
   imports: [
-    HeaderComponent,
     AllDestinationsComponent,
     FooterComponent,
     NavBarComponent,

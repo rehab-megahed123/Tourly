@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AdminComponent,NgxSpinnerComponent],
+  imports: [RouterOutlet,NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
