@@ -14,6 +14,7 @@ export class ReviewService {
 
   getByHotelName(hotelName: string): Observable<Ireview[]> {
     return this._httpClientService.get<Ireview[]>(
+
       `${environment.baseUrl}/Reviews/hotel/${hotelName}`
     );
   }
@@ -23,6 +24,16 @@ export class ReviewService {
       review
     );
   }
+  GetReviewsByUserId(userId: string): Observable<Ireview[]> {
+    return this._httpClientService.get<Ireview[]>(
+`${environment.baseUrl}/Reviews/my/${userId}`
+);
+    }
+    DeleteReview(reviewId: number): Observable<Ireview> {
+      return this._httpClientService.delete<Ireview>( 
+`${environment.baseUrl}/Reviews/Delete/${reviewId}`
+);
+}
   constructor(private _httpClientService:HttpClient) { }
 
 }
