@@ -28,14 +28,14 @@
           class="file-input"
           accept="image/*"
         />
-          <!-- <div
-            *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid"
-            class="validation-error"
-          >
-            <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required']">
-              Image is required
-            </div>
-          </div> -->
+        <div *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid"  class="validation-error"        >
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required']">
+            Image is required
+          </div>
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['pattern']" class="validation-error">
+            Image must be in .jpg, .jpeg, or .png format
+          </div>
+        </div>
         </div>
 
         <!-- Hotel Name -->
@@ -52,6 +52,9 @@
           >
             <div *ngIf="CreateForm.get('name')?.errors?.['required']">
               Hotel Name is required
+            </div>
+            <div *ngIf="CreateForm.get('name')?.errors?.['pattern']">
+              Hotel Name Must Be From 2-15 Characters
             </div>
           </div>
         </div>
@@ -70,6 +73,9 @@
           >
             <div *ngIf="CreateForm.get('description')?.errors?.['required']">
               Description is required
+            </div>
+            <div *ngIf="CreateForm.get('description')?.errors?.['pattern']" >
+              Hotel Description Must Be From 2-20 Characters
             </div>
           </div>
         </div>

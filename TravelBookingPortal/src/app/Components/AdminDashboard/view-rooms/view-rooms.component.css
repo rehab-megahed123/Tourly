@@ -4,32 +4,30 @@
   margin: 0 auto;
   padding: 10px;
 }
-img{
-  width: 40px;
-  height: 40px;
+
+img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 8px;
-
 }
+
 .table {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 -2px 6px rgba(0, 0, 0, 0.07);
-
-
   width: 100%;
   border: 1px solid #EEEEEE;
   background: #FFFFFF;
-  border-radius: 12px; /* Increased for a smoother look */
-  overflow: hidden; /* Ensures content respects rounded corners */
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .table-header {
   display: flex;
   width: 100%;
-
   background: hsl(214, 56%, 58%);
   padding: 12px 0;
-  border-top-left-radius: 12px; /* Match table’s top corners */
+  border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
 
@@ -38,10 +36,11 @@ img{
   width: 100%;
   padding: 12px 0;
   background: #FFFFFF;
+  animation: slideInFromRight 800ms ease-out forwards; /* تطبيق التأثير على الصفوف */
 }
 
 .table-row:last-child {
-  border-bottom-left-radius: 12px; /* Round bottom corners of last row */
+  border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
 
@@ -59,7 +58,6 @@ img{
   font-size: 14px;
   padding: 0 8px;
   min-width: 60px;
-
 }
 
 .header__item {
@@ -91,6 +89,22 @@ img{
 
 .filter__link.asc::after {
   content: '(asc)';
+}
+
+/* تعريف Keyframes لتأثير Slide In من اليمين إلى الشمال */
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Responsive adjustments for table */

@@ -6,9 +6,21 @@ export const nonAdminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const auth = inject(AuthService);
 
-  if (auth.isAdmin()) {
-    router.navigate(['Admin']); // Redirect to admin layout
+  try {
+    const role = auth.isAdmin();
+    if (role && role.toLowerCase() === 'admin') {
+      const currentUrl = state.url;
+      if (currentUrl.includes('/Admin')) {
+        return true;
+      }
+      router.navigate(['/Admin']);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error in nonAdminGuard:', error);
+    router.navigate(['/login']);
     return false;
   }
-  return true;
 };

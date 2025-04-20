@@ -37,4 +37,9 @@ console.log(this.rooms);
       console.log(error);
     })
   }
-}
+GoToEditForm(room: IRoomAdmin) {
+  const roomData = encodeURIComponent(JSON.stringify(room));
+  this.router.navigate(['/Admin/editroom'], {
+    queryParams: { room: roomData }
+  });
+}}

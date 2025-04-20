@@ -4,10 +4,10 @@
   max-width: 100%;
 }
 .heading {
-  text-align: center !important; /* نضمن التمركز */
-  margin-bottom: 30px; /* تمنع أي إزاحة */
-  padding: 0; /* إزالة أي padding بيأثر */
-  font-size: 2rem; /* حجم الخط حسب الحاجة */
+  text-align: center !important;
+  margin-bottom: 30px;
+  padding: 0;
+  font-size: 2rem;
 }
 .testimonial-scroll-container {
   display: flex;
@@ -67,14 +67,15 @@ blockquote {
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
+z-index: 0;
 }
 
 .scroll-arrow.left {
-  left: 5px; /* نقرّبها من الحافة على الموبايل */
+  left: 5px;
 }
 
 .scroll-arrow.right {
-  right: 5px; /* نقرّبها من الحافة على الموبايل */
+  right: 5px;
 }
 
 .scroll-arrow:hover {

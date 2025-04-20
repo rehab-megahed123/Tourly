@@ -13,9 +13,15 @@ export class UserService {
 
   }
 GetAllUsers():Observable<IUser[]>{
-return this._httpClientService.get<IUser[]>(`${environment.baseUrl}/Admin/GetAllUsers`); // Adjust the endpoint as needed
+return this._httpClientService.get<IUser[]>(`${environment.baseUrl}/Admin/GetAllUsers`);
 }
 AssignAdmin(user:IUser):Observable<IUser>{
 return this._httpClientService.post<IUser>(`${environment.baseUrl}/Admin/ChangeUserRole`,user);
 
+}
+DeleteUser(userId:string):Observable<IUser>{
+  return this._httpClientService.delete<IUser>(`${environment.baseUrl}/Admin/DeleteUser/${userId}`);
+}
+GetAllAdmins():Observable<IUser[]>{
+  return this._httpClientService.get<IUser[]>(`${environment.baseUrl}/Admin/GetAllAdmins`);
 }}

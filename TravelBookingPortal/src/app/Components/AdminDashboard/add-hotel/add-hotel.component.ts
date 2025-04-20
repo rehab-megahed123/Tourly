@@ -29,9 +29,13 @@ cities!:ICityAdmin[]
     private cityService: ViewCityService
   ) {
     this.CreateForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
+      name: ['', [Validators.required,Validators.pattern('^[a-zA-Z]{2,15}$')
+      ]],
+      description: ['', [Validators.required,Validators.pattern('^[A-Za-z]{2,20}$')
+      ]],
       cityId: [, Validators.required],
+      imageUrl: ['', [Validators.required,Validators.pattern(/\.(jpg|jpeg|png)$/i)]],
+
     });
   }
 
@@ -56,7 +60,8 @@ cities!:ICityAdmin[]
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       this.selectedFile = file;
-  
+      this.CreateForm.get('imageUrl')?.setValue(file.name);
+
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string;
@@ -65,6 +70,8 @@ cities!:ICityAdmin[]
     } else {
       this.selectedFile = null as any;
       this.imagePreview = null;
+      this.CreateForm.get('imageUrl')?.setValue('');
+
     }
   }
 
@@ -72,12 +79,12 @@ cities!:ICityAdmin[]
     if (this.CreateForm.valid && this.selectedFile) {
       const formValue = this.CreateForm.value;
       const formData = new FormData();
-  
+
       formData.append('Name', formValue.name);
       formData.append('Description', formValue.description);
       formData.append('CityId', formValue.cityId);
-      formData.append('imageUrl', this.selectedFile); 
-  
+      formData.append('imageUrl', this.selectedFile);
+
       this.hotelService.AddNewHotel(formData).subscribe({
         next: (response) => {
           console.log('Hotel created:', response);
@@ -92,9 +99,9 @@ cities!:ICityAdmin[]
       console.log('Form is invalid or image not selected.');
     }
   }
-  
+
   }
 
 
-  
+
 

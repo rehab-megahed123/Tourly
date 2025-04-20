@@ -1,10 +1,10 @@
 <div class="container">
   <div class="table">
     <div class="table-header">
-      <div class="header__item"><a id="name" class="filter__link" href="#">Name</a></div>
+      <div class="header__item"><a id="name" class="filter__link" >Name</a></div>
 
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Image</a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Manage</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Image</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Delete</a></div>
     </div>
 
     <div class="table-content">
@@ -15,7 +15,7 @@
           <div class="table-data" >
             <img [src]="`${root}${city.imageUrl}` || './assets/images/person_1.jpg'" />
           </div>
-          <div class="table-data"><i class="fas fa-edit" style="cursor: pointer;"></i><i class="fas fa-trash" (click)="DeleteCity(city.cityId)" style="cursor: pointer; margin-left:20px;"></i></div>
+          <div class="table-data"><i class="fas fa-trash" title="DeleteCity" (click)="DeleteCity(city.cityId)" style="cursor: pointer; margin-left:20px;"></i></div>
 
         </div>
       }

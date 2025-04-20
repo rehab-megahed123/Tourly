@@ -44,9 +44,21 @@ export const routes: Routes = [
       {
         path: 'viewcities',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-cities/view-cities.component').then(
-            (r) => r.ViewCitiesComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-cities/view-cities.component'
+          ).then((r) => r.ViewCitiesComponent),
+      },  {
+        path: 'editroom',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/edit-room/edit-room.component'
+          ).then((r) => r.EditRoomComponent),
+      },  {
+        path: 'edithotel',
+        loadComponent: () =>
+          import(
+            './Components/AdminDashboard/edit-hotel/edit-hotel.component'
+          ).then((r) => r.EditHotelComponent),
       },
       {
         path: 'addcity',
@@ -101,7 +113,6 @@ export const routes: Routes = [
         component: ItineraryComponent,
         canActivate: [authGuard],
       },
-      
       {
         path: 'profile',
         loadComponent: () =>
@@ -153,9 +164,9 @@ export const routes: Routes = [
       { path: 'HotelReviews', component: ReviewPageComponent },
       { path: 'payment-success', component: PaymentSuccessComponent },
       { path: 'payment-failure', component: PaymentFailureComponent },
-      { path: 'ContuctUs', component: ContuctUsComponent },
+      { path: 'ContactUs', component: ContuctUsComponent },
     ],
-    // canActivate: [nonAdminGuard],
+    canActivate: [nonAdminGuard],
   },
 ];
 

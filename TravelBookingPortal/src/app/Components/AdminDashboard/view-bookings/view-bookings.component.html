@@ -1,43 +1,41 @@
 <div class="container">
   <div class="table">
     <div class="table-header">
-      <div class="header__item"><a id="name" class="filter__link" href="#">Hotel Name</a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">User Name</a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Booking Status</a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Total Price</a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">checkindate </a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">checkoutdate </a></div>
-      <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Manage</a></div>
+      <div class="header__item"><a id="name" class="filter__link" >Hotel Name</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >User Name</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Booking Status</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Total Price</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Check in</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Check out</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Booking Date</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Manage</a></div>
     </div>
 
     <div class="table-content">
-      @for ( booking of bookings; track $index) {
+      @for (booking of bookings; track $index) {
         <div class="table-row">
           <div class="table-data">{{ booking.hotelName }}</div>
           <div class="table-data">{{ booking.userName }}</div>
           <div class="table-data">{{ booking.bookingStatus }}</div>
           <div class="table-data">{{ booking.totalPrice }}</div>
-          <div class="table-data">{{ booking.checkInDate | date : "dd MMMM yyyy"}}</div>
-          <div class="table-data">{{ booking.checkOutDate | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.checkInDate | date: "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.checkOutDate | date: "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.createdAt | date: "dd MMMM yyyy" }}</div>
 
-          <div class="table-data"><i
-            class="fas fa-edit"
-            style="cursor: pointer;"
-            [ngStyle]="{ 'margin-right': booking.bookingStatus.toUpperCase() === 'PENDING' ? '10px' : '0' }">
-          </i>
 
-            @if(booking.bookingStatus.toUpperCase()==='PENDING'){
-              <button class="btn cancelbtn btn-primary " style="width: 50px; height: 10px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 10px;
-              background-color: #dd828d;
-              color: white;
-              border: none;
-              " (click)="DeleteBooking(booking.bookingId)" >Cancel</button>
-                }
-              </div>
+            <div class="table-data">
+
+            @if (booking.bookingStatus.toUpperCase() === 'PENDING') {
+              <button
+                class="btn cancelbtn btn-primary"
+                title="Cancel Booking"
+                (click)="DeleteBooking(booking.bookingId)"
+              >
+                Cancel
+              </button>
+            }@else{No Action
+            }
+            </div>
         </div>
       }
     </div>

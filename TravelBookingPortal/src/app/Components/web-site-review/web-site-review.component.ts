@@ -1,31 +1,57 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-web-site-review',
-  imports: [],
+  standalone: true,
   templateUrl: './web-site-review.component.html',
-  styleUrl: './web-site-review.component.css'
+  styleUrls: ['./web-site-review.component.css']
 })
-export class WebSiteReviewComponent {
+export class WebSiteReviewComponent implements AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
+  direction = 1; // 1 = يمين، -1 = شمال
+  intervalId: any;
+
   ngAfterViewInit() {
-    if (!this.scrollContainer) {
+    const container = this.scrollContainer?.nativeElement;
+
+    if (!container) {
       console.error('Scroll container not found');
+      return;
     }
+
+    const card = container.querySelector('.testimonial-card');
+    if (!card) {
+      console.error('Testimonial card not found');
+      return;
+    }
+
+    const cardWidth = card.offsetWidth + 20; // المسافة بين الكروت
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    this.intervalId = setInterval(() => {
+      if (container.scrollLeft >= maxScroll) {
+        this.direction = -1;
+      } else if (container.scrollLeft <= 0) {
+        this.direction = 1;
+      }
+
+      container.scrollBy({
+        left: cardWidth * this.direction,
+        behavior: 'smooth'
+      });
+    }, 3000); // كل 3 ثواني
   }
 
   scrollLeft() {
-    if (this.scrollContainer) {
-      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card').offsetWidth;
-      this.scrollContainer.nativeElement.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-    }
+    const container = this.scrollContainer.nativeElement;
+    const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 300;
+    container.scrollBy({ left: -cardWidth, behavior: 'smooth' });
   }
 
   scrollRight() {
-    if (this.scrollContainer) {
-      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card').offsetWidth;
-      this.scrollContainer.nativeElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
-    }
+    const container = this.scrollContainer.nativeElement;
+    const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 300;
+    container.scrollBy({ left: cardWidth, behavior: 'smooth' });
   }
 }

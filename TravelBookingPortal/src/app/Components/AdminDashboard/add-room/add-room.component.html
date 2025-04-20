@@ -28,17 +28,16 @@
           class="file-input"
           accept="image/*"
         />
-          <!-- <div
-            *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid"
-            class="validation-error"
-          >
-            <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required']">
-              Image is required
-            </div>
-          </div> -->
+        <div *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid" class="validation-error">
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required'] && !CreateForm.get('imageUrl')?.value">
+            Image is required
+          </div>
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['pattern']">
+            Image must be in .jpg, .jpeg, or .png format
+          </div>
         </div>
-        
-   
+        </div>
+
 
         <!-- Description -->
         <div class="form-wrapper">
@@ -53,14 +52,17 @@
             class="validation-error"
           >
             <div *ngIf="CreateForm.get('roomNumber')?.errors?.['required']">
-              room Number is required
+              Room Number is required
+            </div>
+            <div *ngIf="CreateForm.get('roomNumber')?.errors?.['pattern']">
+                  Room Number must be a positive Number
             </div>
           </div>
         </div>
         <div class="form-wrapper">
           <input
             type="number"
-            placeholder="pricePerNight"
+            placeholder="PricePerNight  E£"
             class="form-control"
             formControlName="pricePerNight"
           />
@@ -69,8 +71,11 @@
             class="validation-error"
           >
             <div *ngIf="CreateForm.get('pricePerNight')?.errors?.['required']">
-              price Per Night is required
+              Price Per Night is required
             </div>
+            <div *ngIf="CreateForm.get('pricePerNight')?.errors?.['pattern']">
+              Price Per Night must be a positive Number
+        </div>
           </div>
         </div>
         <!-- City Selection -->
@@ -105,7 +110,7 @@
             <option value="Single"> Single</option>
                 <option value="Double" >Double </option>
                 <option value="Suite" >Suite</option>
-              
+
             </select>
           </div>
           <div

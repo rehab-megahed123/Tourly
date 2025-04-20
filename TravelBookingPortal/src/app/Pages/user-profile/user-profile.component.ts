@@ -13,7 +13,7 @@ import { EditProfileComponent } from "../../Components/edit-profile/edit-profile
 
 @Component({
   selector: 'app-user-profile',
-  imports: [RouterOutlet,FooterComponent, DatePipe, NavBarComponent, FormsModule, CommonModule, RouterLinkActive,EditProfileComponent,RouterLink],
+  imports: [RouterOutlet,FooterComponent, NavBarComponent, FormsModule, CommonModule, RouterLinkActive,RouterLink],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
 })
@@ -40,7 +40,7 @@ profile:IProfile|undefined;
   GetProfileByUserId(userid: string) {
     this.profileservice.GetProfileByUserId(userid).subscribe({
       next: (response) => {
-        this.profile = response; // Assuming the API returns an array, take the first element
+        this.profile = response;
         console.log('Profile loaded:', response);
       },
       error: (err) => {

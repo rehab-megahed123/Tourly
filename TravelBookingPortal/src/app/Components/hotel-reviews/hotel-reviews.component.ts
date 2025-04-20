@@ -1,60 +1,108 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { animate, style, transition, trigger, query, stagger } from '@angular/animations';
 import { Ireview } from '../../core/models/ireview';
 import { ReviewService } from '../../core/services/review.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IcreateReview } from '../../core/models/icreate-review';
 import { environment } from '../../../environments/environment.development';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-reviews',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './hotel-reviews.component.html',
-  styleUrl: './hotel-reviews.component.css'
+  styleUrls: ['./hotel-reviews.component.css'],
+  animations: [
+    // Animation for testimonial cards
+    trigger('cardAnimation', [
+      transition(':enter', [
+        query('.testimonial-card', [
+          style({ opacity: 0, transform: 'translateY(50px)' }),
+          stagger(100, [
+            animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+    // Animation for review form
+    trigger('formAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+    ]),
+  ],
 })
 export class HotelReviewsComponent implements OnInit {
+  hotelName!: string;
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-  root:string=""
-
+  root: string = `${environment.baseUrl}`;
   reviews: Ireview[] = [];
   newReview: IcreateReview = {
     comment: '',
     rating: 0,
-    hotelId: 2,
-    userId: localStorage.getItem('userId') ?? ''
+    hotelName: '',
+    userId: localStorage.getItem('userId') ?? '',
   };
-  constructor(private reviewService: ReviewService) {
 
-    this.root=`${environment.baseUrl}`;
-  }
+  constructor(
+    private reviewService: ReviewService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    const hotelId = 2; 
-    this.reviewService.getByHotelId(hotelId).subscribe({
-      next: (res) => {
-        this.reviews = res;
-      },
-      error: (err) => {
-        console.error('Error fetching reviews:', err);
-      }
+    this.route.queryParams.subscribe(params => {
+      this.hotelName = params['hotelName'];
+      this.newReview.hotelName = this.hotelName;
+
+      this.reviewService.getByHotelName(this.hotelName).subscribe({
+        next: (res) => {
+          this.reviews = res;
+        },
+        error: (err) => {
+          console.error('Error fetching reviews:', err);
+        },
+      });
     });
   }
 
   addReview(comment: string, rating: number) {
-    this.newReview = {comment:comment, rating: rating, hotelId: 2, userId: localStorage.getItem('userId') ?? ''}; // Example userId
-  this.reviewService.addReview(this.newReview).subscribe({
-    next: (res) => {
-      console.log('Review added successfully:', res);
-      this.reviews.push(res); // Add the new review to the list
-    this.newReview
-  = { comment: '', rating: 0, hotelId: 2, userId: localStorage.getItem('userId') ?? '' }; // Reset the form
-      },
-    error: (err) => {
-      console.error('Error adding review:', err);
-     }
-  });
+    if (!comment.trim() || rating < 1 || rating > 5) {
+      alert('Please provide a valid comment and rating (1-5).');
+      return;
+    }
 
+    this.newReview = {
+      comment,
+      rating,
+      hotelName: this.hotelName,
+      userId: localStorage.getItem('userId') ?? '',
+    };
+
+    this.reviewService.addReview(this.newReview).subscribe({
+      next: (res) => {
+        console.log('Review added successfully:', res);
+        this.newReview = {
+          comment: '',
+          rating: 0,
+          hotelName: this.hotelName,
+          userId: localStorage.getItem('userId') ?? '',
+        };
+        // Reload reviews
+        this.reviewService.getByHotelName(this.hotelName).subscribe({
+          next: (res) => (this.reviews = res),
+          error: (err) => console.error('Error reloading reviews:', err),
+        });
+      },
+      error: (err) => {
+        console.error('Error adding review:', err);
+        alert('Failed to add review. Please try again.');
+      },
+    });
   }
+
   ngAfterViewInit() {
     if (!this.scrollContainer) {
       console.error('Scroll container not found');
@@ -63,31 +111,26 @@ export class HotelReviewsComponent implements OnInit {
 
   scrollLeft() {
     if (this.scrollContainer) {
-      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card').offsetWidth;
+      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card')?.offsetWidth || 300;
       this.scrollContainer.nativeElement.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     }
   }
 
   scrollRight() {
     if (this.scrollContainer) {
-      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card').offsetWidth;
+      const cardWidth = this.scrollContainer.nativeElement.querySelector('.testimonial-card')?.offsetWidth || 300;
       this.scrollContainer.nativeElement.scrollBy({ left: cardWidth, behavior: 'smooth' });
     }
   }
+
   getStars(rating: number): string[] {
     const stars = [];
-    
-    // إضافة النجوم الممتلئة
     for (let i = 0; i < rating; i++) {
       stars.push('★');
     }
-  
-    // إضافة النجوم الفارغة (لتكوين 5 نجوم)
     for (let i = rating; i < 5; i++) {
       stars.push('☆');
     }
-  
     return stars;
   }
-  
 }

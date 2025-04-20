@@ -5,10 +5,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { inject } from '@angular/core';
 
 export const loadingSpinnerInterceptorInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
-  
+
   const spinnerService = inject(NgxSpinnerService);
 
-  
+
   spinnerService.show();
 
   return next(req).pipe(

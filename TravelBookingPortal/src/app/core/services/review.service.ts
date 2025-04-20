@@ -12,9 +12,10 @@ export class ReviewService {
 
 
 
-  getByHotelId(hotelId: number): Observable<Ireview[]> {
+  getByHotelName(hotelName: string): Observable<Ireview[]> {
     return this._httpClientService.get<Ireview[]>(
-      `${environment.baseUrl}/Reviews/hotel/${hotelId}`
+
+      `${environment.baseUrl}/Reviews/hotel/${hotelName}`
     );
   }
   addReview(review: IcreateReview): Observable<Ireview> {

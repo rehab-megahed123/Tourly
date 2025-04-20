@@ -31,8 +31,10 @@ hotels!:IHotelAdmin[];
     this.CreateForm = this.fb.group({
       roomType: ['', Validators.required],
       HotelId: [, Validators.required],
-      roomNumber: ['', Validators.required],
-      pricePerNight: ['', Validators.required],
+      roomNumber: ['',[ Validators.required,Validators.pattern('^[1-9][0-9]*$')]],
+      pricePerNight: ['',[ Validators.required,Validators.pattern('^[1-9][0-9]*$') ]],
+      imageUrl: ['', [Validators.required,  Validators.pattern(/\.(jpg|jpeg|png)$/i)]],
+
     });
   }
 
@@ -56,7 +58,8 @@ this.getAllHotels();  }
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       this.selectedFile = file;
-  
+      this.CreateForm.get('imageUrl')?.setValue(file.name);
+
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string;
@@ -65,6 +68,8 @@ this.getAllHotels();  }
     } else {
       this.selectedFile = null as any;
       this.imagePreview = null;
+      this.CreateForm.get('imageUrl')?.setValue('');
+
     }
   }
 
@@ -77,9 +82,9 @@ this.getAllHotels();  }
       formData.append('roomNumber', formValue.roomNumber);
       formData.append('pricePerNight', formValue.pricePerNight);
       formData.append('isAvailable', new Boolean(this.isAvailable).toString());
-      formData.append('imageUrl', this.selectedFile); 
+      formData.append('imageUrl', this.selectedFile);
       console.log('Form data:', formData);
-  
+
       this.roomService.AddNewRoom(formData).subscribe({
         next: (response) => {
           console.log('room created:', response);
@@ -94,5 +99,5 @@ this.getAllHotels();  }
       console.log('Form is invalid or image not selected.');
     }
   }
-  
+
   }
