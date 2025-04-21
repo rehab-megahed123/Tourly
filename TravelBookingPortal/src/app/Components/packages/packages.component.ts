@@ -1,19 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { RoomService } from '../../core/services/room.service';
 import { IBookingRoom } from '../../core/models/ibooking-room';
 import { BookingService } from '../../core/services/booking.service';
 import { SignalRService } from '../../core/services/signal-r.service';
+import { environment } from '../../../environments/environment.development';
 
 
 @Component({
   selector: 'app-packages',
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })
 export class PackagesComponent implements OnInit   {
+ root:string=""
   bookingResult={
     "url":"",
     "bookingId":0,
@@ -30,6 +32,7 @@ export class PackagesComponent implements OnInit   {
   formData: any;
  
   constructor(private router: Router,private _roomService:RoomService,private _bookingService:BookingService, private signalRService: SignalRService) {
+   // this.root=`${environment.baseUrl}`;
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras?.state as {
       formData: any,
@@ -88,8 +91,9 @@ export class PackagesComponent implements OnInit   {
     bookRoom(RoomId:number,price:number) {
       const token = localStorage.getItem('token');
 
+
     if (!token) {
-      
+      localStorage.setItem('returnUrl', this.router.url);
       this.router.navigate(['Login']);
       return;
     }

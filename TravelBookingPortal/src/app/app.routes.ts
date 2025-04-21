@@ -151,7 +151,11 @@ export const routes: Routes = [
             (u) => u.AboutUsComponent
           ),
       },
-      { path: 'HotelReviews', component: ReviewPageComponent },
+      { 
+        path: 'HotelReviews', 
+        component: ReviewPageComponent, 
+        canActivate: [authGuard] 
+      },
       { path: 'payment-success', component: PaymentSuccessComponent },
       { path: 'payment-failure', component: PaymentFailureComponent },
       { path: 'ContactUs', component: ContuctUsComponent },

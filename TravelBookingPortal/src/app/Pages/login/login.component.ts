@@ -47,7 +47,10 @@ export class LoginComponent {
       if (token && userId) {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
-        this._router.navigate(['/Home']);
+        const returnUrl = localStorage.getItem('returnUrl');
+        this._router.navigateByUrl(returnUrl || '/Home');
+        localStorage.removeItem('returnUrl');
+        
       }
     });
   }
@@ -89,11 +92,13 @@ export class LoginComponent {
           localStorage.setItem('userId', response.id);
 
           const role = this._authService.getRole();
+          const returnUrl = localStorage.getItem('returnUrl');
           if (role === 'Admin') {
             this._router.navigate(['Admin']);
           } else {
-            this._router.navigate(['Home']);
+            this._router.navigateByUrl(returnUrl || '/Home');
           }
+          localStorage.removeItem('returnUrl');
         }
       },
       error: (err) => {

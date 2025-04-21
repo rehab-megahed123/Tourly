@@ -3,6 +3,7 @@ import { ICity } from '../../core/models/ICity';
 import { CityService } from '../../core/services/city.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-all-destinations',
@@ -11,8 +12,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './all-destinations.component.css'
 })
 export class AllDestinationsComponent implements OnInit {
+  root:string=""
    cities:ICity[] = []
   constructor(private _cityService:CityService) {
+    this.root=`${environment.baseUrl}`;
 
    }
   ngOnInit(): void {

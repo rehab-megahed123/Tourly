@@ -9,7 +9,7 @@
       <li *ngFor="let room of results">
         <div class="package-card">
           <figure class="card-banner">
-            <img src="{{room.imageUrl}}" alt="{{ room.hotelName }}" loading="lazy">
+            <img  [src]="`${root}${room.imageUrl}`" alt="{{ room.hotelName }}" loading="lazy">
           </figure>
 
           <div class="card-content">
@@ -43,7 +43,7 @@
             </div>
 
             <p class="price">
-              E£  {{ room.pricePerNight }}
+              E£{{ room.pricePerNight }}
               <span>/ per night</span>
             </p>
            

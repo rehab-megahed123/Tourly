@@ -3,6 +3,7 @@ import { ICity } from '../../core/models/ICity';
 import { CityService } from '../../core/services/city.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 
 @Component({
@@ -14,7 +15,9 @@ import { RouterLink } from '@angular/router';
 export class PopularDestinationsComponent implements OnInit {
   cities:ICity[] = []
   filterCities:ICity[] = []
+  root:string=""
   constructor(private _cityService:CityService){
+    this.root=`${environment.baseUrl}`;
 
   }
   ngOnInit(): void {
