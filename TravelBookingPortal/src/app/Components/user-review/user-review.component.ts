@@ -14,10 +14,10 @@ import { CommonModule, DatePipe, NgClass } from '@angular/common';
 export class UserReviewComponent implements OnInit {
   Reviews:Ireview[]=[]
   constructor(private router: Router,private reviewService: ReviewService) { }
-  
+
 
   ngOnInit(): void {
-    
+
     const userId=localStorage.getItem('userId');
     if (userId) {
       this.GetUserReviews(userId);
@@ -48,41 +48,7 @@ export class UserReviewComponent implements OnInit {
       console.log(error);
     })
   }
-    
-  // }
-  // bookRoom(RoomId: number, price: number, checkIn: any, checkOut: any) {
-  //   const token = localStorage.getItem('token');
-  
-  //   if (!token) {
-  //     this.router.navigate(['Login']);
-  //     return;
-  //   }
-  
-  //   this.bookingRoom.userId = localStorage.getItem('userId') ?? '';
-  //   this.bookingRoom.roomId = RoomId;
-  
-  //   const checkInDate = new Date(checkIn);
-  //   const checkOutDate = new Date(checkOut);
-  
-  //   this.bookingRoom.checkIn = checkInDate;
-  //   this.bookingRoom.checkOut = checkOutDate;
-  //   this.bookingRoom.totalPrice = price;
-  
-  //   console.log(this.bookingRoom);
-  
-  //   this._bookingService.bookRoom(this.bookingRoom).subscribe({
-  //     next: (response) => {
-  //       this.bookingResult = response;
-  //       console.log('Booking successful:', response);
-  //       this.router.navigate(['/Payment'], {
-  //         state: { paymentResponse: response },
-  //       });
-  //     },
-  //     error: (error) => {
-  //       console.error('Booking failed:', error);
-  //     },
-  //   });
-  // }
+
 }
 
 

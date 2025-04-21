@@ -154,57 +154,42 @@
 
     /* Labels لكل حقل */
     .table-data:nth-child(1)::before {
-      content: "Hotel: ";
+      content: "#: ";
       font-weight: bold;
       color: #333;
     }
 
     .table-data:nth-child(2)::before {
-      content: "Room No.: ";
+      content: "Hotel Name: ";
       font-weight: bold;
       color: #333;
     }
 
     .table-data:nth-child(3)::before {
-      content: "City: ";
+      content: "Rating: ";
       font-weight: bold;
       color: #333;
     }
 
     .table-data:nth-child(4)::before {
-      content: "Booking Status: ";
+      content: "Comment : ";
       font-weight: bold;
       color: #333;
     }
 
     .table-data:nth-child(5)::before {
-      content: "Total Price: ";
+      content: "Created At: ";
       font-weight: bold;
       color: #333;
     }
 
     .table-data:nth-child(6)::before {
-      content: "Check-In: ";
+      content: "Delete: ";
       font-weight: bold;
       color: #333;
     }
 
-    .table-data:nth-child(7)::before {
-      content: "Check-Out: ";
-      font-weight: bold;
-      color: #333;
-    }
 
-    .table-data:nth-child(8)::before {
-      content: "Booking Date: ";
-      font-weight: bold;
-      color: #333;
-    }
-    .table-data:nth-child(9)::before {
-      content: "Manage: ";
-      font-weight: bold;
-      color: #333;
-    }
 
     /* إزالة الحدود لآخر عنصر في الكارد */
     .table-data:last-child {
