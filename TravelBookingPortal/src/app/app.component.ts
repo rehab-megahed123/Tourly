@@ -12,11 +12,11 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { ToursearchComponent } from './Components/toursearch/toursearch.component';
 import { AdminComponent } from './Layouts/admin/admin.component';
 import { NgxSpinnerComponent } from 'ngx-spinner';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,NgxSpinnerComponent],
+  imports: [RouterOutlet, NgxSpinnerComponent, MatSlideToggleModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -18,10 +18,18 @@ select,
 button {
   font-family: "Poppins", sans-serif;
   color: #333;
+
   font-size: 13px;
 }
 
-p, h1, h2, h3, h4, h5, h6, ul {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
   margin: 0;
 }
 
@@ -147,21 +155,45 @@ button:active i {
 
 /* Animation keyframes remain unchanged */
 @-webkit-keyframes hvr-icon-wobble-horizontal {
-  16.65% { transform: translateX(6px); }
-  33.3% { transform: translateX(-5px); }
-  49.95% { transform: translateX(4px); }
-  66.6% { transform: translateX(-2px); }
-  83.25% { transform: translateX(1px); }
-  100% { transform: translateX(0); }
+  16.65% {
+    transform: translateX(6px);
+  }
+  33.3% {
+    transform: translateX(-5px);
+  }
+  49.95% {
+    transform: translateX(4px);
+  }
+  66.6% {
+    transform: translateX(-2px);
+  }
+  83.25% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes hvr-icon-wobble-horizontal {
-  16.65% { transform: translateX(6px); }
-  33.3% { transform: translateX(-5px); }
-  49.95% { transform: translateX(4px); }
-  66.6% { transform: translateX(-2px); }
-  83.25% { transform: translateX(1px); }
-  100% { transform: translateX(0); }
+  16.65% {
+    transform: translateX(6px);
+  }
+  33.3% {
+    transform: translateX(-5px);
+  }
+  49.95% {
+    transform: translateX(4px);
+  }
+  66.6% {
+    transform: translateX(-2px);
+  }
+  83.25% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* Error messages */
@@ -251,4 +283,18 @@ button:active i {
   .inner form {
     padding: 15px;
   }
+}
+
+/* Success SnackBar */
+.snackbar-success {
+  background-color: #4caf50; /* Green background */
+  color: #fff; /* White text */
+  font-size: 14px;
+}
+
+/* Error SnackBar */
+.snackbar-error {
+  background-color: #f44336; /* Red background */
+  color: #fff; /* White text */
+  font-size: 14px;
 }
