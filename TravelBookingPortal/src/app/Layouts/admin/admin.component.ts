@@ -19,8 +19,9 @@ export class AdminComponent  implements OnInit {
     hotels: false,
     cities: false
   };
-
+  root:string="";
   constructor(private router:Router,private profileservice:ProfileService,private _authServices:AuthService) {
+    this.root=`${environment.baseUrl}`;
   }
 
     ngOnInit(): void {

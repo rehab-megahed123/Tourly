@@ -20,6 +20,7 @@ import { authGuard } from './core/Guards/auth.guard';
 import { nonAdminGuard } from './core/Guards/non-admin.guard';
 import { ReviewPageComponent } from './Pages/review-page/review-page.component';
 import { UserReviewComponent } from './Components/user-review/user-review.component';
+import { AdminProfileComponent } from './Components/AdminDashboard/admin-profile/admin-profile.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,25 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./Layouts/admin/admin.component').then((m) => m.AdminComponent),
     children: [
+      {
+        path: 'adminprofile',
+    component:AdminProfileComponent
+          , children:[
+            {
+              path: 'editadminprofile',
+              loadComponent: () =>
+                import('./Components/AdminDashboard/editadminprofile/editadminprofile.component').then(
+                  (u) => u.EditadminprofileComponent
+                ),
+            },
+            {
+              path: 'admininfo',
+              loadComponent: () =>
+                import('./Components/AdminDashboard/admininfo/admininfo.component').then(
+                  (u) => u.AdmininfoComponent
+                ),
+            }
+          ]},
       {
         path: 'viewrooms',
         loadComponent: () =>
@@ -98,6 +118,7 @@ export const routes: Routes = [
     ],
     canActivate: [adminGuard],
   },
+
   {
     path: '',
     loadComponent: () =>
@@ -105,14 +126,19 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomeComponent },
-      { path: 'AllDestinations', component: AllDestinationsPageComponent },
-      { path: 'SearchResult', component: SearchResultComponent },
-      { path: 'Payment', component: PaymentComponent },
+      { path: 'AllDestinations', loadComponent: () => import('./Pages/all-destinations-page/all-destinations-page.component').then(
+        (u) => u.AllDestinationsPageComponent )},
+      { path: 'SearchResult', loadComponent: () => import('./Pages/search-result/search-result.component').then(
+        (u) => u.SearchResultComponent ) },
+      { path: 'Payment',loadComponent: () => import('./Components/payment/payment.component').then(
+        (u) => u.PaymentComponent )},
       {
         path: 'Itinerary',
         component: ItineraryComponent,
         canActivate: [authGuard],
       },
+
+
       {
         path: 'profile',
         loadComponent: () =>
@@ -151,9 +177,14 @@ export const routes: Routes = [
           },
         ],
       },
-      // { path: 'userreview', component: UserReviewComponent },
-      { path: 'Login', component: LoginComponent },
-      { path: 'Register', component: RegisterComponent },
+      { path: 'Login',loadComponent: () =>
+        import('./Pages/login/login.component').then(
+          (u) => u.LoginComponent
+        ), },
+      { path: 'Register', loadComponent: () =>
+        import('./Pages/register/register.component').then(
+          (u) => u.RegisterComponent
+        ),},
       {
         path: 'aboutus',
         loadComponent: () =>
@@ -161,14 +192,23 @@ export const routes: Routes = [
             (u) => u.AboutUsComponent
           ),
       },
-      { 
-        path: 'HotelReviews', 
-        component: ReviewPageComponent, 
-        canActivate: [authGuard] 
+      {
+        path: 'HotelReviews',
+        component: ReviewPageComponent,
+        canActivate: [authGuard]
       },
-      { path: 'payment-success', component: PaymentSuccessComponent },
-      { path: 'payment-failure', component: PaymentFailureComponent },
-      { path: 'ContactUs', component: ContuctUsComponent },
+      { path: 'payment-success',  loadComponent: () =>
+        import('./Components/payment-success/payment-success.component').then(
+          (u) => u.PaymentSuccessComponent
+        ),},
+      { path: 'payment-failure', loadComponent: () =>
+        import('./Components/payment-failure/payment-failure.component').then(
+          (u) => u.PaymentFailureComponent
+        ),},
+      { path: 'ContactUs',loadComponent: () =>
+        import('./Pages/contuct-us/contuct-us.component').then(
+          (u) => u.ContuctUsComponent
+        ), },
     ],
     canActivate: [nonAdminGuard],
   },
