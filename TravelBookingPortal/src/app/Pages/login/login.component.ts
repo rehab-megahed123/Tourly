@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   AbstractControl,
@@ -35,7 +36,8 @@ export class LoginComponent {
     private _authService: AuthService,
     private spinner: NgxSpinnerService,
     private _router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar // Inject MatSnackBar
   ) {}
   ngOnInit(): void {
     this.initFormControls();
@@ -50,7 +52,6 @@ export class LoginComponent {
         const returnUrl = localStorage.getItem('returnUrl');
         this._router.navigateByUrl(returnUrl || '/Home');
         localStorage.removeItem('returnUrl');
-        
       }
     });
   }
@@ -94,8 +95,20 @@ export class LoginComponent {
           const role = this._authService.getRole();
           const returnUrl = localStorage.getItem('returnUrl');
           if (role === 'Admin') {
+            this.snackBar.open('Welcome Back Ali !', 'Close', {
+              duration: 3000, // Duration in milliseconds
+              horizontalPosition: 'end', // Horizontal position
+              verticalPosition: 'top', // Vertical position
+              panelClass: ['snackbar-success'], // Custom class for styling
+            });
             this._router.navigate(['Admin']);
           } else {
+            this.snackBar.open('Welcome Back !', 'Close', {
+              duration: 3000, // Duration in milliseconds
+              horizontalPosition: 'end', // Horizontal position
+              verticalPosition: 'top', // Vertical position
+              panelClass: ['snackbar-success'], // Custom class for styling
+            });
             this._router.navigateByUrl(returnUrl || '/Home');
           }
           localStorage.removeItem('returnUrl');
@@ -103,12 +116,15 @@ export class LoginComponent {
       },
       error: (err) => {
         this.spinner.hide();
-        console.error(err);
-        if (err.error) {
-          alert(err.error.message);
-        } else {
-          alert('An error occurred. Please try again.');
-        }
+        this.snackBar.open(
+          err.error?.message || 'An error occurred. Please try again.',
+          'Close',
+          {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+          }
+        );
       },
     });
   }

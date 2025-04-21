@@ -25,16 +25,8 @@
               }
             ],
 
-            "styles": [
-
-
-              "src/styles.css"
-
-
-            ],
-            "scripts": [
-
-            ]
+            "styles": ["src/custom-theme.scss", "src/styles.css"],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -76,10 +68,8 @@
               "buildTarget": "TravelBookingPortal:build:development"
             },
             "options": {
-                "allowedHosts": [
-                  "https://efdd-197-63-37-114.ngrok-free.app"
-                ]
-              }
+              "allowedHosts": ["https://efdd-197-63-37-114.ngrok-free.app"]
+            }
           },
           "defaultConfiguration": "development"
         },
@@ -97,10 +87,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }

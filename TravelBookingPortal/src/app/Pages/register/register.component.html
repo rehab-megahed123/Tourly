@@ -1,6 +1,5 @@
 <div class="wrapper" style="background-image: url('./assets/images/a.jpg')">
   <div class="inner">
-
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
       <h3 class="section-title h2">Register</h3>
 
@@ -16,9 +15,13 @@
           @if (firstName.touched && firstName.dirty &&
           firstName.getError('required')) {
           <div class="error-message">First Name is required</div>
-          } <div class="error-message" *ngIf="registerForm.get('firstName')?.errors?.['pattern']">
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('firstName')?.errors?.['pattern']"
+          >
             First Name Must Be From 2-20 Characters
-         </div>
+          </div>
         </div>
 
         <div style="width: 100%">
@@ -31,9 +34,13 @@
           @if (lastName.touched && lastName.dirty &&
           lastName.getError('required')) {
           <div class="error-message">Last Name is required</div>
-          } <div class="error-message" *ngIf="registerForm.get('lastName')?.errors?.['pattern']">
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('lastName')?.errors?.['pattern']"
+          >
             Last Name Must Be From 2-20 Characters
-         </div>
+          </div>
         </div>
 
         <div style="width: 100%">
@@ -135,9 +142,12 @@
           @if (city.touched && city.dirty && city.getError('required')) {
           <div class="error-message">City is required</div>
           }
-          <div class="error-message" *ngIf="registerForm.get('city')?.errors?.['pattern']">
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('city')?.errors?.['pattern']"
+          >
             City Must Be From 2-20 Characters
-         </div>
+          </div>
         </div>
 
         <div style="width: 100%">
@@ -149,8 +159,12 @@
           />
           @if (state.touched && state.dirty && state.getError('required')) {
           <div class="error-message">State is required</div>
-          }<div class="error-message" *ngIf="registerForm.get('state')?.errors?.['pattern']">
-             State Must Be From 2-20 Characters
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('state')?.errors?.['pattern']"
+          >
+            State Must Be From 2-20 Characters
           </div>
         </div>
 
@@ -184,8 +198,13 @@
 
       <!-- Login Link -->
       <div class="form-group centered-text">
-        <span>Already have an account?</span>
-        <a routerLink="/Login" class="register-link">Login</a>
+        <span style="color: black !important">Already have an account?</span>
+        <a
+          routerLink="/Login"
+          class="register-link"
+          style="color: rgb(0, 123, 255) !important"
+          >Login</a
+        >
       </div>
 
       <!-- Button -->
@@ -196,10 +215,3 @@
     </form>
   </div>
 </div>
-<ngx-spinner
-  bdColor="rgba(0,0,0,0.3)"
-  size="medium"
-  color="blue"
-  type="ball-scale-multiple"
-  [fullScreen]="true"
-></ngx-spinner>

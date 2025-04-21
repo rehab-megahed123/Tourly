@@ -30,16 +30,16 @@ export const routes: Routes = [
       {
         path: 'viewrooms',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-rooms/view-rooms.component').then(
-            (v) => v.ViewRoomsComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-rooms/view-rooms.component'
+          ).then((v) => v.ViewRoomsComponent),
       },
       {
         path: 'addroom',
         loadComponent: () =>
-          import('./Components/AdminDashboard/add-room/add-room.component').then(
-            (r) => r.AddRoomComponent
-          ),
+          import(
+            './Components/AdminDashboard/add-room/add-room.component'
+          ).then((r) => r.AddRoomComponent),
       },
       {
         path: 'viewcities',
@@ -47,13 +47,15 @@ export const routes: Routes = [
           import(
             './Components/AdminDashboard/view-cities/view-cities.component'
           ).then((r) => r.ViewCitiesComponent),
-      },  {
+      },
+      {
         path: 'editroom',
         loadComponent: () =>
           import(
             './Components/AdminDashboard/edit-room/edit-room.component'
           ).then((r) => r.EditRoomComponent),
-      },  {
+      },
+      {
         path: 'edithotel',
         loadComponent: () =>
           import(
@@ -63,37 +65,37 @@ export const routes: Routes = [
       {
         path: 'addcity',
         loadComponent: () =>
-          import('./Components/AdminDashboard/add-city/add-city.component').then(
-            (r) => r.AddCityComponent
-          ),
+          import(
+            './Components/AdminDashboard/add-city/add-city.component'
+          ).then((r) => r.AddCityComponent),
       },
       {
         path: 'viewhotels',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-hotels/view-hotels.component').then(
-            (r) => r.ViewHotelsComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-hotels/view-hotels.component'
+          ).then((r) => r.ViewHotelsComponent),
       },
       {
         path: 'addhotel',
         loadComponent: () =>
-          import('./Components/AdminDashboard/add-hotel/add-hotel.component').then(
-            (r) => r.AddHotelComponent
-          ),
+          import(
+            './Components/AdminDashboard/add-hotel/add-hotel.component'
+          ).then((r) => r.AddHotelComponent),
       },
       {
         path: 'viewusers',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-users/view-users.component').then(
-            (r) => r.ViewUsersComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-users/view-users.component'
+          ).then((r) => r.ViewUsersComponent),
       },
       {
         path: 'viewbookings',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-bookings/view-bookings.component').then(
-            (r) => r.ViewBookingsComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-bookings/view-bookings.component'
+          ).then((r) => r.ViewBookingsComponent),
       },
     ],
     canActivate: [adminGuard],
@@ -152,8 +154,18 @@ export const routes: Routes = [
         ],
       },
       // { path: 'userreview', component: UserReviewComponent },
-      { path: 'Login', component: LoginComponent },
-      { path: 'Register', component: RegisterComponent },
+      {
+        path: 'Login',
+        loadComponent: () =>
+          import('./Pages/login/login.component').then((u) => u.LoginComponent),
+      },
+      {
+        path: 'Register',
+        loadComponent: () =>
+          import('./Pages/register/register.component').then(
+            (u) => u.RegisterComponent
+          ),
+      },
       {
         path: 'aboutus',
         loadComponent: () =>
@@ -161,10 +173,10 @@ export const routes: Routes = [
             (u) => u.AboutUsComponent
           ),
       },
-      { 
-        path: 'HotelReviews', 
-        component: ReviewPageComponent, 
-        canActivate: [authGuard] 
+      {
+        path: 'HotelReviews',
+        component: ReviewPageComponent,
+        canActivate: [authGuard],
       },
       { path: 'payment-success', component: PaymentSuccessComponent },
       { path: 'payment-failure', component: PaymentFailureComponent },
