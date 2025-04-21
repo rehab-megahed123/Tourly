@@ -10,28 +10,8 @@ import { IProfile } from '../../core/Interface/Iprofile';
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css'
 })
-export class AboutUsComponent implements AfterViewInit,OnInit {
-ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.GetProfileByUserId(userId);
-    } else {
-      console.error('User ID not found in local storage.');
-    }
-  }
-  profile: IProfile | undefined;
-  constructor(private profileservice: ProfileService) {}
-  GetProfileByUserId(userid: string) {
-    this.profileservice.GetProfileByUserId(userid).subscribe({
-      next: (response) => {
-        this.profile = response;
-        console.log('Profile loaded:', response);
-      },
-      error: (err) => {
-        console.error('Error fetching profile:', err);
-      },
-    });
-  }
+export class AboutUsComponent implements AfterViewInit {
+
   ngAfterViewInit(): void {
     const elements = document.querySelectorAll('.animated-image, .text-animated'); // نضيف النصوص مع الصور
     const observer = new IntersectionObserver(

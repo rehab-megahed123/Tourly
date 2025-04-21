@@ -39,15 +39,15 @@
           <div class="card-price">
             <div class="wrapper">
               <!-- <p class="reviews">(0 reviews)</p> -->
-              <a class="reviews" (click)="goToReviews(room.hotelName)"> Show All Reviews</a>
+              <a class="reviews" (click)="goToReviews(room.hotelName)" style="cursor: pointer;"> Show All Reviews</a>
             </div>
 
             <p class="price">
-              E£{{ room.pricePerNight }}
+              {{ room.pricePerNight }}E£
               <span>/ per night</span>
             </p>
-           
-            
+
+
             @if(room.bookingStatus == "Available") {
               <button class="btn btn-secondary" (click)="bookRoom(room.roomId, room.pricePerNight)">Book Now</button>
           } @else {

@@ -4,10 +4,6 @@
   max-width: 100%;
   margin-bottom: 2rem;
 }
-.rating-stars input:checked ~ .star,
-.rating-stars input:checked + .star {
-  color: #FFD700;
-}
 
 .heading {
   text-align: center !important;
@@ -71,7 +67,7 @@ blockquote {
   gap: 4px;
   font-size: 24px;
   justify-content: center;
-  align-items: center;
+  innerhalb-items: center;
 }
 
 .stars span.filled {
@@ -139,11 +135,9 @@ blockquote {
   justify-content: center;
   gap: 5px;
   margin: 10px 0;
-  flex-direction: row-reverse; /* Reverse order for correct coloring */
 }
 
-.rating-stars label {
-  position: relative;
+.star-label {
   cursor: pointer;
 }
 
@@ -157,20 +151,19 @@ blockquote {
   transition: color 0.2s ease;
 }
 
-/* Color stars up to the selected one */
-.rating-stars input:checked ~ .star,
-.rating-stars input:checked + .star {
-  color: #FFD700; /* Gold for selected */
+.rating-stars .star.filled {
+  color: #FFD700; /* Gold for selected stars */
 }
 
-/* Hover effect: color stars up to the hovered one */
-.rating-stars label:hover .star,
-.rating-stars label:hover ~ .star {
+/* Hover effect: color only the hovered star */
+.rating-stars .star-label:hover .star {
   color: #FFD700; /* Gold on hover */
 }
 
 .btn-primary {
   transition: background 0.3s ease, transform 0.2s ease;
+  display: block; /* Ensure button behaves as a block for centering */
+  margin: 0 auto; /* Center the button horizontally */
 }
 
 .btn-primary:hover {

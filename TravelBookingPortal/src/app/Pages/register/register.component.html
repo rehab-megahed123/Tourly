@@ -1,10 +1,8 @@
-<div
-  class="wrapper"
-  style="background-image: url('./assets/images/popular-1.jpg')"
->
+<div class="wrapper" style="background-image: url('./assets/images/a.jpg')">
   <div class="inner">
+
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
-      <h3>Register</h3>
+      <h3 class="section-title h2">Register</h3>
 
       <!-- Name UserName-->
       <div class="form-group triple-input">
@@ -18,7 +16,9 @@
           @if (firstName.touched && firstName.dirty &&
           firstName.getError('required')) {
           <div class="error-message">First Name is required</div>
-          }
+          } <div class="error-message" *ngIf="registerForm.get('firstName')?.errors?.['pattern']">
+            First Name Must Be From 2-20 Characters
+         </div>
         </div>
 
         <div style="width: 100%">
@@ -31,7 +31,9 @@
           @if (lastName.touched && lastName.dirty &&
           lastName.getError('required')) {
           <div class="error-message">Last Name is required</div>
-          }
+          } <div class="error-message" *ngIf="registerForm.get('lastName')?.errors?.['pattern']">
+            Last Name Must Be From 2-20 Characters
+         </div>
         </div>
 
         <div style="width: 100%">
@@ -133,6 +135,9 @@
           @if (city.touched && city.dirty && city.getError('required')) {
           <div class="error-message">City is required</div>
           }
+          <div class="error-message" *ngIf="registerForm.get('city')?.errors?.['pattern']">
+            City Must Be From 2-20 Characters
+         </div>
         </div>
 
         <div style="width: 100%">
@@ -144,7 +149,9 @@
           />
           @if (state.touched && state.dirty && state.getError('required')) {
           <div class="error-message">State is required</div>
-          }
+          }<div class="error-message" *ngIf="registerForm.get('state')?.errors?.['pattern']">
+             State Must Be From 2-20 Characters
+          </div>
         </div>
 
         <div style="width: 100%">

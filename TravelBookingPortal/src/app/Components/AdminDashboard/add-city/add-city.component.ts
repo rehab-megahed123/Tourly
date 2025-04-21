@@ -23,7 +23,7 @@ export class AddCityComponent {
      private cityService: ViewCityService
    ) {
      this.CreateForm = this.fb.group({
-      name: ['',[ Validators.required,Validators.pattern('^[a-zA-Z]{2,15}$')]],
+      name: ['',[ Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]],
       imageUrl: ['', [Validators.required, Validators.pattern(/\.(jpg|jpeg|png)$/i)]],
      });
    }

@@ -58,14 +58,14 @@ export class RegisterComponent {
       Validators.maxLength(20), // Maximum length of 20 characters
       Validators.pattern(/^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/), // At least one alphabetic character and one symbol
     ]);
-    this.firstName = new FormControl('', [Validators.required]);
-    this.lastName = new FormControl('', [Validators.required]);
+    this.firstName = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]);
+    this.lastName = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]);
     this.phoneNumber = new FormControl('', [
       Validators.required,
       Validators.pattern(/^\d{11}$/), // Assuming phone number is 10 digits
     ]);
-    this.city = new FormControl('', [Validators.required]);
-    this.state = new FormControl('', [Validators.required]);
+    this.city = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]);
+    this.state = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]);
     this.street = new FormControl('', [Validators.required]);
     this.birthDate = new FormControl('', [Validators.required]);
     this.image = new FormControl('', [Validators.required]);

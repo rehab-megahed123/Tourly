@@ -15,7 +15,6 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './hotel-reviews.component.html',
   styleUrls: ['./hotel-reviews.component.css'],
   animations: [
-    // Animation for testimonial cards
     trigger('cardAnimation', [
       transition(':enter', [
         query('.testimonial-card', [
@@ -26,7 +25,6 @@ import { ActivatedRoute } from '@angular/router';
         ], { optional: true }),
       ]),
     ]),
-    // Animation for review form
     trigger('formAnimation', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(0.9)' }),
@@ -38,7 +36,7 @@ import { ActivatedRoute } from '@angular/router';
 export class HotelReviewsComponent implements OnInit {
   hotelName!: string;
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-  root: string = `${environment.baseUrl}`;
+  root: string = environment.baseUrl;
   reviews: Ireview[] = [];
   newReview: IcreateReview = {
     comment: '',
@@ -90,7 +88,6 @@ export class HotelReviewsComponent implements OnInit {
           hotelName: this.hotelName,
           userId: localStorage.getItem('userId') ?? '',
         };
-        // Reload reviews
         this.reviewService.getByHotelName(this.hotelName).subscribe({
           next: (res) => (this.reviews = res),
           error: (err) => console.error('Error reloading reviews:', err),
@@ -133,4 +130,19 @@ export class HotelReviewsComponent implements OnInit {
     }
     return stars;
   }
-}
+
+  onRatingChange(rating: number) {
+    this.newReview.rating = rating;
+  }
+    // ... other code ...
+    hoverRating: number = 0;
+
+    onStarHover(rating: number) {
+      this.hoverRating = rating;
+    }
+
+    onStarLeave() {
+      this.hoverRating = 0;
+    }
+    // ... other code ...
+  }

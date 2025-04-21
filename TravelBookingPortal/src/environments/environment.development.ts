@@ -1,3 +1,3 @@
 export const environment = {
-     baseUrl:'https://localhost:7060'
+     baseUrl:'http://tourly.runasp.net'
 };
