@@ -2,10 +2,12 @@
   "name": "travel-booking-portal",
   "version": "0.0.0",
   "scripts": {
-    "postinstall": "npm install --legacy-peer-deps",
+   "postinstall": "npm install --legacy-peer-deps",
+  "postbuild": "cp src/_redirects dist/travel-booking-portal/_redirects",
+  "build": "ng build --configuration production && npm run postbuild",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
