@@ -173,17 +173,55 @@ export class RegisterComponent {
           this._router.navigate(['Home']);
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         this.spinner.hide();
-        this.snackBar.open(
-          error.error?.message || 'An error occurred. Please try again.',
-          'Close',
-          {
-            duration: 3000, // Duration in milliseconds
-            horizontalPosition: 'end', // Horizontal position
-            verticalPosition: 'top', // Vertical position
+
+        // Check if it's a validation error (status 400 with `errors` property)
+        if (error.status === 400 && error.error?.errors) {
+          const validationErrors = error.error.errors;
+          const errorMessages: string[] = [];
+
+          // Extract validation error messages
+          for (const key in validationErrors) {
+            if (validationErrors.hasOwnProperty(key)) {
+              errorMessages.push(...validationErrors[key]);
+            }
           }
-        );
+
+          // Display validation errors in a snackbar or UI
+          this.snackBar.open(
+            errorMessages.join('\n'), // Join all error messages with a newline
+            'Close',
+            {
+              duration: 5000, // Duration in milliseconds
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'], // Custom class for styling
+            }
+          );
+        }
+        // Check if it's a custom error message
+        else if (error.error?.errorMessage) {
+          this.snackBar.open(error.error.errorMessage, 'Close', {
+            duration: 5000, // Duration in milliseconds
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error'], // Custom class for styling
+          });
+        }
+        // Handle other errors
+        else {
+          this.snackBar.open(
+            'An unexpected error occurred. Please try again.',
+            'Close',
+            {
+              duration: 5000, // Duration in milliseconds
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'], // Custom class for styling
+            }
+          );
+        }
       },
     });
   }
