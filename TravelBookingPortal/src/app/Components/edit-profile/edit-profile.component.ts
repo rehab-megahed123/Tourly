@@ -7,6 +7,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment.development';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,7 +22,7 @@ export class EditProfileComponent {
   root: string = '';
   hasNewImage: boolean = false;
 
-  constructor(private router: Router, private profileservice: ProfileService) {
+  constructor(private router: Router, private profileservice: ProfileService,private _snackbar:MatSnackBar) {
     this.root = `${environment.baseUrl}`;
   }
 
@@ -119,10 +120,25 @@ export class EditProfileComponent {
 
       this.profileservice.UpdateProfile(userId, formData).subscribe({
         next: (res) => {
+
+
           console.log("Profile Updated:", res);
+
           this.hasNewImage = false;
+          // this.backtoProfile();
+
         },
         error: (err) => {
+console.log(err)
+          this._snackbar.open(
+            err.error?.message || 'User Name Is Already Taken',
+            'Close',
+            {
+              duration: 3000, // Duration in milliseconds
+              horizontalPosition: 'end', // Horizontal position
+              verticalPosition: 'top', // Vertical position
+            }
+          );
           console.error("Update Error Details:", {
             status: err.status,
             statusText: err.statusText,
@@ -132,7 +148,6 @@ export class EditProfileComponent {
           });
         }
       });
-this.backtoProfile();
     } else {
       this.UpdateForm.markAllAsTouched();
       Object.values(this.UpdateForm.controls).forEach(ctrl => ctrl.markAsDirty());
@@ -144,7 +159,5 @@ setTimeout(()=>{
   window.location.replace('/profile')
 }
 ,1000)
-
-
   }
 }

@@ -8,7 +8,7 @@
   <li *ngFor="let city of filterCities">
     <div class="popular-card">
       <figure class="card-img">
-        <img [src]="city.imageUrl" [alt]="city.name" loading="lazy">
+        <img  [src]="`${root}${city.imageUrl}`" [alt]="city.name" loading="lazy">
       </figure>
 
       <div class="card-content">

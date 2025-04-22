@@ -54,31 +54,12 @@
               Hotel Name is required
             </div>
             <div *ngIf="CreateForm.get('name')?.errors?.['pattern']">
-              Hotel Name Must Be From 2-15 Characters
+              Hotel Name Must Be From 2-30 Characters
             </div>
           </div>
         </div>
 
-        <!-- Description -->
-        <div class="form-wrapper">
-          <input
-            type="text"
-            placeholder="Description"
-            class="form-control"
-            formControlName="description"
-          />
-          <div
-            *ngIf="CreateForm.get('description')?.touched && CreateForm.get('description')?.invalid"
-            class="validation-error"
-          >
-            <div *ngIf="CreateForm.get('description')?.errors?.['required']">
-              Description is required
-            </div>
-            <div *ngIf="CreateForm.get('description')?.errors?.['pattern']" >
-              Hotel Description Must Be From 2-20 Characters
-            </div>
-          </div>
-        </div>
+
 
         <!-- City Selection -->
         <div class="form-wrapper">

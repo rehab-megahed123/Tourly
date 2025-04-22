@@ -1,24 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { RoomService } from '../../core/services/room.service';
 import { IBookingRoom } from '../../core/models/ibooking-room';
 import { BookingService } from '../../core/services/booking.service';
 import { SignalRService } from '../../core/services/signal-r.service';
+import { environment } from '../../../environments/environment.development';
 
 
 @Component({
   selector: 'app-packages',
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })
 export class PackagesComponent implements OnInit   {
+ root:string=""
   bookingResult={
     "url":"",
     "bookingId":0,
   }
-  
+
   bookingRoom: IBookingRoom = {
     userId: '',
     roomId: 0,
@@ -28,8 +30,9 @@ export class PackagesComponent implements OnInit   {
   };//
   results: any;
   formData: any;
- 
+
   constructor(private router: Router,private _roomService:RoomService,private _bookingService:BookingService, private signalRService: SignalRService) {
+   this.root=`${environment.baseUrl}`;
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras?.state as {
       formData: any,
@@ -37,14 +40,14 @@ export class PackagesComponent implements OnInit   {
     };
 
     if (state) {
-     
+
       // this.results = state.results;
-     
+
       this.formData = state.formData;
-      
+
       console.log('Results:', this.results);
     }
-    
+
 
   }
   ngOnInit(): void {
@@ -52,13 +55,13 @@ export class PackagesComponent implements OnInit   {
       next:(arr)=>{
         console.log(arr)
         this.results=arr
-        
+
       }
       ,error:()=>{}
     })
     this.signalRService.startConnection();
 
-   
+
     this.signalRService.onBookingStatusUpdate((roomId: number, status: string) => {
       console.log(`Room ${roomId} status updated to ${status}`);
       if(status==="Confirmed"){
@@ -66,7 +69,7 @@ export class PackagesComponent implements OnInit   {
           next:(arr)=>{
             console.log(arr)
             this.results=arr
-            
+
           }
           ,error:()=>{}
         })
@@ -79,17 +82,18 @@ export class PackagesComponent implements OnInit   {
       }
     });
   }
-  
-    
-  
-      
-    
-    
+
+
+
+
+
+
     bookRoom(RoomId:number,price:number) {
       const token = localStorage.getItem('token');
 
+
     if (!token) {
-      
+      localStorage.setItem('returnUrl', this.router.url);
       this.router.navigate(['Login']);
       return;
     }
@@ -102,22 +106,22 @@ export class PackagesComponent implements OnInit   {
       const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
       const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
       this.bookingRoom.totalPrice = numberOfNights * price;
-      
+
       console.log(this.bookingRoom);
       this._bookingService.bookRoom(this.bookingRoom).subscribe({
         next: (response) => {
           this.bookingResult=response
           console.log('Booking successful:', response);
-          
+
           this.router.navigate(['/Payment'], {
-            state: { paymentResponse: response} 
+            state: { paymentResponse: response}
           });
 
-          
+
         },
         error: (error) => {
           console.error('Booking failed:', error);
-          
+
         }
       });
     }
@@ -125,7 +129,7 @@ export class PackagesComponent implements OnInit   {
       this.router.navigate(['/HotelReviews'], { queryParams: { hotelName: hotelName } });
     }
       }
-    
-  
+
+
 
 

@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe, DatePipe, SlicePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe, NgClass, SlicePipe } from '@angular/common';
 import { Component, numberAttribute } from '@angular/core';
 import { IBookingAdmin } from '../../core/Interface/AdminDashBoard/IBookingAdmin';
 import { ViewBookingService } from '../../core/services/AdminDashBoard/viewbooking.service';
@@ -32,7 +32,7 @@ bookings:IBookingAdmin[]=[]
   }
 
   ngOnInit(): void {
-    
+
     const userId=localStorage.getItem('userId');
     if (userId) {
       this.GetUserBookings(userId);
@@ -63,28 +63,28 @@ bookings:IBookingAdmin[]=[]
       console.log(error);
     })
 
-    
+
   }
   bookRoom(RoomId: number, price: number, checkIn: any, checkOut: any) {
     const token = localStorage.getItem('token');
-  
+
     if (!token) {
       this.router.navigate(['Login']);
       return;
     }
-  
+
     this.bookingRoom.userId = localStorage.getItem('userId') ?? '';
     this.bookingRoom.roomId = RoomId;
-  
+
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
-  
+
     this.bookingRoom.checkIn = checkInDate;
     this.bookingRoom.checkOut = checkOutDate;
     this.bookingRoom.totalPrice = price;
-  
+
     console.log(this.bookingRoom);
-  
+
     this._bookingService.bookRoom(this.bookingRoom).subscribe({
       next: (response) => {
         this.bookingResult = response;

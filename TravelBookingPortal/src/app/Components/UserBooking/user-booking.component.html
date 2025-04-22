@@ -1,7 +1,10 @@
 <div class="container">
   <div class="table">
     <div class="table-header">
-      <div class="header__item"><a id="name" class="filter__link" style="cursor: pointer;">Hotel</a></div>
+      @if(bookings.length === 0) {
+
+      }
+        <div class="header__item"><a id="name" class="filter__link" style="cursor: pointer;">Hotel</a></div>
       <div class="header__item"><a id="room" class="filter__link" style="cursor: pointer;">Room No.</a></div>
       <div class="header__item"><a id="city" class="filter__link" style="cursor: pointer;">City</a></div>
       <div class="header__item"><a id="status" class="filter__link filter__link--number" style="cursor: pointer;">Booking Status</a></div>
@@ -14,8 +17,8 @@
 
     <div class="table-content">
 @if(bookings.length === 0) {
-  <div class="table-row">
-    <div class="table-data section-subtitle" style="text-align: center;">No Bookings Found</div>
+  <div >
+    <div class=" section-subtitle" style="text-align: center;" >No Bookings Yet</div>
   </div>}
       @for (booking of bookings; track $index) {
         <div class="table-row">
@@ -23,7 +26,7 @@
           <div class="table-data">{{ booking.roomNumber }}</div>
           <div class="table-data">{{ booking.cityName }}</div>
           <div class="table-data">{{ booking.bookingStatus }}</div>
-          <div class="table-data">{{ booking.totalPrice | number:'1.2-2' }} E£</div>
+          <div class="table-data">{{ booking.totalPrice | number:'1.2-2' }} L.E</div>
           <div class="table-data">{{ booking.checkInDate | date : "dd MMMM yyyy" }}</div>
           <div class="table-data">{{ booking.checkOutDate | date : "dd MMMM yyyy" }}</div>
           <div class="table-data">{{ booking.createdAt | date : "dd MMMM yyyy" }}</div>

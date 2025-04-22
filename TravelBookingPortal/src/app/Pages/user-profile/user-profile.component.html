@@ -13,9 +13,7 @@
     <div class="profile-info">
       <div class="name-button-container">
         <h5>{{ profile?.firstName }} {{ profile?.lastName }}</h5>
-        <button class="btn btn-primary">
-          Edit Profile
-        </button>
+
       </div>
     </div>
   </div>
@@ -32,11 +30,20 @@
         class="nav-link" routerLinkActive="active" routerLink="/profile/editprofile"
         >Edit Profile</a
       >
-    </li><li class="nav-item">
+    </li>
+    <li class="nav-item">
       <a
         class="nav-link" routerLinkActive="active" routerLink="/profile/userbooking"
         >My Bookings</a
       >
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link" routerLinkActive="active" routerLink="/profile/userreview"
+        >
+        My Reviews</a>
+
     </li>
   </ul>
 

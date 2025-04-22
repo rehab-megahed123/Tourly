@@ -29,10 +29,8 @@ cities!:ICityAdmin[]
     private cityService: ViewCityService
   ) {
     this.CreateForm = this.fb.group({
-      name: ['', [Validators.required,Validators.pattern('^[a-zA-Z]{2,15}$')
-      ]],
-      description: ['', [Validators.required,Validators.pattern('^[A-Za-z]{2,20}$')
-      ]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,30}$')]],
+
       cityId: [, Validators.required],
       imageUrl: ['', [Validators.required,Validators.pattern(/\.(jpg|jpeg|png)$/i)]],
 
@@ -81,7 +79,6 @@ cities!:ICityAdmin[]
       const formData = new FormData();
 
       formData.append('Name', formValue.name);
-      formData.append('Description', formValue.description);
       formData.append('CityId', formValue.cityId);
       formData.append('imageUrl', this.selectedFile);
 

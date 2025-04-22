@@ -19,6 +19,8 @@ import { ContuctUsComponent } from './Pages/contuct-us/contuct-us.component';
 import { authGuard } from './core/Guards/auth.guard';
 import { nonAdminGuard } from './core/Guards/non-admin.guard';
 import { ReviewPageComponent } from './Pages/review-page/review-page.component';
+import { UserReviewComponent } from './Components/user-review/user-review.component';
+import { AdminProfileComponent } from './Components/AdminDashboard/admin-profile/admin-profile.component';
 
 export const routes: Routes = [
   {
@@ -27,18 +29,37 @@ export const routes: Routes = [
       import('./Layouts/admin/admin.component').then((m) => m.AdminComponent),
     children: [
       {
+        path: 'adminprofile',
+    component:AdminProfileComponent
+          , children:[
+            {
+              path: 'editadminprofile',
+              loadComponent: () =>
+                import('./Components/AdminDashboard/editadminprofile/editadminprofile.component').then(
+                  (u) => u.EditadminprofileComponent
+                ),
+            },
+            {
+              path: 'admininfo',
+              loadComponent: () =>
+                import('./Components/AdminDashboard/admininfo/admininfo.component').then(
+                  (u) => u.AdmininfoComponent
+                ),
+            }
+          ]},
+      {
         path: 'viewrooms',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-rooms/view-rooms.component').then(
-            (v) => v.ViewRoomsComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-rooms/view-rooms.component'
+          ).then((v) => v.ViewRoomsComponent),
       },
       {
         path: 'addroom',
         loadComponent: () =>
-          import('./Components/AdminDashboard/add-room/add-room.component').then(
-            (r) => r.AddRoomComponent
-          ),
+          import(
+            './Components/AdminDashboard/add-room/add-room.component'
+          ).then((r) => r.AddRoomComponent),
       },
       {
         path: 'viewcities',
@@ -46,13 +67,15 @@ export const routes: Routes = [
           import(
             './Components/AdminDashboard/view-cities/view-cities.component'
           ).then((r) => r.ViewCitiesComponent),
-      },  {
+      },
+      {
         path: 'editroom',
         loadComponent: () =>
           import(
             './Components/AdminDashboard/edit-room/edit-room.component'
           ).then((r) => r.EditRoomComponent),
-      },  {
+      },
+      {
         path: 'edithotel',
         loadComponent: () =>
           import(
@@ -62,41 +85,42 @@ export const routes: Routes = [
       {
         path: 'addcity',
         loadComponent: () =>
-          import('./Components/AdminDashboard/add-city/add-city.component').then(
-            (r) => r.AddCityComponent
-          ),
+          import(
+            './Components/AdminDashboard/add-city/add-city.component'
+          ).then((r) => r.AddCityComponent),
       },
       {
         path: 'viewhotels',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-hotels/view-hotels.component').then(
-            (r) => r.ViewHotelsComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-hotels/view-hotels.component'
+          ).then((r) => r.ViewHotelsComponent),
       },
       {
         path: 'addhotel',
         loadComponent: () =>
-          import('./Components/AdminDashboard/add-hotel/add-hotel.component').then(
-            (r) => r.AddHotelComponent
-          ),
+          import(
+            './Components/AdminDashboard/add-hotel/add-hotel.component'
+          ).then((r) => r.AddHotelComponent),
       },
       {
         path: 'viewusers',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-users/view-users.component').then(
-            (r) => r.ViewUsersComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-users/view-users.component'
+          ).then((r) => r.ViewUsersComponent),
       },
       {
         path: 'viewbookings',
         loadComponent: () =>
-          import('./Components/AdminDashboard/view-bookings/view-bookings.component').then(
-            (r) => r.ViewBookingsComponent
-          ),
+          import(
+            './Components/AdminDashboard/view-bookings/view-bookings.component'
+          ).then((r) => r.ViewBookingsComponent),
       },
     ],
     canActivate: [adminGuard],
   },
+
   {
     path: '',
     loadComponent: () =>
@@ -104,14 +128,19 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: HomeComponent },
-      { path: 'AllDestinations', component: AllDestinationsPageComponent },
-      { path: 'SearchResult', component: SearchResultComponent },
-      { path: 'Payment', component: PaymentComponent },
+      { path: 'AllDestinations', loadComponent: () => import('./Pages/all-destinations-page/all-destinations-page.component').then(
+        (u) => u.AllDestinationsPageComponent )},
+      { path: 'SearchResult', loadComponent: () => import('./Pages/search-result/search-result.component').then(
+        (u) => u.SearchResultComponent ) },
+      { path: 'Payment',loadComponent: () => import('./Components/payment/payment.component').then(
+        (u) => u.PaymentComponent )},
       {
         path: 'Itinerary',
         component: ItineraryComponent,
         canActivate: [authGuard],
       },
+
+
       {
         path: 'profile',
         loadComponent: () =>
@@ -133,6 +162,14 @@ export const routes: Routes = [
                 (u) => u.UserBookingComponent
               ),
           },
+
+          {
+            path: 'userreview',
+            loadComponent: () =>
+              import('./Components/user-review/user-review.component').then(
+                (u) => u.UserReviewComponent
+              ),
+          },
           {
             path: 'userinfo',
             loadComponent: () =>
@@ -142,8 +179,14 @@ export const routes: Routes = [
           },
         ],
       },
-      { path: 'Login', component: LoginComponent },
-      { path: 'Register', component: RegisterComponent },
+      { path: 'Login',loadComponent: () =>
+        import('./Pages/login/login.component').then(
+          (u) => u.LoginComponent
+        ), },
+      { path: 'Register', loadComponent: () =>
+        import('./Pages/register/register.component').then(
+          (u) => u.RegisterComponent
+        ),},
       {
         path: 'aboutus',
         loadComponent: () =>
@@ -151,10 +194,23 @@ export const routes: Routes = [
             (u) => u.AboutUsComponent
           ),
       },
-      { path: 'HotelReviews', component: ReviewPageComponent },
-      { path: 'payment-success', component: PaymentSuccessComponent },
-      { path: 'payment-failure', component: PaymentFailureComponent },
-      { path: 'ContactUs', component: ContuctUsComponent },
+      {
+        path: 'HotelReviews',
+        component: ReviewPageComponent,
+        canActivate: [authGuard]
+      },
+      { path: 'payment-success',  loadComponent: () =>
+        import('./Components/payment-success/payment-success.component').then(
+          (u) => u.PaymentSuccessComponent
+        ),},
+      { path: 'payment-failure', loadComponent: () =>
+        import('./Components/payment-failure/payment-failure.component').then(
+          (u) => u.PaymentFailureComponent
+        ),},
+      { path: 'ContactUs',loadComponent: () =>
+        import('./Pages/contuct-us/contuct-us.component').then(
+          (u) => u.ContuctUsComponent
+        ), },
     ],
     canActivate: [nonAdminGuard],
   },

@@ -27,7 +27,6 @@ export class EditHotelComponent {
   }
 
   get name() { return this.UpdateForm.get('name'); }
-  get description() { return this.UpdateForm.get('description'); }
   get imageUrl() { return this.UpdateForm.get('imageUrl'); }
 
   ngOnInit(): void {
@@ -42,15 +41,13 @@ export class EditHotelComponent {
       }
     });
     this.UpdateForm = new FormGroup({
-      name: new FormControl('',[ Validators.required,Validators.pattern('^[a-zA-Z]{2,15}$')]),
-      description: new FormControl('', [Validators.required,Validators.pattern('^[A-Za-z]{2,20}$')]),
+      name: new FormControl('',[ Validators.required, Validators.pattern('^[a-zA-Z ]{2,30}$')]),
 
       imageUrl: new FormControl(this.hotel.imageUrl || null),
 
     });
     this.UpdateForm.patchValue({
       name: this.hotel.name,
-      description: this.hotel.description
     });
     this.imagePreview = this.hotel.imageUrl ? `${this.root}${this.hotel.imageUrl}` : null;
   }
@@ -105,7 +102,6 @@ export class EditHotelComponent {
       console.log('Form value:', formValue);
 
       formData.append('name', formValue.name);
-      formData.append('description', formValue.description);
       formData.append('hotelId', this.hotel.hotelId.toString());
 
       if (this.hasNewImage && this.selectedFile) {

@@ -22,7 +22,7 @@ export class ContuctUsComponent implements OnInit, AfterViewInit {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      message: ['', [Validators.required, Validators.minLength(10)]]
+      message: ['', [Validators.required]]
     });
   }
 
@@ -43,7 +43,7 @@ export class ContuctUsComponent implements OnInit, AfterViewInit {
     this.errorMessage = '';
 
     this.contactService.sendMessage(this.contactForm.value).subscribe({
-      
+
       next: () => {
         this.successMessage = 'Your message has been sent successfully!';
         this.contactForm.reset();

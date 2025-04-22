@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { ToastModule } from 'primeng/toast';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   AbstractControl,
@@ -14,6 +16,9 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IRegister } from '../../core/Interface/iregister';
+import { MessageService } from 'primeng/api';
+import { DatePicker } from 'primeng/datepicker';
+
 @Component({
   selector: 'app-register',
   imports: [
@@ -21,15 +26,19 @@ import { IRegister } from '../../core/Interface/iregister';
     ReactiveFormsModule,
     RouterLink,
     FormsModule,
+    ToastModule,
+    ReactiveFormsModule,
     NgxSpinnerModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  errorMessage: string | null = null; // Variable to store the error message
   firstName!: FormControl;
   lastName!: FormControl;
   userName!: FormControl;
+  date2: Date | undefined;
   phoneNumber!: FormControl;
   city!: FormControl;
   state!: FormControl;
@@ -43,7 +52,8 @@ export class RegisterComponent {
   constructor(
     private _authService: AuthService,
     private spinner: NgxSpinnerService,
-    private _router: Router
+    private _router: Router,
+    private snackBar: MatSnackBar // Inject MatSnackBar
   ) {}
   ngOnInit(): void {
     this.initFormControls();
@@ -58,16 +68,38 @@ export class RegisterComponent {
       Validators.maxLength(20), // Maximum length of 20 characters
       Validators.pattern(/^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/), // At least one alphabetic character and one symbol
     ]);
-    this.firstName = new FormControl('', [Validators.required]);
-    this.lastName = new FormControl('', [Validators.required]);
+    this.firstName = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]{2,20}$'),
+    ]);
+    this.lastName = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]{2,20}$'),
+    ]);
     this.phoneNumber = new FormControl('', [
       Validators.required,
-      Validators.pattern(/^\d{11}$/), // Assuming phone number is 10 digits
+      Validators.pattern(/^\d{11}$/),
     ]);
-    this.city = new FormControl('', [Validators.required]);
-    this.state = new FormControl('', [Validators.required]);
+    this.city = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]{2,20}$'),
+    ]);
+    this.state = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z ]{2,20}$'),
+    ]);
     this.street = new FormControl('', [Validators.required]);
-    this.birthDate = new FormControl('', [Validators.required]);
+    this.birthDate = new FormControl('', [
+      Validators.required,
+      (control: AbstractControl): { [key: string]: boolean } | null => {
+        const date = new Date(control.value);
+        const today = new Date();
+        if (date >= today) {
+          return { invalidDate: true };
+        }
+        return null;
+      },
+    ]);
     this.image = new FormControl('', [Validators.required]);
   }
 
@@ -130,14 +162,66 @@ export class RegisterComponent {
       next: (response) => {
         if (response.success) {
           this.spinner.hide();
+          this.snackBar.open('Registration Successful!', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+            panelClass: ['snackbar-success'], // Custom class for styling
+          });
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
           this._router.navigate(['Home']);
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         this.spinner.hide();
-        console.error('Registration error:', error || error.error);
+
+        // Check if it's a validation error (status 400 with `errors` property)
+        if (error.status === 400 && error.error?.errors) {
+          const validationErrors = error.error.errors;
+          const errorMessages: string[] = [];
+
+          // Extract validation error messages
+          for (const key in validationErrors) {
+            if (validationErrors.hasOwnProperty(key)) {
+              errorMessages.push(...validationErrors[key]);
+            }
+          }
+
+          // Display validation errors in a snackbar or UI
+          this.snackBar.open(
+            errorMessages.join('\n'), // Join all error messages with a newline
+            'Close',
+            {
+              duration: 5000, // Duration in milliseconds
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'], // Custom class for styling
+            }
+          );
+        }
+        // Check if it's a custom error message
+        else if (error.error?.errorMessage) {
+          this.snackBar.open(error.error.errorMessage, 'Close', {
+            duration: 5000, // Duration in milliseconds
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error'], // Custom class for styling
+          });
+        }
+        // Handle other errors
+        else {
+          this.snackBar.open(
+            'An unexpected error occurred. Please try again.',
+            'Close',
+            {
+              duration: 5000, // Duration in milliseconds
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'], // Custom class for styling
+            }
+          );
+        }
       },
     });
   }
