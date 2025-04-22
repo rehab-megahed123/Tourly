@@ -22,10 +22,10 @@
         <p class="h2 section-title text-animated">Get in Touch</p>
         <p class="text-blk subHeadingText text-animated">We’re just a message away!</p>
 
-        
+
         <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
 
-        
+
         <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" id="contact-form">
