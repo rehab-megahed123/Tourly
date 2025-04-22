@@ -1,3 +1,3 @@
 export const environment = {
-     baseUrl:'http://tourly.runasp.net'
+  baseUrl: 'https://tourly.runasp.net',
 };
