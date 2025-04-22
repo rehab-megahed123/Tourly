@@ -93,7 +93,7 @@ export class LoginComponent {
           const role = this._authService.getRole();
           const returnUrl = localStorage.getItem('returnUrl');
           if (role === 'Admin') {
-            this.snackBar.open('Welcome Back Ali !', 'Close', {
+            this.snackBar.open('Welcome Back Admin !', 'Close', {
               duration: 3000, // Duration in milliseconds
               horizontalPosition: 'end', // Horizontal position
               verticalPosition: 'top', // Vertical position
