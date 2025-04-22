@@ -41,7 +41,7 @@ export class EditHotelComponent {
       }
     });
     this.UpdateForm = new FormGroup({
-      name: new FormControl('',[ Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]),
+      name: new FormControl('',[ Validators.required, Validators.pattern('^[a-zA-Z ]{2,30}$')]),
 
       imageUrl: new FormControl(this.hotel.imageUrl || null),
 

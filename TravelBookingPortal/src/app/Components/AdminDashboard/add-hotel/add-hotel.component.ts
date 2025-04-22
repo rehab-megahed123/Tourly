@@ -29,7 +29,7 @@ cities!:ICityAdmin[]
     private cityService: ViewCityService
   ) {
     this.CreateForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,20}$')]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,30}$')]],
 
       cityId: [, Validators.required],
       imageUrl: ['', [Validators.required,Validators.pattern(/\.(jpg|jpeg|png)$/i)]],

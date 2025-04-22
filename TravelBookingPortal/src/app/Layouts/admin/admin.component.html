@@ -10,14 +10,19 @@
 
       <div id="usermenu">
         <div class="user-info">
-          <img [src]="profile?.imageUrl"alt="User Avatar" />
+          <img [src]="`${root}${profile?.imageUrl}`"alt="User Avatar" />
           {{profile?.userName}}
             <!-- <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> -->
 
+        </div >
+        <div class="submenu" >
+          <div >
+          <a routerLink="/Admin/adminprofile/admininfo" style="cursor: pointer;" >My Profile</a>
         </div>
-        <div class="submenu">
+        <div >
           <a  (click)="logout()" style="cursor: pointer;" >Logout</a>
         </div>
+      </div>
       </div>
     </nav>
   </div>
