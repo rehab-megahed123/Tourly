@@ -1,4 +1,3 @@
-/* Existing global styles remain unchanged */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -46,7 +45,6 @@ a:hover {
   outline: none;
 }
 
-/* Adjust wrapper for better fit on small screens */
 .wrapper {
   min-height: 100vh;
   background-size: cover;
@@ -54,14 +52,13 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px; /* Add padding to prevent content from touching edges */
+  padding: 10px;
 }
 
-/* Adjust inner container */
 .inner {
-  padding: 15px; /* Reduced padding for small screens */
+  padding: 15px;
   background: #fff;
-  max-width: 50%; /* Use percentage for better scaling */
+  max-width: 50%;
   width: 100%;
   margin: auto;
   display: flex;
@@ -72,18 +69,17 @@ a:hover {
 
 .inner form {
   width: 100%;
-  padding: 20px; /* Reduced padding for mobile */
+  padding: 20px;
 }
 
 .inner h3 {
   text-transform: uppercase;
-  font-size: 18px; /* Slightly smaller for mobile */
+  font-size: 18px;
   text-align: center;
   margin-bottom: 15px;
   position: relative;
 }
 
-/* Form group for triple inputs */
 .triple-input {
   display: flex;
   gap: 15px;
@@ -94,19 +90,18 @@ a:hover {
   width: 100%;
 }
 
-/* Form wrapper for icon alignment */
 .form-wrapper {
   position: relative;
-  margin-bottom: 20px; /* Ensure space for error messages */
+  margin-bottom: 20px;
 }
 
 .form-wrapper i {
   position: absolute;
-  right: 10px; /* Adjusted for better alignment */
+  right: 10px;
   top: 50%;
-  transform: translateY(-50%); /* Center vertically */
+  transform: translateY(-50%);
   color: #333;
-  font-size: 12px; /* Smaller icon size for mobile */
+  font-size: 12px;
 }
 
 .form-control {
@@ -116,16 +111,15 @@ a:hover {
   border-left: none;
   display: block;
   width: 100%;
-  height: 30px; /* Slightly increased for better touch target */
-  padding: 5px 25px 5px 10px; /* Add right padding for icon */
+  height: 30px;
+  padding: 5px 25px 5px 10px;
   font-size: 12px;
-  margin-bottom: 10px; /* Reduced for tighter layout */
+  margin-bottom: 10px;
 }
 
-/* Button styling */
 button {
   border: none;
-  width: 120px; /* Smaller button for mobile */
+  width: 120px;
   height: 35px;
   margin: auto;
   margin-top: 20px;
@@ -153,7 +147,6 @@ button:active i {
   animation-iteration-count: 1;
 }
 
-/* Animation keyframes remain unchanged */
 @-webkit-keyframes hvr-icon-wobble-horizontal {
   16.65% {
     transform: translateX(6px);
@@ -196,7 +189,6 @@ button:active i {
   }
 }
 
-/* Error messages */
 .error-message {
   color: red;
   font-size: 10px;
@@ -216,7 +208,6 @@ button:active i {
   width: 50%;
 }
 
-/* Centered text for login link */
 .centered-text {
   display: flex;
   justify-content: center;
@@ -225,16 +216,15 @@ button:active i {
   font-size: 12px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 767px) {
   .wrapper {
     padding: 5px;
-    align-items: flex-start; /* Start from top to avoid cutting off content */
-    min-height: auto; /* Allow scrolling if content overflows */
+    align-items: flex-start;
+    min-height: auto;
   }
 
   .inner {
-    max-width: 100%; /* Full width on small screens */
+    max-width: 100%;
     padding: 10px;
   }
 
@@ -242,7 +232,6 @@ button:active i {
     padding: 15px;
   }
 
-  /* Stack triple inputs vertically */
   .triple-input {
     flex-direction: column;
     gap: 10px;
@@ -262,7 +251,7 @@ button:active i {
   }
 
   .form-control {
-    height: 35px; /* Slightly larger for touch */
+    height: 35px;
     font-size: 11px;
   }
 
@@ -285,16 +274,14 @@ button:active i {
   }
 }
 
-/* Success SnackBar */
 .snackbar-success {
-  background-color: #4caf50; /* Green background */
-  color: #fff; /* White text */
+  background-color: #4caf50;
+  color: #fff;
   font-size: 14px;
 }
 
-/* Error SnackBar */
 .snackbar-error {
-  background-color: #f44336; /* Red background */
-  color: #fff; /* White text */
+  background-color: #f44336;
+  color: #fff;
   font-size: 14px;
 }

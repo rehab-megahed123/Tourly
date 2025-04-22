@@ -34,7 +34,7 @@ import { DatePicker } from 'primeng/datepicker';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  errorMessage: string | null = null; // Variable to store the error message
+  errorMessage: string | null = null;
   firstName!: FormControl;
   lastName!: FormControl;
   userName!: FormControl;
@@ -53,7 +53,7 @@ export class RegisterComponent {
     private _authService: AuthService,
     private spinner: NgxSpinnerService,
     private _router: Router,
-    private snackBar: MatSnackBar // Inject MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.initFormControls();
@@ -64,9 +64,9 @@ export class RegisterComponent {
     this.userName = new FormControl('', [Validators.required]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.minLength(8), // Minimum length of 8 characters
-      Validators.maxLength(20), // Maximum length of 20 characters
-      Validators.pattern(/^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/), // At least one alphabetic character and one symbol
+      Validators.minLength(8),
+      Validators.maxLength(20),
+      Validators.pattern(/^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/),
     ]);
     this.firstName = new FormControl('', [
       Validators.required,
@@ -121,7 +121,7 @@ export class RegisterComponent {
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
-      this.image.setValue(input.files[0]); // Set the File object
+      this.image.setValue(input.files[0]);
     }
   }
 
@@ -144,7 +144,7 @@ export class RegisterComponent {
       );
       formData.append('createdAt', new Date().toISOString());
       if (formValue.image) {
-        formData.append('image', formValue.image); // File object
+        formData.append('image', formValue.image);
       }
       this.signUp(formData);
     } else {
@@ -176,21 +176,18 @@ export class RegisterComponent {
       error: (error: any) => {
         this.spinner.hide();
 
-        // Check if it's a validation error (status 400 with `errors` property)
         if (error.status === 400 && error.error?.errors) {
           const validationErrors = error.error.errors;
           const errorMessages: string[] = [];
 
-          // Extract validation error messages
           for (const key in validationErrors) {
             if (validationErrors.hasOwnProperty(key)) {
               errorMessages.push(...validationErrors[key]);
             }
           }
 
-          // Display validation errors in a snackbar or UI
           this.snackBar.open(
-            errorMessages.join('\n'), // Join all error messages with a newline
+            errorMessages.join('\n'),
             'Close',
             {
               duration: 5000, // Duration in milliseconds
@@ -200,7 +197,6 @@ export class RegisterComponent {
             }
           );
         }
-        // Check if it's a custom error message
         else if (error.error?.errorMessage) {
           this.snackBar.open(error.error.errorMessage, 'Close', {
             duration: 5000, // Duration in milliseconds
@@ -209,7 +205,6 @@ export class RegisterComponent {
             panelClass: ['snackbar-error'], // Custom class for styling
           });
         }
-        // Handle other errors
         else {
           this.snackBar.open(
             'An unexpected error occurred. Please try again.',

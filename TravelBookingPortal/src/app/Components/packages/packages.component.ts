@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoomService } from '../../core/services/room.service';
-import { IBookingRoom } from '../../core/models/ibooking-room';
+import { IBookingRoom } from '../../core/Interface/ibooking-room';
 import { BookingService } from '../../core/services/booking.service';
 import { SignalRService } from '../../core/services/signal-r.service';
 import { environment } from '../../../environments/environment.development';
@@ -36,12 +36,10 @@ export class PackagesComponent implements OnInit   {
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras?.state as {
       formData: any,
-      // results: any
     };
 
     if (state) {
 
-      // this.results = state.results;
 
       this.formData = state.formData;
 

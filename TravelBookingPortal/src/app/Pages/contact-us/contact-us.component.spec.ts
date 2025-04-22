@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoTopComponent } from './go-top.component';
+import { ContuctUsComponent} from './contact-us.component';
 
-describe('GoTopComponent', () => {
-  let component: GoTopComponent;
-  let fixture: ComponentFixture<GoTopComponent>;
+describe('ContactUsComponent', () => {
+  let component: ContuctUsComponent;
+  let fixture: ComponentFixture<ContuctUsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoTopComponent]
+      imports: [ContuctUsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GoTopComponent);
+    fixture = TestBed.createComponent(ContuctUsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

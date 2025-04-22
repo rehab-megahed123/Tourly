@@ -36,30 +36,34 @@
   </div>
 </section>
 
-<div class="review-form" [@formAnimation]>
+<!-- Review Form -->
+<form [formGroup]="reviewForm" (ngSubmit)="addReview()" class="review-form" [@formAnimation]>
   <h2 class="heading h2 section-title">Add Your Review</h2>
+
+  <!-- Comment Input -->
   <textarea
-    [(ngModel)]="newReview.comment"
+    formControlName="comment"
     class="form-control review-textarea"
     placeholder="Write your review here..."
   ></textarea>
-  <div class="rating-stars">
-    <label *ngFor="let r of [1, 2, 3, 4, 5]; let i = index" class="star-label" (mouseover)="onStarHover(r)" (mouseleave)="onStarLeave()">
-      <input
-        type="radio"
-        name="rating"
-        [value]="r"
-        [(ngModel)]="newReview.rating"
-        (change)="onRatingChange(r)"
-      />
-      <span class="star" [ngClass]="{'filled': r <= (newReview.rating || hoverRating)}">★</span>
-    </label>
+  <div *ngIf="reviewForm.get('comment')?.touched && reviewForm.get('comment')?.invalid" class="alert alert-danger mt-1">
+    <div *ngIf="reviewForm.get('comment')?.errors?.['required']">Comment is required.</div>
+    <div *ngIf="reviewForm.get('comment')?.errors?.['minlength']">Comment must be at least 3 characters.</div>
   </div>
 
-  <button
-    class="btn btn-primary mt-2"
-    (click)="addReview(newReview.comment, newReview.rating)"
-  >
-    Submit Review
-  </button>
-</div>
+  <!-- Rating Input -->
+  <div class="rating-stars">
+    <label *ngFor="let r of [1, 2, 3, 4, 5]" class="star-label"
+           (mouseover)="onStarHover(r)" (mouseleave)="onStarLeave()">
+      <input type="radio" formControlName="rating" [value]="r" />
+      <span class="star" [ngClass]="{'filled': r <= (reviewForm.get('rating')?.value || hoverRating)}">★</span>
+    </label>
+  </div>
+  <div *ngIf="reviewForm.get('rating')?.touched && reviewForm.get('rating')?.invalid" class="alert alert-danger mt-1">
+    <div *ngIf="reviewForm.get('rating')?.errors?.['required']">Rating is required.</div>
+    <div *ngIf="reviewForm.get('rating')?.errors?.['min']">Minimum rating is 1 star.</div>
+  </div>
+
+  <!-- Submit Button -->
+  <button class="btn btn-primary mt-2" type="submit">Submit Review</button>
+</form>

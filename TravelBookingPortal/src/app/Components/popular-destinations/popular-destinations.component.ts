@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICity } from '../../core/models/ICity';
+import { ICity } from '../../core/Interface/ICity';
 import { CityService } from '../../core/services/city.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -25,10 +25,10 @@ export class PopularDestinationsComponent implements OnInit {
       next:(arr)=>{
         this.cities=arr
         this.filterCities = arr.slice(0, 3);
-        
+
         console.log(this.cities)
         console.log(this.filterCities)
-       
+
       },
       error:()=>{}
     })

@@ -6,7 +6,7 @@
 
 .hero-text {
   animation: fadeIn 1s ease-out 0.3s forwards;
-  opacity: 0; /* Ensure initial opacity for animation */
+  opacity: 0;
 }
 
 

@@ -37,7 +37,7 @@ export class LoginComponent {
     private spinner: NgxSpinnerService,
     private _router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar // Inject MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.initFormControls();
@@ -59,9 +59,9 @@ export class LoginComponent {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.minLength(8), // Minimum length of 8 characters
-      Validators.maxLength(20), // Maximum length of 20 characters
-      Validators.pattern(/^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/), // At least one alphabetic character and one symbol
+      Validators.minLength(8),
+      Validators.maxLength(20),
+      Validators.pattern(/^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/),
     ]);
   }
 
@@ -84,11 +84,9 @@ export class LoginComponent {
   }
 
   siginIn(data: ILogin): void {
-    // this.spinner.show();
     this._authService.login(data).subscribe({
       next: (response) => {
         if (response.success) {
-          // this.spinner.hide();
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
 
@@ -107,7 +105,7 @@ export class LoginComponent {
               duration: 3000, // Duration in milliseconds
               horizontalPosition: 'end', // Horizontal position
               verticalPosition: 'top', // Vertical position
-              panelClass: ['snackbar-success'], // Custom class for styling
+              panelClass: ['snackbar-success'],
             });
             this._router.navigateByUrl(returnUrl || '/Home');
           }

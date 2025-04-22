@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Ireview } from '../models/ireview';
+import { Ireview } from '../Interface/ireview';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { IcreateReview } from '../models/icreate-review';
+import { IcreateReview } from '../Interface/icreate-review';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class ReviewService {
 );
     }
     DeleteReview(reviewId: number): Observable<Ireview> {
-      return this._httpClientService.delete<Ireview>( 
+      return this._httpClientService.delete<Ireview>(
 `${environment.baseUrl}/Reviews/Delete/${reviewId}`
 );
 }

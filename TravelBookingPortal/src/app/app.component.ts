@@ -6,7 +6,6 @@ import { PopularDestinationsComponent } from './Components/popular-destinations/
 import { PackagesComponent } from './Components/packages/packages.component';
 import { GalleryComponent } from './Components/gallery/gallery.component';
 
-import { GoTopComponent } from './Components/go-top/go-top.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ToursearchComponent } from './Components/toursearch/toursearch.component';

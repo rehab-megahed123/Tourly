@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICity } from '../../core/models/ICity';
+import { ICity } from '../../core/Interface/ICity';
 import { CityService } from '../../core/services/city.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,24 +15,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ToursearchComponent implements OnInit {
 
   cities:ICity[] = []
-  
+
   formData = {
     city: '',
     roomType: '',
     checkIn: new Date(),
-    checkOut:new Date() 
+    checkOut:new Date()
   };
   constructor(private _cityService: CityService,private _roomService:RoomService, private router: Router,private route: ActivatedRoute){
     const nav = this.router.getCurrentNavigation();
     const state = nav?.extras?.state as {
       formData: any,
-      
+
     };
     if (state) {
-     
-     
+
+
       this.formData = state.formData;
-      
+
       console.log('formData:', this.formData);
     }
   }
@@ -40,8 +40,8 @@ export class ToursearchComponent implements OnInit {
     this._cityService.getAllCities().subscribe({
       next: (arr) => {
         this.cities = arr;
-  
-       
+
+
         this.route.queryParams.subscribe(params => {
           const cityParam = params['city'];
           if (cityParam) {

@@ -8,7 +8,7 @@
   <li *ngFor="let city of filterCities">
     <div class="popular-card">
       <figure class="card-img">
-        <img  [src]="`${root}${city.imageUrl}`" [alt]="city.name" loading="lazy">
+        <img [routerLink]="['/SearchResult']" style="cursor: pointer;" [src]="`${root}${city.imageUrl}`" [alt]="city.name" loading="lazy"[queryParams]="{ city: city.name }">{{ city.name }}/>
       </figure>
 
       <div class="card-content">

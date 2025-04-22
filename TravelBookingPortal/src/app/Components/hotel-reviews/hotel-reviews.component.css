@@ -19,12 +19,12 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   width: 100%;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .testimonial-scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .testimonial-card {
@@ -71,11 +71,11 @@ blockquote {
 }
 
 .stars span.filled {
-  color: #FFD700; /* Gold for filled stars */
+  color: #FFD700;
 }
 
 .stars span:not(.filled) {
-  color: #ccc; /* Gray for empty stars */
+  color: #ccc;
 }
 
 .scroll-arrow {
@@ -147,23 +147,22 @@ blockquote {
 
 .rating-stars .star {
   font-size: 24px;
-  color: #ccc; /* Default gray */
+  color: #ccc;
   transition: color 0.2s ease;
 }
 
 .rating-stars .star.filled {
-  color: #FFD700; /* Gold for selected stars */
+  color: #FFD700;
 }
 
-/* Hover effect: color only the hovered star */
 .rating-stars .star-label:hover .star {
-  color: #FFD700; /* Gold on hover */
+  color: #FFD700;
 }
 
 .btn-primary {
   transition: background 0.3s ease, transform 0.2s ease;
-  display: block; /* Ensure button behaves as a block for centering */
-  margin: 0 auto; /* Center the button horizontally */
+  display: block;
+  margin: 0 auto;
 }
 
 .btn-primary:hover {
@@ -171,7 +170,6 @@ blockquote {
   transform: scale(1.05);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .testimonial-card {
     flex: 0 0 calc(90% - 20px);
@@ -196,4 +194,10 @@ blockquote {
     flex: 0 0 calc(33.33% - 20px);
     max-width: calc(33.33% - 20px);
   }
+}
+.alert {
+  padding: 10px;
+  color: #b9202f;
+  border-radius: 4px;
+  font-size: 0.9rem;
 }

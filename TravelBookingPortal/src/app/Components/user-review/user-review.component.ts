@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ireview } from '../../core/models/ireview';
+import { Ireview } from '../../core/Interface/ireview';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../core/services/profile.service';
 import { ReviewService } from '../../core/services/review.service';

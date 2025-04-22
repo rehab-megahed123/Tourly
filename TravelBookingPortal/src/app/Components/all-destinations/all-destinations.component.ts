@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICity } from '../../core/models/ICity';
+import { ICity } from '../../core/Interface/ICity';
 import { CityService } from '../../core/services/city.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -22,11 +22,11 @@ export class AllDestinationsComponent implements OnInit {
     this._cityService.getAllCities().subscribe({
       next:(arr)=>{
         this.cities=arr
-       
-        
+
+
         console.log(this.cities)
-       
-       
+
+
       },
       error:()=>{}
     })

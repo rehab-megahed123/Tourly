@@ -8,7 +8,7 @@ export interface IRegister {
   phoneNumber: string;
   state: string;
   city: string;
-  dateOfBirth: string; // ISO 8601 format (e.g., "2025-04-08T00:35:32.308Z")
+  dateOfBirth: string;
   street: string;
-  createdAt: string; // ISO 8601 format (e.g., "2025-04-08T00:35:32.308Z")
+  createdAt: string;
 }

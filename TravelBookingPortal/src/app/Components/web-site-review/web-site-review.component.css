@@ -89,8 +89,8 @@ z-index: 0;
     max-width: calc(90% - 20px);
   }
   .scroll-arrow {
-    display: flex; /* نرجع الأسهم تظهر على الموبايل */
-    width: 30px; /* نحجمها شوية عشان الموبايل */
+    display: flex;
+    width: 30px;
     height: 30px;
     font-size: 14px;
   }

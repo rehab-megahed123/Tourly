@@ -15,7 +15,7 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { adminGuard } from './core/Guards/admin.guard';
 import { PaymentSuccessComponent } from './Components/payment-success/payment-success.component';
 import { PaymentFailureComponent } from './Components/payment-failure/payment-failure.component';
-import { ContuctUsComponent } from './Pages/contuct-us/contuct-us.component';
+import { ContuctUsComponent } from './Pages/contact-us/contact-us.component';
 import { authGuard } from './core/Guards/auth.guard';
 import { nonAdminGuard } from './core/Guards/non-admin.guard';
 import { ReviewPageComponent } from './Pages/review-page/review-page.component';
@@ -208,7 +208,7 @@ export const routes: Routes = [
           (u) => u.PaymentFailureComponent
         ),},
       { path: 'ContactUs',loadComponent: () =>
-        import('./Pages/contuct-us/contuct-us.component').then(
+        import('./Pages/contact-us/contact-us.component').then(
           (u) => u.ContuctUsComponent
         ), },
     ],

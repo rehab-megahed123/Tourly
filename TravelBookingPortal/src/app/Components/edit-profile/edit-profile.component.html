@@ -3,7 +3,6 @@
   <div class="wrapper page-content">
     <div class="inner">
       <form [formGroup]="UpdateForm" (ngSubmit)="submit()">
-        <!-- Image Preview and Upload (Moved to Top) -->
         <div class="form-group image-upload-section">
           <img *ngIf="imagePreview" [src]="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; margin-bottom: 10px; object-fit: cover; border-radius: 50%;">
           <img *ngIf="!imagePreview" src="/assets/images/profileimages/cvv.jpg" alt="Default Image" style="width: 80px; height: 80px; margin-bottom: 10px; object-fit: cover; border-radius: 50%;">

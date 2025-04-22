@@ -120,13 +120,14 @@ export class EditProfileComponent {
 
       this.profileservice.UpdateProfile(userId, formData).subscribe({
         next: (res) => {
-
-
           console.log("Profile Updated:", res);
-
           this.hasNewImage = false;
-          // this.backtoProfile();
-
+this.backtoProfile();
+          this._snackbar.open('Profile Updated Successfully', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+          });
         },
         error: (err) => {
 console.log(err)

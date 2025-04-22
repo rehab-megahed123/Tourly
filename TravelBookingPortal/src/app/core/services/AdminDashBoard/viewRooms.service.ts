@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IRoomAdmin } from '../../Interface/AdminDashBoard/IRoomAdmin';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { IRoom } from '../../models/iroom';
+import { IRoom } from '../../Interface/iroom';
 
 @Injectable({
   providedIn: 'root'

@@ -202,7 +202,6 @@ margin-left: 5px;
     color: #333;
   }
 
-  /* إزالة الحدود لآخر عنصر في الكارد */
   .table-data:last-child {
     border-bottom: none;
     display: flex;

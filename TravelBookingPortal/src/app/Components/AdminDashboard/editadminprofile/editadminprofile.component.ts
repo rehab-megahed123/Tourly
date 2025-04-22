@@ -5,6 +5,7 @@ import { IProfile } from '../../../core/Interface/Iprofile';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../../core/services/profile.service';
 import { environment } from '../../../../environments/environment.development';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editadminprofile',
@@ -19,7 +20,7 @@ export class EditadminprofileComponent {
   root: string = '';
   hasNewImage: boolean = false;
 
-  constructor(private profileservice: ProfileService) {
+  constructor(private profileservice: ProfileService,private _snackbar:MatSnackBar) {
     this.root = `${environment.baseUrl}`;
   }
 
@@ -119,27 +120,41 @@ export class EditadminprofileComponent {
         next: (res) => {
           console.log("Profile Updated:", res);
           this.hasNewImage = false;
+this.backtoProfile();
+          this._snackbar.open('Profile Updated Successfully', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+          });
         },
         error: (err) => {
-          console.error("Update Error Details:", {
-            status: err.status,
-            statusText: err.statusText,
-            error: err.error,
-            message: err.message,
-            url: err.url
-          });
-        }
-      });
-this.backtoProfile();
-    } else {
-      this.UpdateForm.markAllAsTouched();
-      Object.values(this.UpdateForm.controls).forEach(ctrl => ctrl.markAsDirty());
-    }
-  }
-
+          console.log(err)
+                    this._snackbar.open(
+                      err.error?.message || 'User Name Is Already Taken',
+                      'Close',
+                      {
+                        duration: 3000, // Duration in milliseconds
+                        horizontalPosition: 'end', // Horizontal position
+                        verticalPosition: 'top', // Vertical position
+                      }
+                    );
+                    console.error("Update Error Details:", {
+                      status: err.status,
+                      statusText: err.statusText,
+                      error: err.error,
+                      message: err.message,
+                      url: err.url
+                    });
+                  }
+                });
+              } else {
+                this.UpdateForm.markAllAsTouched();
+                Object.values(this.UpdateForm.controls).forEach(ctrl => ctrl.markAsDirty());
+              }
+            }
   backtoProfile() {
 setTimeout(()=>{
-  window.location.replace('/profile')
+  window.location.replace('/Admin/adminprofile/admininfo');
 }
 ,1000)
 

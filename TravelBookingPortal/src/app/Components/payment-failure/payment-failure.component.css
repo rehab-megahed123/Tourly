@@ -6,7 +6,7 @@
     background-color: var(--cultured);
     padding: var(--section-padding);
   }
-  
+
   .failure-card {
     background: var(--white);
     border-radius: var(--radius-25);
@@ -16,33 +16,33 @@
     max-width: 400px;
     width: 100%;
   }
-  
+
   .icon-container {
     margin-bottom: 20px;
   }
-  
+
   .failure-icon {
     width: 50px;
     height: 50px;
     color: var(--bright-navy-blue);
   }
-  
+
   .section-title {
     color: var(--gunmetal);
     margin-bottom: 15px;
   }
-  
+
   .card-text {
     font-size: var(--fs-5);
     color: var(--black-coral);
     margin: 10px 0;
   }
-  
+
   .card-text span {
     font-weight: var(--fw-500);
     color: var(--jet);
   }
-  
+
   .back-home-btn {
     display: block;
     margin: 20px auto;
@@ -50,27 +50,26 @@
     font-size: var(--fs-6);
     text-transform: uppercase;
   }
-  
-  /* Responsive adjustments */
+
   @media (max-width: 580px) {
     .failure-card {
       padding: 20px;
     }
-  
+
     .section-title {
       font-size: var(--fs-3);
     }
-  
+
     .card-text {
       font-size: var(--fs-6);
     }
-  
+
     .back-home-btn {
       padding: 8px 20px;
       font-size: var(--fs-6);
     }
   }
-  
+
   @media (min-width: 768px) {
     .failure-card {
       padding: 40px;

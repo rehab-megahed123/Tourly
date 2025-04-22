@@ -5,7 +5,6 @@ import { ToursearchComponent } from '../../Components/toursearch/toursearch.comp
 import { PopularDestinationsComponent } from '../../Components/popular-destinations/popular-destinations.component';
 import { PackagesComponent } from '../../Components/packages/packages.component';
 import { GalleryComponent } from '../../Components/gallery/gallery.component';
-import { GoTopComponent } from '../../Components/go-top/go-top.component';
 import { ContactComponent } from '../../Components/contact/contact.component';
 import { FooterComponent } from '../../Components/footer/footer.component';
 import { WebSiteReviewComponent } from '../../Components/web-site-review/web-site-review.component';
@@ -21,7 +20,6 @@ import { AuthService } from '../../core/services/auth.service';
     ToursearchComponent,
     PopularDestinationsComponent,
     GalleryComponent,
-    GoTopComponent,
     ContactComponent,
     FooterComponent,
     WebSiteReviewComponent,

@@ -7,7 +7,7 @@ import { ProfileService } from '../../core/services/profile.service';
 import { BookingService } from '../../core/services/booking.service';
 import { SignalRService } from '../../core/services/signal-r.service';
 import { Router } from '@angular/router';
-import { IBookingRoom } from '../../core/models/ibooking-room';
+import { IBookingRoom } from '../../core/Interface/ibooking-room';
 
 @Component({
   selector: 'app-user-booking',

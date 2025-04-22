@@ -14,14 +14,14 @@ export class ViewCityService {
 
   }
 GetAllCities():Observable<ICityAdmin[]>{
-return this._httpClientService.get<ICityAdmin[]>(`${environment.baseUrl}/Admin/GetAllCities`); // Adjust the endpoint as needed
+return this._httpClientService.get<ICityAdmin[]>(`${environment.baseUrl}/Admin/GetAllCities`);
 }
 AddNewCity(cityData:FormData):Observable<ICityAdmin>{
   return this._httpClientService.post<ICityAdmin>(`${environment.baseUrl}/Admin/CreateCity`, cityData);
 }
 DeleteCity(cityId:number):Observable<ICityAdmin>{
 
-  return this._httpClientService.delete<ICityAdmin>(`${environment.baseUrl}/Admin/DeleteCity`,{params:{cityId:cityId}}) // Adjust the endpoint as needed
+  return this._httpClientService.delete<ICityAdmin>(`${environment.baseUrl}/Admin/DeleteCity`,{params:{cityId:cityId}})
 }
 UpdateCity(cityData:FormData):Observable<ICityAdmin>{
   return this._httpClientService.put<ICityAdmin>(`${environment.baseUrl}/Admin/UpdateCity`, cityData);

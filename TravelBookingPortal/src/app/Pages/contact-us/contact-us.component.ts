@@ -9,8 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-contuct-us',
   imports: [HeaderComponent, FooterComponent,CommonModule,ReactiveFormsModule],
-  templateUrl: './contuct-us.component.html',
-  styleUrl: './contuct-us.component.css'
+  templateUrl: './contact-us.component.html',
+  styleUrl: './contact-us.component.css'
 })
 export class ContuctUsComponent implements OnInit, AfterViewInit {
   contactForm: FormGroup;

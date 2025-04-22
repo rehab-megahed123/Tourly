@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TripService } from '../../../../core/services/trip.service';
-import { ITrip } from '../../../../core/models/itrip';
+import { ITrip } from '../../../../core/Interface/itrip';
 import { HeaderComponent } from '../../../header/header.component';
 import { FooterComponent } from '../../../footer/footer.component';
 import { CommonModule } from '@angular/common';

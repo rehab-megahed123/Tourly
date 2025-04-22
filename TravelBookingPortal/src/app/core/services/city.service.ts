@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { ICity } from '../models/ICity';
+import { ICity } from '../Interface/ICity';
 
 
 @Injectable({

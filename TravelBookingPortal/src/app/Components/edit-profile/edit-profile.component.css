@@ -1,4 +1,3 @@
-/* Core styles */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -88,7 +87,6 @@ button {
   font-size: 16px;
 }
 
-/* Required asterisk */
 .required-asterisk {
   color: red;
   font-size: 18px;
@@ -96,7 +94,6 @@ button {
   align-self: flex-start;
 }
 
-/* Validation error messages */
 .validation-error {
   color: red;
   font-size: 12px;
@@ -104,7 +101,6 @@ button {
   margin-bottom: 15px;
 }
 
-/* Image upload section */
 .image-upload-section {
   display: flex;
   flex-direction: column;
@@ -141,7 +137,6 @@ button {
   margin-bottom: 15px;
 }
 
-/* Triple input for City, State, Street */
 .triple-input {
   display: flex;
   gap: 25px;
@@ -152,7 +147,6 @@ button {
   width: 100%;
 }
 
-/* Button */
 button {
   border: none;
   width: 164px;
@@ -185,7 +179,6 @@ button:hover {
   background:var(--yale-blue)
 }
 
-/* Card section */
 .card-section {
   padding-top: 200px;
   padding-bottom: 50px;
@@ -198,7 +191,6 @@ button:hover {
   min-height: 100vh;
 }
 
-/* Media queries */
 @media (max-width: 991px) {
   .inner form {
     padding-top: 10px;

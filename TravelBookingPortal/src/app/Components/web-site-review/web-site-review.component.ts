@@ -9,7 +9,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 export class WebSiteReviewComponent implements AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
-  direction = 1; // 1 = يمين، -1 = شمال
+  direction = 1;
   intervalId: any;
 
   ngAfterViewInit() {
@@ -26,7 +26,7 @@ export class WebSiteReviewComponent implements AfterViewInit {
       return;
     }
 
-    const cardWidth = card.offsetWidth + 20; // المسافة بين الكروت
+    const cardWidth = card.offsetWidth + 20;
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     this.intervalId = setInterval(() => {
@@ -40,7 +40,7 @@ export class WebSiteReviewComponent implements AfterViewInit {
         left: cardWidth * this.direction,
         behavior: 'smooth'
       });
-    }, 3000); // كل 3 ثواني
+    }, 3000);
   }
 
   scrollLeft() {

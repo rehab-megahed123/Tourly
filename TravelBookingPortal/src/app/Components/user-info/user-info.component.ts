@@ -30,7 +30,7 @@ profile:IProfile|undefined;
   GetProfileByUserId(userid: string) {
     this.profileservice.GetProfileByUserId(userid).subscribe({
       next: (response) => {
-        this.profile = response; // Assuming the API returns an array, take the first element
+        this.profile = response;
         console.log('Profile loaded:', response);
       },
       error: (err) => {
